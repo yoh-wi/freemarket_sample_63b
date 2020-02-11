@@ -1,0 +1,26 @@
+.header
+  .header__box
+    .header-main
+      .header-main__icon
+        = link_to image_tag("/images/logo/logo.png", alt: "フリマのロゴ", class: "header-main__logo"), root_path
+      .header-main__search
+        = form_with url:"#", local: true do |f|
+          .header-main__search-input
+            = f.text_field :key, placeholder: "キーワードから探す", class: "header-main__key"
+            -# %button
+          .header-main__submit
+            = f.submit "", class: "header-main__submit-btn"
+            -# .header__box__main__search__submit  
+            
+            -# image_tag("/images/icon/icon-search 1.png", alt: "検索ボタン"), class: "header__box__main__search__submit"
+    .header-nav  
+      .heade-nav__left
+        .header-nav__item
+          = link_to "カテゴリ"
+        .header-nav__item
+          = link_to "ブランド"
+      .header-nav__right
+        .header-nav__user
+          = link_to "ログイン"
+        .header-nav__user
+          = link_to "新規会員登録"
