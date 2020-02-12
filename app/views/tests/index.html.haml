@@ -11,7 +11,7 @@
         フリマアプリです
     .main-visual__app
       .main-visual__apple
-        = link_to image_tag("/images/pict")
+        -# = link_to image_tag("/images/pict")
       .main-visual__google
   
   .main-introduction
@@ -69,15 +69,110 @@
           スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
       .main-feature__list
         .main-feature__image
-          = image_tag("/images/icon/icon-02.png", class: "main-feature__img")
+          = image_tag("/images/icon/icon-03.png", class: "main-feature__img")
         .main-feature__subtitle
           売上金は即日振込みに対応
         .main-feature__detail
           午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします!
       .main-feature__list
         .main-feature__image
-          = image_tag("/images/icon/icon-03.png", class: "main-feature__img")
+          = image_tag("/images/icon/icon-04.png", class: "main-feature__img")
         .main-feature__subtitle
           様々な支払いに対応
         .main-feature__detail
           お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
+  .main-pickup
+    .main-pickup__head
+      ピックアップカテゴリー
+    .main-pickup__products
+      .main-pickup__product-head
+        = link_to "新規投稿商品", class: "main-pickup__product-title"
+      .main-pickup__product-lists
+        .main-pickup__product-list
+          .main-pickup__product-list--image
+            = image_tag("", alt: "画像", class: "main-pickup__product-list--img")
+          .main-pickup__product-list--body
+            .main-pickup__product-list--name
+              product1
+            .main-pickup__product-list--detail
+              .main-pickup__product-list--price
+                10000円
+                %br
+                %span <税込>
+              .main-pickup__product-list--like
+                <i class="fas fa-star"></i>
+                1
+        .main-pickup__product-list
+          .main-pickup__product-list--image
+            = image_tag("", alt: "画像", class: "main-pickup__product-list--img")
+          .main-pickup__product-list--body
+            .main-pickup__product-list--name
+              product2
+            .main-pickup__product-list--detail
+              .main-pickup__product-list--price
+                20000円
+                %br
+                %span <税込>
+              .main-pickup__product-list--like
+                2
+        .main-pickup__product-list
+          .main-pickup__product-list--image
+            = image_tag("", alt: "画像", class: "main-pickup__product-list--img")
+          .main-pickup__product-list--body
+            .main-pickup__product-list--name
+              product3
+            .main-pickup__product-list--detail
+              .main-pickup__product-list--price
+                30000円
+                %br
+                %span <税込>
+              .main-pickup__product-list--like
+                3
+
+  .main-pickup
+    .main-pickup__head
+      ピックアップブランド
+    .main-pickup__products
+      .main-pickup__product-head
+        = link_to "アーカイバ", class: "main-pickup__product-title"
+      .main-pickup__product-lists
+        .main-pickup__product-list
+          .main-pickup__product-list--image
+            = image_tag("", alt: "画像", class: "main-pickup__product-list--img")
+          .main-pickup__product-list--body
+            .main-pickup__product-list--name
+              product1
+            .main-pickup__product-list--detail
+              .main-pickup__product-list--price
+                10000円
+                %br
+                %span <税込>
+              .main-pickup__product-list--like
+                <i class="fas fa-star"></i>
+                1
+        .main-pickup__product-list
+          .main-pickup__product-list--image
+            = image_tag("", alt: "画像", class: "main-pickup__product-list--img")
+          .main-pickup__product-list--body
+            .main-pickup__product-list--name
+              product2
+            .main-pickup__product-list--detail
+              .main-pickup__product-list--price
+                20000円
+                %br
+                %span <税込>
+              .main-pickup__product-list--like
+                2
+        .main-pickup__product-list
+          .main-pickup__product-list--image
+            = image_tag("", alt: "画像", class: "main-pickup__product-list--img")
+          .main-pickup__product-list--body
+            .main-pickup__product-list--name
+              product3
+            .main-pickup__product-list--detail
+              .main-pickup__product-list--price
+                30000円
+                %br
+                %span <税込>
+              .main-pickup__product-list--like
+                3
