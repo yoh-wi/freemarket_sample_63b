@@ -31,16 +31,6 @@ Things you may want to cover:
 ## productsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|image1|string|null: false|
-|image2|string| |
-|image3|string| |
-|image4|string| |
-|image5|string| |
-|image6|string| |
-|image7|string| |
-|image8|string| |
-|image9|string| |
-|image10|string| |
 |name|string|null: false|
 |description|string|null: false|
 |categry_id|integer|null: false, foreign_key: true|
@@ -58,16 +48,24 @@ Things you may want to cover:
 ### Association
 belongs_to :seller, class_name: 'User'
 belongs_to :buyer, class_name: 'User'
-belongs_to :categories
-belongs_to :brands
+belongs_to :category
+belongs_to :brand
 belongs_to :shipping_payer_methods
-belongs_to_active_hash :shoes_sizes
-belongs_to_active_hash :clothes_sizes
-belongs_to_active_hash :prefectures
+belongs_to_active_hash :shoes_size
+belongs_to_active_hash :clothes_size
+belongs_to_active_hash :prefecture
+has_many :images
 has_many :comments
 has_many :evaluations
 has_many :likes
 has_many :liked_users, through: likes, source: :user
+## imagesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|image|string|null:false|
+|product_id|integer|null: false, foreign_key: true|
+### Association
+belongs_to :product
 ## likesテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -102,7 +100,7 @@ belongs_to :product
 |user_id|integer| |
 ### Association
 belongs_to :user
-belongs_to_active_hash :prefectures
+belongs_to_active_hash :prefecture
 ## evaluationsテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -148,13 +146,14 @@ has_many :products
 |name|string| |
 ### Association
 has_many :products
-has_many :address
+has_many :addresses
 ## evaluationsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string| |
 ### Association
 has_many :products
+
 * Database initialization
 * How to run the test suite
 * Services (job queues, cache servers, search engines, etc.)
