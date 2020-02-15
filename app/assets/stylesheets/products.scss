@@ -224,20 +224,20 @@
         line-height: 1.5;
       }
       &--detail {
+        font-size: 16px;
         display: flex;
         justify-content: space-between;
       }
       &--price {
         span {
-          font-size: 12px;
+          font-size: 10px;
         }
       }
       &--like {
         height: 16px;
-        font-size: 14px;
       }
       &--like-icon {
-        // font-size: 12px;
+        
       }
       a {
         text-decoration: none;
