@@ -19,12 +19,12 @@ Things you may want to cover:
 |tel|string|null: false|
 |profile|text| |
 ### Association
-- has_many :cards
-- has_many :bought_products, foreign_key: 'buyer_id', class_name: 'Products'
-- has_many :selling_products, -> { where("buyer_id is NULL") }, foreign_key: 'seller_id, class_name: 'Product'
-- has_many :sold_products, -> { where("buyer_id is not NULL") }, foreign_key: 'seller_id', class_name: 'Products'
-- has_many :comments
-- has_one :address
+- has_many :cards, dependent: :destroy
+- has_many :bought_products, foreign_key: 'buyer_id', class_name: 'Products' , dependent: :destroy,
+- has_many :selling_products, -> { where("buyer_id is NULL") }, foreign_key: 'seller_id, class_name: 'Product', dependent: :destroy
+- has_many :sold_products, -> { where("buyer_id is not NULL") }, foreign_key: 'seller_id', class_name: 'Products', dependent: :destroy
+- has_many :comments, dependent: :destroy
+- has_one :address, dependent: :destroy
 - has_many :evaluations
 - has_many :likes, dependent: :destroy
 - has_many :liked_products, through: :likes, source: :product
@@ -54,10 +54,10 @@ belongs_to :shipping_payer_methods
 belongs_to_active_hash :shoes_size
 belongs_to_active_hash :clothes_size
 belongs_to_active_hash :prefecture
-has_many :images
-has_many :comments
-has_many :evaluations
-has_many :likes
+has_many :images, dependent: :destroy
+has_many :comments, dependent: :destroy
+has_many :evaluations, dependent: :destroy
+has_many :likes, dependent: :destroy
 has_many :liked_users, through: likes, source: :user
 ## imagesテーブル
 |Column|Type|Options|
