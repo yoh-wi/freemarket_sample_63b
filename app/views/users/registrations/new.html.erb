@@ -26,6 +26,28 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <div class="field">
+    <%= f.label "お名前（全角）" %><br />
+    <%= f.text_field :last_name_kanji, placeholder: '例）山田', autofocus: true %>
+    <%= f.text_field :first_name_kanji, placeholder: '例）彩', autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label "お名前カナ（全角）" %><br />
+    <%= f.text_field :last_name_kana, placeholder: '例）ヤマダ', autofocus: true %>
+    <%= f.text_field :first_name_kana, placeholder: '例）アヤ', autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label '生年月日' %><br />
+    <%= f.date_select :birthday, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label '電話番号' %><br />
+    <%= f.text_field :tel, autofocus: true %>
+  </div>
+  
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
