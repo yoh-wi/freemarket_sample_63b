@@ -12,9 +12,10 @@ Things you may want to cover:
 |nickname|string|null: false|
 |email|string|null: false, unique: true|
 |passward|string|null: false|
-|last_name_kanji|string|null: false|
-|first_name_kanji|string|null: false|
+|last_name|string|null: false|
+|first_name|string|null: false|
 |last_name_kana|string|null: false|
+|first_name_kana|string|null: false|
 |birthday|date|null: false|
 |tel|string|null: false|
 |profile|text| |
@@ -28,6 +29,7 @@ Things you may want to cover:
 - has_many :evaluations
 - has_many :likes, dependent: :destroy
 - has_many :liked_products, through: :likes, source: :product
+
 ## productsテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -59,6 +61,7 @@ has_many :comments, dependent: :destroy
 has_many :evaluations, dependent: :destroy
 has_many :likes, dependent: :destroy
 has_many :liked_users, through: likes, source: :user
+
 ## imagesテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -66,6 +69,7 @@ has_many :liked_users, through: likes, source: :user
 |product_id|integer|null: false, foreign_key: true|
 ### Association
 belongs_to :product
+
 ## likesテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -75,6 +79,7 @@ belongs_to :product
 belongs_to :product
 belongs_to :user
 validates_uniqueness_of :product_id, scope: :user_id
+
 ## commentsテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -84,11 +89,12 @@ validates_uniqueness_of :product_id, scope: :user_id
 ### Association
 belongs_to :user
 belongs_to :product
+
 ## addressテーブル
 |Column|Type|Options|
 |------|----|-------|
-|last_name_kanji|string|null: false|
-|first_name_kanji|string|null: false|
+|last_name|string|null: false|
+|first_name|string|null: false|
 |last_name_kana|string|null: false|
 |first_name_kana|string|null: false|
 |postal_code|char(7)|null: false|
@@ -101,6 +107,7 @@ belongs_to :product
 ### Association
 belongs_to :user
 belongs_to_active_hash :prefecture
+
 ## evaluationsテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -111,6 +118,7 @@ belongs_to_active_hash :prefecture
 ### Association
 belongs_to :user
 belongs_to :product
+
 ## categoriesテーブル (gem 'ancestry'を使う)
 |Column|Type|Options|
 |------|----|-------|
@@ -121,6 +129,7 @@ belongs_to :product
 |brand_flg|boolean|default: false, null: false|
 ### Association
 has_many :products
+
 ## shipping_payer_methodsテーブル (gem 'ancestry'を使う)
 |Column|Type|Options|
 |------|----|-------|
@@ -128,18 +137,21 @@ has_many :products
 |ancestry|integer| |
 ### Association
 has_many :products
+
 ## clothes_sizesテーブル (gem 'active_hash'を使用してDBには保存しない)
 |Column|Type|Options|
 |------|----|-------|
 |name|string| |
 ### Association
 has_many :products
+
 ## shoes_sizesテーブル (gem 'active_hash'を使用してDBには保存しない)
 |Column|Type|Options|
 |------|----|-------|
 |name|string| |
 ### Association
 has_many :products
+
 ## prefecturesテーブル (gem 'active_hash'を使用してDBには保存しない)
 |Column|Type|Options|
 |------|----|-------|
@@ -147,6 +159,7 @@ has_many :products
 ### Association
 has_many :products
 has_many :addresses
+
 ## evaluationsテーブル
 |Column|Type|Options|
 |------|----|-------|
