@@ -1,8 +1,25 @@
 .wrapper {
   position: relative;
   .purchase-btn {
-    position: absolute;
+    width: 120px;
+    padding: 15px;
+    border-radius: 4%;
+    background-color: #3ccace;
+    text-align: center;
+    position: fixed;
     right: 32px;
     bottom: 32px;
+    &__text {
+      font-size: 18px;
+      color: #fff;
+    }
+    &__icon {
+    }
+    &__img {
+      width: 60%;
+    } 
+    a {
+      text-decoration: none;
+    }
   }
 }
