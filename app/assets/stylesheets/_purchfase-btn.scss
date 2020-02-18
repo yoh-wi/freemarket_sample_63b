@@ -12,11 +12,13 @@
     &__text {
       font-size: 18px;
       color: #fff;
+      margin-bottom: 5px;
     }
     &__icon {
     }
     &__img {
       width: 60%;
+      vertical-align: bottom;
     } 
     a {
       text-decoration: none;

@@ -2,21 +2,43 @@
   .header__box
     .header-main
       .header-main__icon
-        = link_to image_tag("/images/logo/logo.png", alt: "フリマのロゴ", class: "header-main__logo"), root_path
+        = link_to image_tag("/uploads/images/logo/logo.png", alt: "フリマのロゴ", class: "header-main__icon--logo"), root_path
       .header-main__search
+        -# <%= form_tag '/', :method => 'get' do %>
+        -# <div class="input-group">
+        -# <%= text_field_tag :search, params[:search], placeholder: "キーワード検索", class: "form-control" %>
+        -# <span class="input-group-btn">
+        -# <%= button_tag "検索", :name => nil, class: "btn btn-primary" %>
+        -# </span>
+        -# </div>
+        -# <% end %>
+        
         = form_with url:"#", local: true do |f|
-          .header-main__search-input
-            = f.text_field :key, placeholder: "キーワードから探す", class: "header-main__key"
-            -# %button
-          .header-main__submit
-            = f.submit "", class: "header-main__submit-btn"
-            -# .header__box__main__search__submit  
+          .header-main__search__input
+            = f.text_field :key, placeholder: "キーワードから探す", class: "header-main__search__input--key"
+          .header-main__search__submit
+            %label
+              = image_tag("/uploads/images/icon/icon-search 1.png", class: "header-main__search__submit--icon") 
+              = f.submit class: "header-main__search__submit--btn" 
             
-            -# image_tag("/images/icon/icon-search 1.png", alt: "検索ボタン"), class: "header__box__main__search__submit"
+            
+            
+            
+            
+            -# = button_tag type: 'submit', class: "header-main__search__submit--btn" do
+            -#   = image_tag("/uploads/images/icon/icon-search 1.png", class: "header-main__search__submit--icon")
+            
+            
+            
+            -# = f.submit class: "header-main__search__submit--btn" 
+            -# = f.label :submit, class: "header-main__search__submit--label" do
+ 
+            -#   -# .header-main__search__submit--icon  
+      
     .header-nav  
       .heade-nav__left
         .header-nav__item
-          = link_to "カテゴリ"
+          = link_to "カテゴリー"
         .header-nav__item
           = link_to "ブランド"
       .header-nav__right

@@ -1,7 +1,6 @@
 .footer {
   .app-banner {
-    height: 360px;
-    background-image: url("/images/pict/bg-appBanner-pict.jpg");
+    background-image: url("/uploads/images/pict/bg-appBanner-pict.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -11,11 +10,36 @@
       text-align: center;
       &--title {
         font-size: 24px;
+        font-weight: bold;
         text-shadow: 0 0 5px rgba(0,0,0,0.5);
       }
       &--text {
         font-size: 35px;
         text-shadow: 0 0 5px rgba(0,0,0,0.5);
+      }
+    }
+    &__app {
+      display: flex;
+      justify-content: center;
+      vertical-align: bottom;
+      &--apple {
+        width: 172px;
+        padding: 12px 0px 12px 15px;
+        a {
+          width: 100%;
+          img {
+            width: 100%;
+          }
+        }
+      }
+      &--google {
+        width: 200px;
+        a {
+          width: 100%;
+          img {
+            width: 100%;
+          }
+        }
       }
     }
   }
@@ -25,6 +49,7 @@
     padding: 60px 0;
     text-align: center;
     &__contents { 
+      max-width: 840px;
       margin: 0 auto;
       display: flex;
       justify-content: space-evenly;
@@ -55,6 +80,7 @@
     }
     &__img {
       width: 100%;
+      vertical-align: bottom;
     }
     p {
       font-size: 14px;

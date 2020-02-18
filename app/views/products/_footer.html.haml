@@ -5,6 +5,11 @@
         だれでもかんたん、人生を変えるフリマアプリ
       .app-banner__inner--text
         今すぐ無料ダウンロード！
+      .app-banner__app
+        .app-banner__app--apple
+          = link_to image_tag("/uploads/images/logo/badge-download-on-the-app-store.svg")
+        .app-banner__app--google
+          = link_to image_tag("/uploads/images/logo/google-play-badge.png")
 
   .app-footer
     .app-footer__contents
@@ -39,5 +44,5 @@
           %li
             = link_to "お知らせ"
     .app-footer__logo
-      = link_to image_tag("/images/logo/logo-white.png", class: "app-footer__img")
+      = link_to image_tag("/uploads/images/logo/logo-white.png", class: "app-footer__img")
     %p © FURIMA

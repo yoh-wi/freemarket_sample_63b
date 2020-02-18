@@ -1,41 +1,55 @@
 .header {
+  padding: 15px 60px 10px;
   &__box {
-    padding: 10px 60px;
+    width: 100%;
+    max-width: 1040px;
+    margin: 0 auto; 
   }
   .header-main {
     width: 100%;  
     display: flex;
+    align-items: center;
     &__icon {
-      width: 170px;
       margin-right: 30px;
+      &--logo {
+        width: 140px; 
+      } 
     }
-    &__logo {
-      width: 140px; 
-    } 
     &__search {
       width: 100%;
-      display: flex;
-    }
-    &__search-input {
-      width: 80%;
-      height: 32px;
-      font-size: 14px;
-      padding: 0 5px;
-      float: left;
-    }
-    &__key {
-      width: calc( 100% - 26px );
-      height: 32px
-    }
-    &__submit {
-      width: 26px;
-      float: left; 
-    }       
-    &__submit-btn {
-      // background-image: images/icon/icon-search 1.png;
-    }
+      &__input {
+        width: calc( 100% - 36px );
+        float: left;
+        &--key {
+          width: 100%;
+          height: 36px;
+          font-size: 16px;
+          padding-left: 5px;
+        }
+      }
+      &__submit {
+        width: 36px;
+        height: 36px;
+        background-color: #3ccace;
+        float: left; 
+        label {
+          width: 100%;
+          height: 100%;
+          cursor: pointer;
+        }
+        &--btn {
+          display: none;
+          cursor: pointer;
+        }
+        &--icon {
+          width: 100%;
+          padding: 8px;
+        }
+      }  
+    }   
   } 
   .header-nav {
+    font-size: 14px;
     // margin-bottom: 10px;
     line-height: 32px;
     display: flex;
