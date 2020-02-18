@@ -1,0 +1,95 @@
+.single-container
+  
+  .single-header
+    %h1
+      mercari
+    .progress-bar
+      .progrress-bar__item
+        .progress-bar__item__data
+          会員情報
+        .progress-bar__item__tell
+          電話番号認証
+        .progress-bar__item__complete
+          完了
+
+  .single-main
+    %h2
+      会員情報入力
+    .input-form
+      = form_for "#" do |f|
+        .input-form__content
+          .input-form__content__nickname
+            %p
+              = f.label :nickname, "ニックネーム"
+              = f.label :require, "必須"
+              %p
+                = f.text_field :nickname, class: "nickname-field", type: "text", placeholder: "例)メルカリ太郎"
+              .input-form__content__info
+                ニックネームを入力してください
+          .input-form__content__email
+            %p
+              = f.label :email, "メールアドレス"
+              = f.label :require, "必須"
+              %p
+                = f.email_field :email, class: "email-field", placeholder: "PC・携帯どちらでも可"
+              .input-form__content__email__info
+                メールアドレスを入力してください
+          .input-form__content__password
+            %p
+              = f.label :password, "パスワード"
+              = f.label :require, "必須"
+              %p
+                = f.password_field :password, class: "password-field", placeholder: "7文字以上の半角英数字"
+              %p
+                ※ 英字と数字の両方を含めて設定してください
+              .inout-form__content__password__info
+                パスワードを入力してください
+              .input-form__content__password__display
+                .input-form__content__password__display__checkbox
+                  = f.check_box :password
+                  = f.label :text, "パスワードを表示する"
+          .input-form__content__check
+            %h3
+              本人確認
+            .input-form__content__check__text
+              安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+          .input-form__content__name
+            %p
+              = f.label :name, "お名前(全角)"
+              = f.label :require, "必須"
+              %p
+                = f.text_field :name, class: "family__name__kanji", type: "text", placeholder: "例)山田"
+                = f.text_field :name, class: "first__name__kanji", type: "text", placeholder: "例)彩"
+                .input-form__content__name__family-info
+                  姓を入力してください
+                .input-form__content__name__first-info
+                  名を入力してください
+          .input-form__content__kana
+            %p
+              = f.label :name, "お名前カナ(全角)"
+              = f.label :require, "必須"
+              %p
+                = f.text_field :name, class: "family__name__kana", type: "text", placeholder: "例)ヤマダ"
+                = f.text_field :name, class: "first__name__kana", type: "text", placeholder: "例)アヤ"
+                .input-form__content__name__family-kana-info
+                  姓カナを入力してください
+                .input-form__content__name__first-kana-info
+                  名カナを入力してください
+          .input-form__content__birthday
+            %p
+              = f.label :nickname, "生年月日"
+              = f.label :require, "必須"
+              %p
+                != sprintf(f.date_select(:birthday, prefix:"birthday", with_css_classes:"XXXXX", prompt:"--", use_month_numbers: true, start_year: Time.now.year, end_year: 1900, data_separator: "%s"), "年", "月")+"日"
+                .input-form__content__name__birthday-info
+                  生年月日を入力してください
+          .inout-form__content__info
+            ※　本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+      .input-form__proceed
+        .input-form__proceed__text
+          「次へ進む」のボタンを押すことにより、
+          %a{ href: "#", id: "use"}
+            利用規約
+          .input-form__proceed__text__content
+            に同意したものとみなします
+  .single-footer
