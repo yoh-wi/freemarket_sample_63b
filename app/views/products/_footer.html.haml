@@ -6,11 +6,7 @@
       .app-banner__inner--text
         今すぐ無料ダウンロード！
       .app-banner__app
-        .app-banner__app--apple
-          = link_to image_tag("/uploads/images/logo/badge-download-on-the-app-store.svg")
-        .app-banner__app--google
-          = link_to image_tag("/uploads/images/logo/google-play-badge.png")
-
+        = render "app-logo"
   .app-footer
     .app-footer__contents
       .app-footer__content

@@ -50,28 +50,34 @@
   } 
   .header-nav {
     font-size: 14px;
-    // margin-bottom: 10px;
-    line-height: 32px;
     display: flex;
     justify-content: space-between;
     &__left {
-    } 
-    &__item {
-      margin-right: 30px;
-      display: inline-block;
-      a {
-        color: #333;
-        text-decoration: none;
+      &__item {
+        line-height: 38px;
+        margin-right: 10px;
+        display: inline-block;
+        a {
+          color: #333;
+          line-height: 32px;
+          padding: 10px 10px 10px 0px;
+          text-decoration: none;
+          &:hover {
+            color: $orange;            
+          }
+        }
       }
     }
     &__right {
-    }
-    &__user {
-      margin-left: 15px;
-      display: inline-block;
-      a {
-        color: #333;
-        text-decoration: none;
+      &__user {
+        margin-left: 15px;
+        display: inline-block;
+        a {
+          color: #333;
+          line-height: 32px;
+          padding: 10px 0px;
+          text-decoration: none;
+        }
       }
     }
   }

@@ -11,10 +11,7 @@
           %br
           フリマアプリです
         .main-visual__app
-          .main-visual__app--apple
-            = link_to image_tag("/uploads/images/logo/badge-download-on-the-app-store.svg")
-          .main-visual__app--google
-            = link_to image_tag("/uploads/images/logo/google-play-badge.png")
+          = render "app-logo"   
     
     .main-introduction
       .main-introduction__subtitle
@@ -64,11 +61,7 @@
           %br
           ほしかったあの商品に出会えるかもしれません。
         .main-middle__app
-          .main-middle__app--apple
-            = link_to image_tag("/uploads/images/logo/badge-download-on-the-app-store.svg")
-          .main-middle__app--google
-            = link_to image_tag("/uploads/images/logo/google-play-badge.png")
-
+          = render "app-logo"
     .main-feature
       .main-feature__head
         FURIMAの特徴

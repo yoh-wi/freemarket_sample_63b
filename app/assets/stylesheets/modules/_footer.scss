@@ -6,7 +6,7 @@
     background-position: center;
     padding: 100px 40px;
     &__inner {
-      color: white;
+      color: $white;
       text-align: center;
       &--title {
         font-size: 24px;
@@ -19,28 +19,7 @@
       }
     }
     &__app {
-      display: flex;
-      justify-content: center;
       vertical-align: bottom;
-      &--apple {
-        width: 172px;
-        padding: 12px 0px 12px 15px;
-        a {
-          width: 100%;
-          img {
-            width: 100%;
-          }
-        }
-      }
-      &--google {
-        width: 200px;
-        a {
-          width: 100%;
-          img {
-            width: 100%;
-          }
-        }
-      }
     }
   }
   .app-footer {
@@ -68,7 +47,7 @@
         a {
           font-size: 12px;
           line-height: 32px;
-          color: #fff;
+          color: $white;
           text-decoration: none;
         }
       }
