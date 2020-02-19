@@ -19,6 +19,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
+  def edit_profile
+    @user = current_user
+  end
+
+  def update_profile
+    current_user.assign_attributes(account_update_params)
+    if current_user.save
+      redirect_to root_path, notice: 'プロフィールを更新しました'
+    else
+      render "edit_profile"
+    end
+  end
+
+  protected
+
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update, keys: [:nickname, :profile])
+  end
+
   # PUT /resource
   # def update
   #   super
