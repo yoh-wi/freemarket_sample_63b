@@ -3,3 +3,8 @@
 %p 
   = link_to "ログアウト", destroy_user_session_path, method: :delete
   = link_to 'プロフィール', edit_profile_path
+
+  - if current_user.address.blank?
+    = link_to '発送元・お届け先住所変更', new_address_path
+  - else
+    = link_to '発送元・お届け先住所変更', edit_address_path
