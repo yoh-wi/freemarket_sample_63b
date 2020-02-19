@@ -32,6 +32,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def new_address
+    
+  end
+
+  def create_address
+    
+  end
+
+  def edit_address
+    
+  end
+
+  def update_address
+    
+  end
+
   protected
 
   def configure_account_update_params
