@@ -9,6 +9,9 @@
     position: fixed;
     right: 32px;
     bottom: 32px;
+    &:hover {
+      opacity: 0.9;
+    }
     &__text {
       font-size: 18px;
       color: #fff;
