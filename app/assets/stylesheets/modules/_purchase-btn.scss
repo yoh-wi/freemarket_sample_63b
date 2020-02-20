@@ -18,11 +18,11 @@
       margin-bottom: 5px;
     }
     &__icon {
+      &--img {
+        width: 60%;
+        vertical-align: bottom;
+      }  
     }
-    &__img {
-      width: 60%;
-      vertical-align: bottom;
-    } 
     a {
       text-decoration: none;
     }
