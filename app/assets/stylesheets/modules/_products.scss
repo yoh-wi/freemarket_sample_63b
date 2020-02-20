@@ -81,9 +81,9 @@ body {
     }
     &__number {
       font-size: 30px;
-      color: #fff;
+      color: $white;
       padding: 10px 20px;
-      background-color: #3ccace;
+      background-color: $light_blue;
       border-radius: 4%;
       position: absolute;
       top: 0;
@@ -93,7 +93,7 @@ body {
       font-size: 24px;
       font-weight: bold;
       span {
-        color: #3ccace;
+        color: $light_blue;
       }
     }
     &__description {
@@ -204,7 +204,7 @@ body {
       a {
         font-size: 24px;
         font-weight: bold;
-        color: #3ccace;
+        color: $light_blue;
         text-decoration: none;
 
       }

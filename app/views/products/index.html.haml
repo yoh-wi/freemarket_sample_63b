@@ -11,8 +11,8 @@
           %br
           フリマアプリです
         .main-visual__app
-          -# アプリロゴ
-          -# = render "app-logo"   
+          -# アプリロゴ表示
+          = render "app-logo"   
     
     .main-introduction
       .main-introduction__subtitle
@@ -62,8 +62,8 @@
           %br
           ほしかったあの商品に出会えるかもしれません。
         .main-middle__app
-          -# アプリロゴ
-          -# = render "app-logo"
+          -# アプリロゴ表示
+          = render "app-logo"
     .main-feature
       .main-feature__head
         FURIMAの特徴
@@ -113,7 +113,7 @@
                     = icon('fas', 'star', class: "main-pickup__product-list--like-icon")
                     1
           .main-pickup__product-list
-            = link_to "" do
+            = link_to "#" do
               .main-pickup__product-list--image
                 = image_tag("/uploads/images/pict/pict-reason-02.jpg", alt: "画像", class: "main-pickup__product-list--img")
               .main-pickup__product-list--body
@@ -128,7 +128,7 @@
                     = icon('fas', 'star', class: "main-pickup__product-list--like-icon")
                     2
           .main-pickup__product-list
-            = link_to "" do
+            = link_to "#" do
               .main-pickup__product-list--image
                 = image_tag("/uploads/images/pict/pict-reason-03.jpg", alt: "画像", class: "main-pickup__product-list--img")
               .main-pickup__product-list--body
@@ -150,7 +150,7 @@
           = link_to "アーカイブ", class: "main-pickup__product-title"
         .main-pickup__product-lists
           .main-pickup__product-list
-            = link_to "" do
+            = link_to "#" do
               .main-pickup__product-list--image
                 = image_tag("/uploads/images/pict/bg-topMiddleDl-pict.jpg", alt: "画像", class: "main-pickup__product-list--img")
               .main-pickup__product-list--body
@@ -165,7 +165,7 @@
                     = icon('fas', 'star', class: "main-pickup__product-list--like-icon")
                     1
           .main-pickup__product-list
-            = link_to "" do
+            = link_to "#" do
               .main-pickup__product-list--image
                 = image_tag("/uploads/images/pict/bg-mainVisual-pict_pc.jpg", alt: "画像", class: "main-pickup__product-list--img")
               .main-pickup__product-list--body
@@ -180,7 +180,7 @@
                     = icon('fas', 'star', class: "main-pickup__product-list--like-icon")
                     2
           .main-pickup__product-list
-            = link_to "" do
+            = link_to "#" do
               .main-pickup__product-list--image
                 = image_tag("/uploads/images/pict/bg-appBanner-pict.jpg", alt: "画像", class: "main-pickup__product-list--img")
               .main-pickup__product-list--body
@@ -192,7 +192,6 @@
                     %br
                     %span <税込>
                   .main-pickup__product-list--like
-                    -# <i class="fas fa-star"></i>
                     = icon('fas', 'star', class: "main-pickup__product-list--like-icon")
                     3
 

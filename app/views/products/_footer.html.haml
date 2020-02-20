@@ -6,12 +6,12 @@
       .app-banner__inner--text
         今すぐ無料ダウンロード！
       .app-banner__app
-        -# アプリロゴ表示していいか確認 
-        -# = render "app-logo"
+        -# アプリロゴ表示 
+        = render "app-logo"
   .app-footer
     .app-footer__contents
       .app-footer__content
-        .app-footer__content-head
+        .app-footer__content--head
           FURIMAについて
         %ul
           %li
@@ -23,7 +23,7 @@
           %li 
             = link_to "ポイントに関する特約"
       .app-footer__content
-        .app-footer__content-head
+        .app-footer__content--head
           FURIMAを見る
         %ul
           %li
@@ -31,7 +31,7 @@
           %li
             = link_to "ブランド一覧"
       .app-footer__content
-        .app-footer__content-head
+        .app-footer__content--head
           ヘルプ＆ガイド
         %ul
           %li
@@ -41,5 +41,5 @@
           %li
             = link_to "お知らせ"
     .app-footer__logo
-      = link_to image_tag("/uploads/images/logo/logo-white.png", class: "app-footer__img")
+      = link_to image_tag("/uploads/images/logo/logo-white.png", class: "app-footer__logo--img")
     %p © FURIMA

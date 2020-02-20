@@ -23,7 +23,7 @@
     }
   }
   .app-footer {
-    color: #fff;
+    color: $white;
     background-color: #272727;
     padding: 60px 0;
     text-align: center;
@@ -35,20 +35,20 @@
     }
     &__content {
       width: calc( 1/3 * 100% );
-    }
-    &__content-head {
-      font-size: 16px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-    ul {
-      li {
-        
-        a {
-          font-size: 12px;
-          line-height: 32px;
-          color: $white;
-          text-decoration: none;
+      &--head {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+      ul {
+        li {
+          
+          a {
+            font-size: 12px;
+            line-height: 32px;
+            color: $white;
+            text-decoration: none;
+          }
         }
       }
     }
@@ -56,13 +56,13 @@
       width: 100%;
       max-width: 160px;
       margin: 0 auto;
-    }
-    &__img {
-      width: 100%;
-      vertical-align: bottom;
-    }
-    p {
-      font-size: 14px;
-    }
+      &--img {
+        width: 100%;
+        vertical-align: bottom;
+      }
+      p {
+        font-size: 14px;
+      }
+    } 
   }
 }
