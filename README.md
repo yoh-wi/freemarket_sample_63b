@@ -1,55 +1,38 @@
 # README
-
 This README would normally document whatever steps are necessary to get the
 application up and running.
-
 Things you may want to cover:
-
 * Ruby version
-
 * System dependencies
-
 * Configuration
-
 * Database creation
-
 ## usersテーブル
 |Column|Type|Options|
 |------|----|-------|
 |nickname|string|null: false|
 |email|string|null: false, unique: true|
 |passward|string|null: false|
-|last_name_kanji|string|null: false|
-|first_name_kanji|string|null: false|
+|last_name|string|null: false|
+|first_name|string|null: false|
 |last_name_kana|string|null: false|
+|first_name_kana|string|null: false|
 |birthday|date|null: false|
 |tel|string|null: false|
 |profile|text| |
 ### Association
-- has_many :cards
-- has_many :bought_products, foreign_key: 'buyer_id', class_name: 'Products'
-- has_many :selling_products, -> { where("buyer_id is NULL") }, foreign_key: 'seller_id, class_name: 'Product'
-- has_many :sold_products, -> { where("buyer_id is not NULL") }, foreign_key: 'seller_id', class_name: 'Products'
-- has_many :comments
-- has_one :address
+- has_many :cards, dependent: :destroy
+- has_many :bought_products, foreign_key: 'buyer_id', class_name: 'Products' , dependent: :destroy,
+- has_many :selling_products, -> { where("buyer_id is NULL") }, foreign_key: 'seller_id, class_name: 'Product', dependent: :destroy
+- has_many :sold_products, -> { where("buyer_id is not NULL") }, foreign_key: 'seller_id', class_name: 'Products', dependent: :destroy
+- has_many :comments, dependent: :destroy
+- has_one :address, dependent: :destroy
 - has_many :evaluations
 - has_many :likes, dependent: :destroy
 - has_many :liked_products, through: :likes, source: :product
 
-
 ## productsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|image1|string|null: false|
-|image2|string| |
-|image3|string| |
-|image4|string| |
-|image5|string| |
-|image6|string| |
-|image7|string| |
-|image8|string| |
-|image9|string| |
-|image10|string| |
 |name|string|null: false|
 |description|string|null: false|
 |categry_id|integer|null: false, foreign_key: true|
@@ -67,16 +50,25 @@ Things you may want to cover:
 ### Association
 belongs_to :seller, class_name: 'User'
 belongs_to :buyer, class_name: 'User'
-belongs_to :categories
-belongs_to :brands
+belongs_to :category
+belongs_to :brand
 belongs_to :shipping_payer_methods
-belongs_to_active_hash :shoes_sizes
-belongs_to_active_hash :clothes_sizes
-belongs_to_active_hash :prefectures
-has_many :comments
-has_many :evaluations
-has_many :likes
+belongs_to_active_hash :shoes_size
+belongs_to_active_hash :clothes_size
+belongs_to_active_hash :prefecture
+has_many :images, dependent: :destroy
+has_many :comments, dependent: :destroy
+has_many :evaluations, dependent: :destroy
+has_many :likes, dependent: :destroy
 has_many :liked_users, through: likes, source: :user
+
+## imagesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|image|string|null:false|
+|product_id|integer|null: false, foreign_key: true|
+### Association
+belongs_to :product
 
 ## likesテーブル
 |Column|Type|Options|
@@ -101,8 +93,8 @@ belongs_to :product
 ## addressテーブル
 |Column|Type|Options|
 |------|----|-------|
-|last_name_kanji|string|null: false|
-|first_name_kanji|string|null: false|
+|last_name|string|null: false|
+|first_name|string|null: false|
 |last_name_kana|string|null: false|
 |first_name_kana|string|null: false|
 |postal_code|char(7)|null: false|
@@ -111,10 +103,10 @@ belongs_to :product
 |house_number|string|null: false|
 |building_name|string| |
 |tel|string| |
-|user_id|integer| |
+|user_id|integer|null: false, foreign_key: true|
 ### Association
 belongs_to :user
-belongs_to_active_hash :prefectures
+belongs_to_active_hash :prefecture
 
 ## evaluationsテーブル
 |Column|Type|Options|
@@ -166,7 +158,7 @@ has_many :products
 |name|string| |
 ### Association
 has_many :products
-has_many :address
+has_many :addresses
 
 ## evaluationsテーブル
 |Column|Type|Options|
@@ -175,13 +167,8 @@ has_many :address
 ### Association
 has_many :products
 
-
 * Database initialization
-
 * How to run the test suite
-
 * Services (job queues, cache servers, search engines, etc.)
-
 * Deployment instructions
-
 * ...
