@@ -1,5 +1,5 @@
 %h1 profile
-= form_with(url: update_profile_path, model: @user, local: true) do |form|
+= form_with(url: update_profile_path, model: current_user, local: true) do |form|
   = form.text_field :nickname, placeholder: '例）AYA☆セール中'
   = form.text_area :profile, placeholder: '例）こんにちは！ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に９号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪'
   = form.submit '変更する'
