@@ -1,0 +1,11 @@
+.footer
+  .footer__list
+    .footer__list__container
+      = link_to "プライバシーポリシー", "#", class: "footer__list__container__link"
+      = link_to "メルカリ利用規約", "#", class: "footer__list__container__link"
+      = link_to "特定商取引法に関する表記", "#", class: "footer__list__container__link"
+  
+  .footer__logo
+    = link_to image_tag("logo.png", class: "footer__logo", alt: "mercari")
+  .footer__inc
+    @ Mercari, Inc.
