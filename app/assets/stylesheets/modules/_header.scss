@@ -1,0 +1,84 @@
+.header {
+  padding: 15px 60px 10px;
+  &__box {
+    width: 100%;
+    max-width: 1040px;
+    margin: 0 auto; 
+  }
+  .header-main {
+    width: 100%;  
+    display: flex;
+    align-items: center;
+    &__icon {
+      margin-right: 30px;
+      &--logo {
+        width: 140px; 
+      } 
+    }
+    &__search {
+      width: 100%;
+      &__input {
+        width: calc( 100% - 36px );
+        float: left;
+        &--key {
+          width: 100%;
+          height: 36px;
+          font-size: 16px;
+          padding-left: 5px;
+        }
+      }
+      &__submit {
+        width: 36px;
+        height: 36px;
+        background-color: $light_blue;
+        float: left; 
+        label {
+          width: 100%;
+          height: 100%;
+          cursor: pointer;
+        }
+        &--btn {
+          display: none;
+          cursor: pointer;
+        }
+        &--icon {
+          width: 100%;
+          padding: 8px;
+        }
+      }  
+    }   
+  } 
+  .header-nav {
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    &__left {
+      &__item {
+        line-height: 38px;
+        margin-right: 10px;
+        display: inline-block;
+        a {
+          color: #333;
+          line-height: 32px;
+          padding: 10px 10px 10px 0px;
+          text-decoration: none;
+          &:hover {
+            color: $orange;            
+          }
+        }
+      }
+    }
+    &__right {
+      &__user {
+        margin-left: 15px;
+        display: inline-block;
+        a {
+          color: #333;
+          line-height: 32px;
+          padding: 10px 0px;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
