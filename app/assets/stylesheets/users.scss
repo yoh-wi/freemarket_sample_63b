@@ -103,8 +103,12 @@
                   transition: all ease-out .3s;
                   transform: translate(0, -40%);
                   &--content {
-                    width: 20px;
-                    height: 20px;
+                    bottom: 0;
+                    position: absolute;
+                    -moz-transform-origin: right bottom;
+                    -moz-transform: scale( 2 , 2 );
+                    -webkit-transform-origin: right bottom;
+                    -webkit-transform: scale( 2 , 2 );
                   }
                 }
                 &--text {
