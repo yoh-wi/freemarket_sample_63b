@@ -1,0 +1,27 @@
+.wrapper
+  .container
+    = render 'header'
+
+    .main
+      .main__container
+        %h2.main__container__text
+        アカウントをお持ちでない方はこちら
+        .main__container__account
+          = link_to "新規会員登録", class: "main__container__account--link"
+        .login
+          = form_for "#" do |f|
+            .login__content
+              .login__content__form
+                .login__content__form__inner
+                  .login__content__form__inner--email
+                    = f.email_field :email, class: "login__content__form__inner--email"
+                  .login__content__form__inner--password
+                    = f.password_field :password, class: "login__content__form__inner--password"
+                  
+                  = f.submit "ログイン", class: "login__content__form__inner--btn"
+                  
+                  .login__content__form__inner--text
+                    = link_to "パスワードをお忘れの方", class: "login__content__form__inner--text"
+      
+    .single-footer
+      = render 'footer'

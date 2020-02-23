@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
 
-  root 'users#new'
+  root 'users#login'
 end

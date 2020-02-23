@@ -1,4 +1,7 @@
 @import "reset";
 @import "config/colors";
-@import "./mixins";
-@import "./users";
+@import "config/mixins";
+@import "users/login";
+@import "users/new";
+@import "users/header";
+@import "users/footer";
