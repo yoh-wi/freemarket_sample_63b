@@ -53,10 +53,10 @@
     display: flex;
     justify-content: space-between;
     &__left {
-      &__item {
+      display: flex;
+      &__category {
         line-height: 38px;
         margin-right: 10px;
-        display: inline-block;
         a {
           color: #333;
           line-height: 32px;
@@ -69,9 +69,9 @@
       }
     }
     &__right {
+      display: flex;
       &__user {
         margin-left: 15px;
-        display: inline-block;
         a {
           color: #333;
           line-height: 32px;
