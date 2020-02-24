@@ -1,5 +1,6 @@
 @import "reset";
 @import "config/colors";
+@import "config/mixins";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "modules/app-logo";
@@ -7,3 +8,7 @@
 @import "modules/header";
 @import "modules/products";
 @import "modules/purchase-btn";
+@import "users/login";
+@import "users/new";
+@import "users/header";
+@import "users/footer";
