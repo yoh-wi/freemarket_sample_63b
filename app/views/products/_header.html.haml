@@ -15,6 +15,32 @@
       .header-nav__left
         .header-nav__left__category
           = link_to "カテゴリー"
+          .header-nav__left__category__tree  
+            %ul.first
+              %li
+                = link_to "レディース"  
+                %ul.second
+                  %li
+                    = link_to "トップス"
+                    %ul.third
+                      %li
+                        = link_to "Tシャツ/カットソー"  
+                      %li
+                        = link_to "シャツ/ブラウス"
+                  %li
+                    = link_to "ジャケット／アウター"
+                    %ul.third  
+                      %li
+                        = link_to "テーラードジャケット"  
+                      %li
+                        = link_to "ノーカラージャケット"
+              %li
+                = link_to "メンズ"
+              %li
+                = link_to "レディース"  
+              %li
+                = link_to "メンズ"
+            
         .header-nav__left__category
           = link_to "ブランド"
       .header-nav__right
