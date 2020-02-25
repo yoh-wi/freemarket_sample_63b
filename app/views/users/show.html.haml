@@ -1,0 +1,25 @@
+.mypage
+  = render "products/header"
+  .mypage-main
+    .mypage-main__content
+      %section.user-icon
+        = link_to do
+          .user-icon__img
+            = image_tag("")
+          .user-icon__name
+            username
+          .user-icon__number
+            .user-icon__number--evalu
+              評価&nbsp;      
+              %span
+                0
+            .user-icon__number--exihit
+              出品数&nbsp;
+              %span
+                0
+      %section.notification-todo
+
+
+  = render "mypage-side"
+  = render "products/footer"
+  = render "products/purchase-btn"
