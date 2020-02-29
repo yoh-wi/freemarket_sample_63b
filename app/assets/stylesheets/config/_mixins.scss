@@ -6,6 +6,18 @@
   border-radius: 2px;
   font-size: 12px;
   vertical-align: top;
+  font-weight: bold;
+}
+
+@mixin optional {
+  background-color: $pale_gray;
+  color: $white;
+  margin: 0 0 0 8px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  font-size: 12px;
+  vertical-align: top;
+  font-weight: bold;
 }
 
 @mixin field() {
@@ -63,6 +75,34 @@
   background: $white;
   line-height: 1.5;
   font-size: 16px;
+}
+
+@mixin form-label {
+  padding: 15px 40px 0;
+  &--label {
+    font-weight: 600;
+  }
+  &--require {
+    @include require();
+  }
+  &--optional {
+    @include optional;
+  }
+  &--field {
+    margin-top: 10px;
+    padding-left: 15px;
+    @include field();
+  }
+  &--area {
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
+    height: 150px;
+    border-radius: 4px;
+    border: 1px solid $pale_gray;
+    background-color: $white;
+    font-size: 16px;
+  }
 }
 
 @mixin detail-bar() {
