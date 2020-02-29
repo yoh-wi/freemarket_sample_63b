@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   end
   resources :users
   # root to:"users#login"
-  root to:"users#show"
+  root to: 'users#destroy'
   
 end
