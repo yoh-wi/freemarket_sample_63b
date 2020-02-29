@@ -7,7 +7,8 @@
         %section.user-icon
           = link_to "#" do
             .user-icon__img
-              = image_tag("https://placebear.com/60/60", alt: "ユーザー画像", class: "user-img")
+              -# 仮置き画像
+              = image_tag("https://placebear.com/100/100", alt: "ユーザー画像", class: "user-img")
             .user-icon__name
               username
             .user-icon__number
@@ -57,7 +58,7 @@
                     = icon('fas', 'chevron-right', class: "arrow-right")
               %li
                 .content-all
-                  = link_to "一覧を見る", root_path, class: "content-all__link"
+                  = link_to "一覧を見る", "#", class: "content-all__link"
         %section.mypage-tab
           .mypage-tab__head
             購入した商品
