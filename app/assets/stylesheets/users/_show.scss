@@ -1,5 +1,233 @@
 .mypage {
+  min-width: 1068px;
+  background-color: $light_gray;
   .mypage-main {
-    margin: 24px auto 0;
+    width: 1020px;
+    margin: 40px auto 0;
+    padding: 0 0 40px;
+    @include clearfix();
+    &__container {
+      width: 700px;
+      float: right;
+      &__content { 
+        .user-icon {
+          height: 200px;
+          font-size: 14px;
+          background-color: #fff0f5;
+          text-align: center;    
+          padding: 20px;
+          position: relative;
+          a {
+            color: $gray;
+            text-decoration: none;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translate(0, -50%);
+            &:hover {
+              opacity: 0.7;
+              .user-icon__name {
+                text-decoration: underline;
+              }
+            }
+          }
+          &__img {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto;
+            .user-img {
+              border-radius: 50%;
+            }
+          }
+          &__name {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.4;
+            margin: 8px 0 0;
+          }
+          &__number {
+            margin: 8px 0 0;
+            display: flex;
+            justify-content: center;
+            &--element {
+              margin-right: 16px;
+              span {
+                font-weight: bold;
+                margin-left: 8px;
+              }
+              &:last-child {
+                margin-right: 0;
+              }
+            }
+          }
+        }
+        .notification-todo {
+          ul.tabs {
+            font-size: 0;
+            background-color: #eee;
+            li {
+              width: 50%;
+              display: inline-block;
+              text-align: center;
+              // 仮置き 選択された部分の色を変える
+              &:first-child {
+                background-color: $white;
+                border-top: 2px solid $light_blue;
+              }
+              .tab-title {
+                a {
+                  font-size: 16px;
+                  font-weight: bold;;
+                  line-height: 72px;
+                  color: $gray;
+                  display: block;
+                  text-decoration: none;
+                  &:hover {
+                    opacity: 0.7;
+                  }
+                }
+              }
+            }
+          }
+          &__content {
+            ul {
+              li {
+                background-color: $white;
+                border-bottom: 1px solid #eee;
+                &:last-child {
+                  border: 0;
+                }
+                .tab-list {
+                  color: $gray;
+                  min-height: 80px;
+                  display: block;
+                  padding: 16px;
+                  text-decoration: none;
+                  position: relative;
+                  &:hover {
+                    background-color: $snow;
+                  }
+                  &__content {
+                    &__icon {
+                      float: left;
+                      .logo-icon {
+                        width: 48px;
+                        height: 48px;
+                        color: black;
+                        object-fit: cover;
+                        object-position: left top;
+                      }
+                    }
+                    &__body {
+                      font-size: 14px;
+                      margin: 0 50px 0 60px;
+                      &--text { 
+                        line-height: 1.5;
+                        overflow: hidden;
+                      }
+                      &--time {
+                        color: #888;
+                        display: inline-block;
+                        .clock-icon {
+                          margin: 0 5px 0 0;
+                        }
+                      }
+                    }
+                    &__arrow {
+                      position: absolute;
+                      top: 50%;
+                      right: 16px;
+                      transform: translate(0, -50%);
+                    }
+                  }
+                }
+                .content-all {
+                  padding: 16px;
+                  &__link {
+                    font-size: 14px;
+                    min-height: 56px;
+                    line-height: 56px;
+                    color: $gray;
+                    background-color: #eee;
+                    text-align: center;
+                    display: block;
+                    text-decoration: none;
+                    &:hover {
+                      background-color: $snow;
+                    }
+                  }
+                }
+              }
+            }
+          }  
+        }
+        .mypage-tab {
+          margin: 80px 0 0;
+          &__head {
+            font-size: 16px;
+            font-weight: bold;
+            background-color: $snow;
+            line-height: 72px;
+            padding: 0 16px;
+          }
+          &__container {
+            ul.tabs {
+              height: 72px;
+              font-size: 0;
+              background-color: #eee;      
+              li {
+                width: 50%;
+                display: inline-block;
+                text-align: center;
+                // 仮置き 選択された部分の色を変える
+                &:first-child {
+                  background-color: $white;
+                  border-top: 2px solid $light_blue;
+                }
+              }
+              .tab-title {
+                a {
+                  font-size: 16px;
+                  font-weight: bold;;
+                  line-height: 72px;
+                  color: $gray;
+                  display: block;
+                  text-decoration: none;
+                  &:hover {
+                    opacity: 0.7;
+                  }
+                }
+              }
+            }
+            &__content {
+              ul {
+                li {
+                  background-color: $white;
+                  border-bottom: 1px solid #eee;
+                  &:last-child {
+                    border: 0;
+                  }
+                  .tab-list {
+                    &__notfound {
+                      font-size: 16px;
+                      font-weight: bold;
+                      color: $pale_gray;
+                      text-align: center;
+                      padding: 100px;
+                      // 仮置き 選択されていないlistを非表示
+                      &--past {
+                        display: none;
+                      }
+                    }
+                  }
+                }
+
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

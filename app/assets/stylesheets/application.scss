@@ -1,5 +1,6 @@
 @import "reset";
 @import "config/colors";
+@import "config/mixins";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "modules/app-logo";
@@ -13,3 +14,4 @@
 
 
 @import "users/show";
+@import "users/mypage-side";
