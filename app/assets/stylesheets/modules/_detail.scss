@@ -10,19 +10,19 @@
     max-width: 1040px;
     font-size: 14px;
     margin: 0 auto;
-    &--top {
+    &--parent-category {
       @include detail-bar();
     }
     &--icon {
       @include detail-icon();
     }
-    &--baby {
+    &--baby-category {
       @include detail-bar();
     }
-    &--baby-size {
+    &--child-category {
       @include detail-bar();
     }
-    &--outer {
+    &--grandchild-category {
       @include detail-bar();
     }
     &--product {
