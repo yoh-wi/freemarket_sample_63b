@@ -1,0 +1,9 @@
+.mypage
+  = render "products/header"
+  .mypage-main
+    = render "mypage-side"
+    .mypage-main__container
+      .mypage-main__container__logout
+        .mypage-main__container__logout--btn
+          = link_to "ログアウト", destroy_user_session_path, method: :delete
+  = render "products/footer" 
