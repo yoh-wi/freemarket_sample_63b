@@ -1,18 +1,7 @@
 .wrapper
   = render "header"
-  
-  .detail-bar
-    .detail-bar__link
-      = link_to "FURIMA", "#", class: "detail-bar__link--parent-category"
-      = icon('fas', 'angle-right', class: "detail-bar__link--icon")
-      = link_to "ベビー・キッズ", "#", class: "detail-bar__link--baby-category"
-      = icon('fas', 'angle-right', class: "detail-bar__link--icon")
-      = link_to "ベビー服(男女兼用)~95cm", "#", class: "detail-bar__link--child-category"
-      = icon('fas', 'angle-right', class: "detail-bar__link--icon")
-      = link_to "アウター", "#", class: "detail-bar__link--grandchild-category"
-      = icon('fas', 'angle-right', class: "detail-bar__link--icon")
-      = link_to "product3", "#", class: "detail-bar__link--product"
-    
+  = render "detail-bar"
+
   .detail-main
     .detail-main__show
       .detail-main__show__content
@@ -94,6 +83,8 @@
                     発送日の目安
                   %td.item-right
                     4-7日で発送
+              .detail-box__table--btn
+                購入画面に進む
             .detail-box__option
               .detail-box__option__item
                 .detail-box__option__item__icon
@@ -128,4 +119,3 @@
           = link_to "ベビー・キッズをもっと見る", "#", class: "detail-main__show__content__items--transition"
 
   = render "footer"
-  = render "purchase-btn"
