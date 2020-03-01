@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  has_many :images
   belongs_to :category
   belongs_to :shipping_payer_method
   belongs_to :seller, class_name: 'User'
