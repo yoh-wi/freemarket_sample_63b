@@ -11,7 +11,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.integer       :days_of_shipping,          null: false
       t.integer       :price,                     null: false
       t.integer       :seller_id,                 null: false, foreign_key: {to_table: :users}
-      t.integer       :buyer_id,                  null: false, foreign_key: {to_table: :users}
+      t.integer       :buyer_id,                  foreign_key: {to_table: :users}
       t.integer       :trade_status,              null: false, default: 0
       t.timestamps
     end

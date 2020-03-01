@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2020_03_01_072205) do
     t.integer "days_of_shipping", null: false
     t.integer "price", null: false
     t.integer "seller_id", null: false
-    t.integer "buyer_id", null: false
+    t.integer "buyer_id"
     t.integer "trade_status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
