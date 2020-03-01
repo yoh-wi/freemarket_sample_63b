@@ -1,0 +1,121 @@
+.wrapper
+  = render "header"
+  = render "detail-bar"
+
+  .detail-main
+    .detail-main__show
+      .detail-main__show__content
+        .detail-main__show__content__top
+          .detail-box
+            %h2.detail-box--title
+              product1
+            .detail-box__body
+              .detail-box__body__content
+                .detail-box__body__content__list
+                  = image_tag("http://placekitten.com/350/250/", alt: "画像", class: "detail-box__body__content__list--image")
+                  .detail-small
+                    .detail-small__list
+                      = image_tag("http://placekitten.com/350/250/", alt: "画像", class: "detail-small__list--image")                   
+                    .detail-small__list
+                      = image_tag("http://placekitten.com/350/250/", alt: "画像", class: "detail-small__list--image")
+                    .detail-small__list
+                      = image_tag("http://placekitten.com/350/250/", alt: "画像", class: "detail-small__list--image")
+
+            .detail-box__price
+              %span.detail-box__price--text
+                ¥30000
+              .detail-box__price__box
+                %span
+                  (税込み)
+                %span
+                  送料込み
+            .detail-box--name
+              product1
+            .detail-box__table
+              %table.detail-box__table__item
+                %tr
+                  %th.item-left
+                    出品者
+                  %td.item-right
+                    hoge
+              %table.detail-box__table__item
+                %tr
+                  %th.item-left
+                    カテゴリー
+                  %td.item-right
+                    .item-right__box
+                      = link_to "ベビー・キッズ", "#", class: "item-right--box--link"
+                    .item-right__box
+                      = link_to "ベビー服(男女兼用)~95cm", "#", class: "item-right--box--link"
+                    .item-right__box
+                      = link_to "アウター", "#", class: "item-right--box--link"
+              %table.detail-box__table__item
+                %tr
+                  %th.item-left
+                    ブランド
+                  %td.item-right
+              %table.detail-box__table__item
+                %tr
+                  %th.item-left
+                    商品のサイズ
+                  %td.item-right
+              %table.detail-box__table__item
+                %tr
+                  %th.item-left
+                    商品の状態
+                  %td.item-right
+                    未使用に近い
+              %table.detail-box__table__item
+                %tr
+                  %th.item-left
+                    配送料の負担
+                  %td.item-right
+                    送料込み（出品者負担）
+              %table.detail-box__table__item
+                %tr
+                  %th.item-left
+                    発送元の地域
+                  %td.item-right
+                    = link_to "岩手県", "#", class: "item-right--box"
+              %table.detail-box__table__item
+                %tr
+                  %th.item-left
+                    発送日の目安
+                  %td.item-right
+                    4-7日で発送
+              .detail-box__table--btn
+                購入画面に進む
+            .detail-box__option
+              .detail-box__option__item
+                .detail-box__option__item__icon
+                  = icon('fas', 'star', class: "detail-box__option__item__icon--star")
+                  お気に入り 0
+              .detail-box__option__content
+                = link_to "#" do
+                  .detail-box__option__content__btn
+                    = icon('fas', 'flag')
+                    不適切な商品の通報
+          .detail-comment
+            .detail-comment__box
+              = form_for "#" do |f|
+                = f.text_area :content, class: "detail-comment__box--field"
+                .detail-comment__box--text
+                  相手のことを考え丁寧なコメントを心がけましょう。
+                  %br
+                  不快な言葉遣いなどは利用制限や退会処分となることがあります。
+                %button{type: "submit", class: "detail-comment__box__btn"}
+                  = icon('fas', 'comment')
+                  コメントする
+
+        .detail-main__show__content__links
+          .before-link
+            = icon('fas', 'angle-left', class: "before-link--icon")
+            = link_to "前の商品", "#", class: "before-link--text"
+          .after-link
+            = link_to "後ろの商品", "#", class: "after-link--text"
+            = icon('fas', 'angle-right', class: "after-link--icon")
+
+        .detail-main__show__content__items
+          = link_to "ベビー・キッズをもっと見る", "#", class: "detail-main__show__content__items--transition"
+
+  = render "footer"
