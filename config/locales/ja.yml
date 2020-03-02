@@ -214,3 +214,7 @@ ja:
         little_dirty: "やや傷や汚れあり"
         dirty: "傷や汚れあり"
         too_dirty: "全体的に状態が悪い"
+      days_of_shipping:
+        days1_2: "1〜2日で発送"
+        days2_3: "2〜3で発送"
+        days4_7: "4〜7で発送"

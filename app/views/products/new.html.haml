@@ -75,7 +75,7 @@
           = f.label :days_of_shipping, "発送までの日数", class: "form__content__days--label"
           = f.label :require, "必須", class: "form__content__days--require"
           %br
-          = f.text_field :days_of_shipping, placeholder: "選択してください", class: "form__content__days--field"
+          = f.select :days_of_shipping, Product.days_of_shippings_i18n.keys.map{|k| [I18n.t("enum.product.days_of_shipping.#{k}"), k]}, {prompt: true}, {class: "form__content__days--field"}
         
       .form__content
         .form__content__title

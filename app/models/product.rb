@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
   enum product_condition: [:brand_new, :almost_new, :good, :little_dirty, :dirty, :too_dirty]
+  enum days_of_shipping: [:days1_2, :days2_3, :days4_7]
 
   has_many :images
   belongs_to :category
