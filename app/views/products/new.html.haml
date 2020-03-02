@@ -70,7 +70,7 @@
           = f.label :prefecture_id, "発送元の地域", class: "form__content__area--label"
           = f.label :require, "必須", class: "form__content__area--require"
           %br
-          = f.text_field :prefecture_id, placeholder: "選択してください", class: "form__content__area--field"
+          = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: true},{class: "form__content__area--field"}
         .form__content__days
           = f.label :days_of_shipping, "発送までの日数", class: "form__content__days--label"
           = f.label :require, "必須", class: "form__content__days--require"
