@@ -30,7 +30,7 @@
               %span.card-form__expire--require 必須
               %br
               .card-form__expire--date
-                = f.date_select(:expiration_date, with_css_classes: true, order:[:month, :year, :day], use_month_numbers:true, discard_day:true, use_two_digit_numbers:true, start_year:Time.now.year-2000, end_year:Time.now.year-2000+10, date_separator: '月') + "年"
+                = f.date_select(:expiration_date, with_css_classes: true, order: [:month, :year, :day], use_month_numbers: true, discard_day: true, start_year: Time.now.year-2000, end_year: Time.now.year-2000+10, date_separator: '月') + "年"
             .card-form__security
               = f.label :security_code, "セキュリティコード", class: "card-form__security--label"
               %span.card-form__security--require 必須
