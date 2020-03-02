@@ -53,7 +53,7 @@
           = f.label :product_condition, "商品の状態", class: "form__content__condition--label"
           = f.label :require, "必須", class: "form__content__condition--require"
           %br
-          = f.text_field :product_condition, placeholder: "選択してください", class: "form__content__condition--field"
+          = f.select :product_condition, options_for_select(Product.product_conditions.keys), {}, {class: "form__content__condition--field"}
           %br
       .form__content
         .form__content__title

@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  enum product_condition: [:brand_new, :almost_new, :good, :little_dirty, :dirty, :too_dirty]
+
   has_many :images
   belongs_to :category
   belongs_to :shipping_payer_method
