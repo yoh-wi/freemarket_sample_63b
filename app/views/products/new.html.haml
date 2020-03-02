@@ -53,7 +53,7 @@
           = f.label :product_condition, "商品の状態", class: "form__content__condition--label"
           = f.label :require, "必須", class: "form__content__condition--require"
           %br
-          = f.select :product_condition, Product.product_conditions_i18n.keys.map{|k| [I18n.t("enum.product.product_condition.#{k}"), k]}, {}, {class: "form__content__condition--field"}
+          = f.select :product_condition, Product.product_conditions_i18n.keys.map{|k| [I18n.t("enum.product.product_condition.#{k}"), k]}, {prompt: true}, {class: "form__content__condition--field"}
           %br
       .form__content
         .form__content__title
