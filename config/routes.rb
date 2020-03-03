@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get 'edit_profile', to: 'users/registrations#edit_profile', as: 'edit_profile'
     patch 'update_profile', to: 'users/registrations#update_profile', as: 'update_profile'
   end
-  resources :users, only: [:show, :edit, :destroy]
+  resources :users, only: [:show, :edit]
   resources :cards, only: [:index, :new, :create]
   # root to:"users#login"
   root to: 'cards#new'
