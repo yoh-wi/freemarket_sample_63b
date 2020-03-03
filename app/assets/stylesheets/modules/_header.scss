@@ -63,7 +63,7 @@
           padding-left: 0px;
         }
         a {
-          color: #333;
+          color: $gray;
           line-height: 32px;
           padding: 10px 20px 20px 0px;
           text-decoration: none;
@@ -90,7 +90,7 @@
                 line-height: 38px;
                 display: block;
                 padding: 3px 8px 3px 5px;
-                border-bottom: solid 1px #f8f8f8;
+                border-bottom: solid 1px $gray3;
               }
               &:hover ul.second {
                 display: block;
@@ -104,11 +104,7 @@
                 left: 240px;
                 li {
                   a {
-                    width: 250px;
-                    line-height: 32px;
-                    display: block;
-                    padding: 1px 8px 1px 5px;
-                    border-bottom: solid 1px #f8f8f8;
+                    @include pulldown-menu();
                   }
                   &:hover ul.third {
                     display: block;
@@ -122,11 +118,7 @@
                     left: 250px;
                     li {
                       a {
-                        width: 250px;
-                        line-height: 30px;
-                        display: block;
-                        padding: 1px 8px 1px 5px;
-                        border-bottom: solid 1px #f8f8f8;
+                        @include pulldown-menu();
                       }
                     } 
                   } 
@@ -142,7 +134,7 @@
       &__user {
         margin-left: 15px;
         a {
-          color: #333;
+          color: $gray;
           line-height: 32px;
           padding: 10px 0px;
           text-decoration: none;

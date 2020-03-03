@@ -6,7 +6,7 @@
     &__list {
       ul {
         li {
-          border-top: solid 1px #eee;
+          border-top: solid 1px $pale_gray2;
           &:first-child {
             border: 0;
           }
@@ -22,7 +22,7 @@
         text-decoration: none;
         position: relative;
         &:hover {
-          background-color: #fafafa;
+          background-color: $snow;
         }
       }
       &--icon {

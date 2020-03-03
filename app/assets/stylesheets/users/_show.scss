@@ -67,7 +67,7 @@
         .notification-todo {
           ul.tabs {
             font-size: 0;
-            background-color: #eee;
+            background-color: $pale_gray2;
             li {
               width: 50%;
               display: inline-block;
@@ -96,7 +96,7 @@
             ul {
               li {
                 background-color: $white;
-                border-bottom: 1px solid #eee;
+                border-bottom: 1px solid $pale_gray2;
                 &:last-child {
                   border: 0;
                 }
@@ -116,7 +116,7 @@
                       .logo-icon {
                         width: 48px;
                         height: 48px;
-                        color: black;
+                        color: $black;
                         object-fit: cover;
                         object-position: left top;
                       }
@@ -129,7 +129,7 @@
                         overflow: hidden;
                       }
                       &--time {
-                        color: #888;
+                        color: $gray2;
                         display: inline-block;
                         .clock-icon {
                           margin: 0 5px 0 0;
@@ -151,7 +151,7 @@
                     min-height: 56px;
                     line-height: 56px;
                     color: $gray;
-                    background-color: #eee;
+                    background-color: $pale_gray2;
                     text-align: center;
                     display: block;
                     text-decoration: none;
@@ -177,7 +177,7 @@
             ul.tabs {
               height: 72px;
               font-size: 0;
-              background-color: #eee;      
+              background-color: $pale_gray2;      
               li {
                 width: 50%;
                 display: inline-block;
@@ -206,7 +206,7 @@
               ul {
                 li {
                   background-color: $white;
-                  border-bottom: 1px solid #eee;
+                  border-bottom: 1px solid $pale_gray2;
                   &:last-child {
                     border: 0;
                   }
