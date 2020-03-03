@@ -1,0 +1,32 @@
+.detail-bar {
+  width: 100%;
+  border-top: 1px solid $pale_gray2;
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
+  position: relative;
+  padding: 0 60px;
+  &__link {
+    padding: 17px 0 32px;
+    width: 100%;
+    max-width: 1040px;
+    font-size: 14px;
+    margin: 0 auto;
+    &--top {
+      @include detail-bar();
+    }
+    &--icon {
+      @include detail-icon();
+    }
+    &--parent-category {
+      @include detail-bar();
+    }
+    &--child-category {
+      @include detail-bar();
+    }
+    &--grandchild-category {
+      @include detail-bar();
+    }
+    &--product {
+      @include detail-bar();
+    }
+  }
+}
