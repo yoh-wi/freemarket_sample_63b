@@ -100,7 +100,7 @@
             電話番号の確認
             = icon('fas', 'chevron-right', class: "mypage-side__nav__list--icon")
         %li
-          = link_to destroy_user_session_path, method: :delete, class: "mypage-side__nav__list--item" do
+          = link_to edit_user_path, method: :delete, class: "mypage-side__nav__list--item" do
             ログアウト
             = icon('fas', 'chevron-right', class: "mypage-side__nav__list--icon")
         
