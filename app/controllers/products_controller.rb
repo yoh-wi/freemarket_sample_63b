@@ -17,6 +17,10 @@ class ProductsController < ApplicationController
     end
   end
 
+  def select_child_category
+    @child_category = Category.find(params[:parent_category_id]).children
+  end
+
   private
   def product_params
     params.require(:product).permit(:name, :description, :category_id, :brand, :product_condition, :shippng_payer_method_id, :prefecture_id, :days_of_shipping, :price, :trade_status).merge(seller_id: current_user.id)
