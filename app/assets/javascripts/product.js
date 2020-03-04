@@ -4,6 +4,11 @@ $(function(){
     return html;
   }
 
+  function appendMethodOption(method){
+    var html = `<option value="${method.id}"> ${method.payer_or_method}</option>`;
+    return html;
+  }
+
   function appendChildrenBox(insertHTML){
     var childSelectHtml =  `<div class='category-select-form__added' id= 'children_wrapper'>
                               <select class="form__content__category--field" id="child_category" name="category_id">
@@ -13,7 +18,7 @@ $(function(){
                             </div>`;
     $('.form__content__category').append(childSelectHtml);
   }
-  function appendGrandhildrenBox(insertHTML){
+  function appendGrandchildrenBox(insertHTML){
     var grandchildSelectHtml =  `<div class='category-select-form__added' id= 'grandchildren_wrapper'>
                               <select class="form__content__category--field" id="grandchild_category" name="category_id">
                                 <option value="選択してください">選択してください</option>
@@ -66,7 +71,7 @@ $(function(){
         grandchildren.forEach(function(grandchild){
           insertHTML += appendOption(grandchild);
         });
-        appendGrandhildrenBox(insertHTML);
+        appendGrandchildrenBox(insertHTML);
       })
       .fail(function(){
         alert('カテゴリの取得に失敗しました');
@@ -74,5 +79,9 @@ $(function(){
     }else{
       $('#grandchildren_wrapper').remove();
     }
+  })
+  $('#payer').on('change', function(){
+    var payer = $('#payer').val();
+    console.log(payer);
   })
 })
