@@ -1,6 +1,6 @@
 .footer {
   .app-banner {
-    background-image: url("/uploads/images/pict/bg-appBanner-pict.jpg");
+    background-image: url("pict/bg-appBanner-pict.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -24,7 +24,7 @@
   }
   .app-footer {
     color: $white;
-    background-color: #272727;
+    background-color: $dark_gray;
     padding: 60px 0;
     text-align: center;
     &__contents { 

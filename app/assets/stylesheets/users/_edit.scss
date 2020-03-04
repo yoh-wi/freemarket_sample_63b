@@ -1,0 +1,34 @@
+.mypage {
+  min-width: 1068px;
+  background-color: $light_gray;
+  .mypage-main {
+    width: 1020px;
+    margin: 40px auto 0;
+    padding: 0 0 40px;
+    @include clearfix();
+    &__container {
+      width: 700px;
+      float: right;      
+      &__logout {
+        width: 100%;
+        height: 350px;
+        background-color: $white;
+        padding: 120px 50px;
+        text-align: center;
+        &--btn {
+          width: 320px;
+          font-size: 18px;
+          background-color: $light_blue;
+          margin: 25px auto 0;
+          text-align: center;
+          a {
+            color: $white;
+            line-height: 50px;
+            display: block;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}
