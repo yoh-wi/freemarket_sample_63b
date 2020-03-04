@@ -5,7 +5,7 @@ $(function(){
   }
 
   function appendMethodOption(method){
-    var html = `<option value="${method.id}"> ${method.payer_or_method}</option>`;
+    var html = `<option value="${method.id}"> ${method.name}</option>`;
     return html;
   }
 
@@ -26,6 +26,15 @@ $(function(){
                               </select>
                             </div>`;
     $('.form__content__category').append(grandchildSelectHtml);
+  }
+  function appendMethod(insertHTML){
+    var methodSelectHtml = `<div class= 'method-select-form__added' id= 'method_wrapper'>
+                              <select class= "form__content__method--field" id= "method">
+                                <option value="選択してください">選択してください</option>
+                                ${insertHTML}
+                              </select>
+                            </div>`;
+    $('.form__content__method').append(methodSelectHtml);
   }
 
   $('#parent_category').on('change', function(e){
@@ -80,6 +89,7 @@ $(function(){
       $('#grandchildren_wrapper').remove();
     }
   })
+
   $('#payer').on('change', function(){
     var payer = $('#payer').val();
     if (payer != ''){
@@ -89,6 +99,16 @@ $(function(){
         data: {payer_id: payer},
         dataType: 'json'
       })
+      .done(function(methods){
+        $('#method_wrapper').remove();
+        insertHTML = ''
+        methods.forEach(function(method){
+          insertHTML += appendMethodOption(method);
+        });
+        appendMethod(insertHTML);
+      })
+    }else{
+      $('#method_wrapper').remove();
     }
   })
 })
