@@ -82,6 +82,13 @@ $(function(){
   })
   $('#payer').on('change', function(){
     var payer = $('#payer').val();
-    console.log(payer);
+    if (payer != ''){
+      $.ajax({
+        url: 'select_method',
+        type: 'GET',
+        data: {payer_id: payer},
+        dataType: 'json'
+      })
+    }
   })
 })

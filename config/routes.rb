@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     collection do
       get 'select_child_category', default: { format: 'json' }
       get 'select_grandchild_category', default: { format: 'json' }
+      get 'select_method', default: { format: 'json' }
     end
   end
 end

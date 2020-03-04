@@ -26,6 +26,10 @@ class ProductsController < ApplicationController
     @grandchild_category = Category.find(params[:child_category_id]).children
   end
 
+  def select_method
+    @method = ShippingPayerMethod.find(params[:payer_id]).children
+  end
+
   private
   def product_params
     params.require(:product).permit(:name, :description, :category_id, :brand, :product_condition, :shippng_payer_method_id, :prefecture_id, :days_of_shipping, :price, :trade_status).merge(seller_id: current_user.id)
