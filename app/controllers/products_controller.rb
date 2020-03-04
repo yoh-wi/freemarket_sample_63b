@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @parent_category = Category.where(ancestry: nil)
+    @payer = ShippingPayerMethod.where(ancestry: nil)
   end
 
   def create

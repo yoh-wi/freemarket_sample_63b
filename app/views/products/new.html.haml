@@ -65,7 +65,7 @@
           = f.label :shiping_payer_method_id, "配送料の負担", class: "form__content__method--label"
           = f.label :require, "必須", class: "form__content__method--require"
           %br
-          = f.text_field :shiping_payer_method_id, placeholder: "選択してください", class: "form__content__method--field"
+          = f.select :shipping_payer_method_id, @payer.all.map {|method| [method.payer_or_method, method.id]}, {prompt: true}, {class: "form__content__method--field"}
         .form__content__area
           = f.label :prefecture_id, "発送元の地域", class: "form__content__area--label"
           = f.label :require, "必須", class: "form__content__area--require"
