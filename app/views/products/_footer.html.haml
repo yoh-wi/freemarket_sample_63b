@@ -7,7 +7,7 @@
         今すぐ無料ダウンロード！
       .app-banner__app
         -# アプリロゴ表示 
-        = render "app-logo"
+        = render "products/app-logo"
   .app-footer
     .app-footer__contents
       .app-footer__content
@@ -41,5 +41,5 @@
           %li
             = link_to "お知らせ"
     .app-footer__logo
-      = link_to image_tag("/uploads/images/logo/logo-white.png", class: "app-footer__logo--img")
+      = link_to image_tag("logo/logo-white.png", class: "app-footer__logo--img")
     %p © FURIMA

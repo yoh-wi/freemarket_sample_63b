@@ -5,11 +5,11 @@
 }
 
 .wrapper {
-  background-color: $light_gray;
-  color: $gray;
-  font-size: 14px;
-  position: relative;
   .main {
+    background-color: $light_gray;
+    color: $gray;
+    font-size: 14px;
+    position: relative;
     &__container {
       background-color: $white;
       margin: 0 auto;
@@ -225,16 +225,7 @@
             }
           }
           &--btn {
-            margin: 24px 0 0;
-            background-color: $light_blue;
-            border: 1px solid $light_blue;
-            color: $white;
-            display: block;
-            width: 100%;
-            line-height: 48px;
-            font-size: 14px;
-            transition: all ease-out .3s;
-            text-align: center;
+            @include btn();
           }
         }
         &__text {

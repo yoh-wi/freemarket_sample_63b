@@ -2,23 +2,60 @@
   .header__box
     .header-main
       .header-main__icon
-        = link_to image_tag("/uploads/images/logo/logo.png", alt: "フリマのロゴ", class: "header-main__icon--logo"), root_path
+        = link_to image_tag("logo/logo.png", alt: "フリマのロゴ", class: "header-main__icon--logo"), root_path
       .header-main__search
         = form_with url:"#", local: true do |f|
           .header-main__search__input
             = f.text_field :key, placeholder: "キーワードから探す", class: "header-main__search__input--key"
           .header-main__search__submit
             %label
-              = image_tag("/uploads/images/icon/icon-search 1.png", class: "header-main__search__submit--icon") 
+              = image_tag("icon/icon-search 1.png", class: "header-main__search__submit--icon") 
               = f.submit class: "header-main__search__submit--btn"        
     .header-nav  
-      .heade-nav__left
-        .header-nav__left__item
+      .header-nav__left
+        .header-nav__left__category
           = link_to "カテゴリー"
-        .header-nav__left__item
+          .header-nav__left__category__tree  
+            %ul.first
+              %li
+                = link_to "レディース"  
+                %ul.second
+                  %li
+                    = link_to "トップス"
+                    %ul.third
+                      %li
+                        = link_to "Tシャツ/カットソー"  
+                      %li
+                        = link_to "シャツ/ブラウス"
+                  %li
+                    = link_to "ジャケット／アウター"
+                    %ul.third  
+                      %li
+                        = link_to "テーラードジャケット"  
+                      %li
+                        = link_to "ノーカラージャケット"
+              %li
+                = link_to "メンズ"
+              %li
+                = link_to "レディース"  
+              %li
+                = link_to "メンズ"
+            
+        .header-nav__left__category
           = link_to "ブランド"
       .header-nav__right
-        .header-nav__right__user
-          = link_to "ログイン"
-        .header-nav__right__user
-          = link_to "新規会員登録"
+        - if user_signed_in?
+          .header-nav__right__user
+            = link_to "いいね一覧"
+          .header-nav__right__user
+            = link_to "お知らせ"
+          .header-nav__right__user
+            = link_to "やることリスト"
+          .header-nav__right__user
+            = link_to "マイページ", user_path(current_user)
+        - else
+          .header-nav__right__user
+            = link_to "ログイン", user_session_path
+          .header-nav__right__user
+            = link_to "新規会員登録", new_user_registration_path
+ 

@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     patch 'update_profile', to: 'users/registrations#update_profile', as: 'update_profile'
   end
 
-  root to:"users#login"
-  
+  root to:"products#index"
+  resources :products, only: [:index, :new]
+  resources :users, only: [:show, :edit]
+  resources :cards, only: [:index, :new, :create]
+
 end
