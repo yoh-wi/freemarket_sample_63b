@@ -26,43 +26,53 @@ $(function(){
   $('#parent_category').on('change', function(e){
     e.preventDefault();
     var parentCategory = $('#parent_category').val();
-    $.ajax({
-      url: 'select_child_category',
-      type: 'GET',
-      data: {parent_category_id : parentCategory},
-      dataType: 'json'
-    })
-    .done(function(children){
+    if (parentCategory != ''){
+      $.ajax({
+        url: 'select_child_category',
+        type: 'GET',
+        data: {parent_category_id : parentCategory},
+        dataType: 'json'
+      })
+      .done(function(children){
+        $('#children_wrapper').remove();
+        $('#grandchildren_wrapper').remove();
+        var insertHTML = '';
+        children.forEach(function(child){
+          insertHTML += appendOption(child);
+        });
+        appendChildrenBox(insertHTML);
+      })
+      .fail(function(){
+        alert('カテゴリの取得に失敗しました');
+      })
+    }else{
       $('#children_wrapper').remove();
-      var insertHTML = '';
-      children.forEach(function(child){
-        insertHTML += appendOption(child);
-      });
-      appendChildrenBox(insertHTML);
-    })
-    .fail(function(){
-      alert('カテゴリの取得に失敗しました');
-    })
+      $('#grandchildren_wrapper').remove();
+    }
   })
 
   $('.form__content__category').on('change', '#child_category', function(){
     var childCategory = $('#child_category option:selected').val();
-    $.ajax({
-      url: 'select_grandchild_category',
-      type: 'GET',
-      data: {child_category_id: childCategory},
-      dataType: 'json'
-    })
-    .done(function(grandchildren){
-      $('#grandchild_wrapper').remove();
-      var insertHTML = '';
-      grandchildren.forEach(function(grandchild){
-        insertHTML += appendOption(grandchild);
-      });
-      appendGrandhildrenBox(insertHTML);
-    })
-    .fail(function(){
-      alert('カテゴリの取得に失敗しました');
-    })
+    if (childCategory != '選択してください'){
+      $.ajax({
+        url: 'select_grandchild_category',
+        type: 'GET',
+        data: {child_category_id: childCategory},
+        dataType: 'json'
+      })
+      .done(function(grandchildren){
+        $('#grandchildren_wrapper').remove();
+        var insertHTML = '';
+        grandchildren.forEach(function(grandchild){
+          insertHTML += appendOption(grandchild);
+        });
+        appendGrandhildrenBox(insertHTML);
+      })
+      .fail(function(){
+        alert('カテゴリの取得に失敗しました');
+      })
+    }else{
+      $('#grandchildren_wrapper').remove();
+    }
   })
 })
