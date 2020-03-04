@@ -254,6 +254,9 @@ body {
     }
   }
 }
+.wrapper {
+  background-color: $light_gray;
+}
 .form {
   &__content {
     background-color: $white;
