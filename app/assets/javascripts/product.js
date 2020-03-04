@@ -38,6 +38,11 @@ $(function(){
 
   $('.form__content__category').on('change', '#child_category', function(){
     var childCategory = $('#child_category option:selected').val();
-    console.log(childCategory);
+    $.ajax({
+      url: 'select_grandchild_category',
+      type: 'GET',
+      data: {child_category_id: childCategory},
+      dataType: 'json'
+    })
   })
 })
