@@ -11,5 +11,9 @@ Rails.application.routes.draw do
   end
 
   root to:"products#index"
-  resources :products, only: [:index, :new, :create]
+  resources :products, only: [:index, :new, :create] do
+    collection do
+      get 'select_child_category', default: { format: 'json' }
+    end
+  end
 end
