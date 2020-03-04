@@ -41,7 +41,7 @@
           = f.label :category_id, "カテゴリー", class: "form__content__category--label"
           = f.label :require, "必須", class: "form__content__category--require"
           %br
-          = f.text_field :category_id, placeholder: "選択してください", class: "form__content__category--field"
+          = f.select :category, @parent_category.all.map{ |category| [category.name, category.id] }, {prompt: true}, {class: "form__content__category--field"}
           %br
         .form__content__brand
           = f.label :brand_id, "ブランド", class: "form__content__brand--label"
