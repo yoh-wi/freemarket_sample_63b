@@ -4,6 +4,7 @@ class Product < ApplicationRecord
   enum trade_status: [:for_sale, :tarading, :sold]
 
   has_many :images
+  accepts_nested_attributes_for :images
   belongs_to :category
   belongs_to :shipping_payer_method
   belongs_to :seller, class_name: 'User'
