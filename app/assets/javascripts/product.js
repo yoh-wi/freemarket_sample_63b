@@ -5,13 +5,22 @@ $(function(){
   }
 
   function appendChildrenBox(insertHTML){
-    var childSelectHtml =  `<div class='listing-select-wrapper__added' id= 'children_wrapper'>
+    var childSelectHtml =  `<div class='category-select-form__added' id= 'children_wrapper'>
                               <select class="form__content__category--field" id="child_category" name="category_id">
                                 <option value="選択してください">選択してください</option>
                                 ${insertHTML}
                               </select>
                             </div>`;
     $('.form__content__category').append(childSelectHtml);
+  }
+  function appendGrandhildrenBox(insertHTML){
+    var grandchildSelectHtml =  `<div class='category-select-form__added' id= 'grandchildren_wrapper'>
+                              <select class="form__content__category--field" id="grandchild_category" name="category_id">
+                                <option value="選択してください">選択してください</option>
+                                ${insertHTML}
+                              </select>
+                            </div>`;
+    $('.form__content__category').append(grandchildSelectHtml);
   }
 
   $('#parent_category').on('change', function(e){
@@ -43,6 +52,17 @@ $(function(){
       type: 'GET',
       data: {child_category_id: childCategory},
       dataType: 'json'
+    })
+    .done(function(grandchildren){
+      $('#grandchild_wrapper').remove();
+      var insertHTML = '';
+      grandchildren.forEach(function(grandchild){
+        insertHTML += appendOption(grandchild);
+      });
+      appendGrandhildrenBox(insertHTML);
+    })
+    .fail(function(){
+      alert('カテゴリの取得に失敗しました');
     })
   })
 })
