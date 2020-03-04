@@ -13,6 +13,7 @@ $(function(){
                             </div>`;
     $('.form__content__category').append(childSelectHtml);
   }
+
   $('#parent_category').on('change', function(e){
     e.preventDefault();
     var parentCategory = $('#parent_category').val();
@@ -30,5 +31,13 @@ $(function(){
       });
       appendChildrenBox(insertHTML);
     })
+    .fail(function(){
+      alert('カテゴリの取得に失敗しました');
+    })
+  })
+
+  $('.form__content__category').on('change', '#child_category', function(){
+    var childCategory = $('#child_category option:selected').val();
+    console.log(childCategory);
   })
 })
