@@ -1,43 +1,88 @@
-%h2 Sign upする
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :nickname
-    %br/
-    = f.text_field :nickname, autofocus: true
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .field
-    = f.label "お名前（全角）"
-    %br/
-    = f.text_field :last_name_kanji, placeholder: '例）山田', autofocus: true
-    = f.text_field :first_name_kanji, placeholder: '例）彩', autofocus: true
-  .field
-    = f.label "お名前カナ（全角）"
-    %br/
-    = f.text_field :last_name_kana, placeholder: '例）ヤマダ', autofocus: true
-    = f.text_field :first_name_kana, placeholder: '例）アヤ', autofocus: true
-  .field
-    = f.label '生年月日'
-    %br/
-    = f.date_select :birthday, start_year:Time.now.year, end_year:1900, autofocus: true
-  .field
-    = f.label '電話番号'
-    %br/
-    = f.text_field :tel, autofocus: true
-  .actions
-    = f.submit "Sign up"
-= render "users/shared/links"
+.main
+  .main__container
+    %h2.main__container__title
+      会員情報入力
+    .form
+      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        = render "devise/shared/error_messages", resource: resource
+        .form__contents
+          .form__contents__nickname
+            .form__contents__nickname--label
+              = f.label :nickname, "ニックネーム", class: "form__contents__nickname--label"
+              = f.label :require, "必須", class: "form__contents__nickname--require"
+            .form__contents__nickname--field
+              = f.text_field :nickname, autofocus: true, class: "form__contents__nickname--field", type: "text", placeholder: "例)メルカリ太郎"
+          .form__contents__email
+            .form__contents__email--label
+              = f.label :email, "メールアドレス", class: "form__contents__email--label"
+              = f.label :require, "必須", class: "form__contents__email--require"
+            .form__contents__email--field
+              = f.email_field :email, autofocus: true, autocomplete: "email", class: "form__contents__email--field", placeholder: "PC・携帯どちらでも可"
+          .form__contents__password
+            .form__contents__password--label
+              = f.label :password, "パスワード", class: "form__contents__password--label"
+              = f.label :require, "必須", class: "form__contents__password--require"
+            - if @minimum_password_length
+              %p
+            .form__contents__password--field
+              = f.password_field :password, autocomplete: "new-password", class: "form__contents__password--field", placeholder: "#{@minimum_password_length}文字以上の半角英数字"
+            %p.form__contents__password__text
+              ※ 英字と数字の両方を含めて設定してください
+            -# .form__content__password__display
+            -#   .form__content__password__display--checkbox
+            -#     = f.check_box :password, class: "form__content__password__display--checkbox--content"
+            -#   .form__content__password__display--text
+            -#     パスワードを表示する
+          .form__contents__check
+            %h3.form__contents__check__title
+              本人確認
+            .form__contents__check__text
+              安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+          .form__contents__kanji
+            .form__contents__kanji__label
+              = f.label :name, "お名前(全角)", class: "name-label"
+              = f.label :require, "必須", class: "name-require"
+            .form__contents__kanji__field
+              = f.text_field :last_name_kanji, autofocus: true, class: "family-kanji", type: "text", placeholder: "例)山田"
+              = f.text_field :first_name_kanji, autofocus: true, class: "first-kanji", type: "text", placeholder: "例)彩"
+          .form__contents__kana
+            .form__contents__kana__label
+              = f.label :kana, "お名前カナ(全角)", class: "kana-label"
+              = f.label :require, "必須", class: "kana-require"
+            .form__contents__kana__field
+              = f.text_field :last_name_kana, autofocus: true, class: "family-kana", type: "text", placeholder: "例)ヤマダ"
+              = f.text_field :first_name_kana, autofocus: true, class: "first-kana", type: "text", placeholder: "例)アヤ"
+          .form__contents__birthday
+            .form__contents__birthday__label
+              = f.label :birthday, "生年月日", class: "birthday-label"
+              = f.label :require, "必須", class: "birthday-require"
+            .form__contents__birthday__field
+              = f.date_select :birthday, start_year:Time.now.year, end_year:1900, autofocus: true, with_css_classes:'birthday-select', use_month_numbers:true
+
+          .form__contents__tell
+            .form__contents__tell__label
+              = f.label :tell, "携帯電話の番号", class: "tell-label"
+              = f.label :require, "必須", class: "tell-require"
+            .form__contents__tell__field
+              = f.text_field :tel, autofocus: true, class: "tell-field", type: "tell", placeholder: "携帯電話の番号を入力"
+          .form__contents__info
+            ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+        .form__proceed
+          .form__proceed__text
+            「次へ進む」のボタンを押すことにより、
+            = link_to "利用規約", "#", class: "form__proceed__text--use"
+            に同意したものとみなします
+
+          .actions
+            = f.submit "次へ進む", class: "form__proceed--btn"
+        .form__text
+          .form__text__box
+            = link_to "本人情報の登録について＞", "#", class: "form__text__box--link"
+        .form__policy
+          %p.form__policy__box
+            .form__policy__box__text
+              This site is protected by reCAPTCHA and the Google
+              = link_to "Privacy Policy", "#", class: "form__policy__box__text--policy"
+              and
+              = link_to "Terms of Service", "#", class: "form__policy__box__text--terms"
+              apply

@@ -37,15 +37,14 @@
               本人確認
             .form__content__check__text
               安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
-          .form__content__name
-            .form__content__name__label
+          .form__content__kanji
+            .form__content__kanji__label
               = f.label :name, "お名前(全角)", class: "name-label"
               = f.label :require, "必須", class: "name-require"
-            .form__content__name__field
+            .form__content__kanji__field
               = f.text_field :name, class: "family-kanji", type: "text", placeholder: "例)山田"
               = f.text_field :name, class: "first-kanji", type: "text", placeholder: "例)彩"
-              .form__content__name__family-info
-              .form__content__name__first-info
+
           .form__content__kana
             .form__content__kana__label
               = f.label :kana, "お名前カナ(全角)", class: "kana-label"
