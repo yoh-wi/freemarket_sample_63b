@@ -1,26 +1,23 @@
 .wrapper
   = render 'users/header'
   .form
-    -#= form_with (model: @image, local: true) do |f|
-    = form_for "#" do |f|
+    = form_with(model: @product, local: true) do |f|
       .form__content
         .form__content__image
-          = f.label :image, "出品画像", class: "form__content__image--label"
-          = f.label :require, "必須", class: "form__content__image--require"
-          %p.form__content__image--comment
-          最大10枚までアップロードできます
-          %br
-          .form__content__image__upload
-            = f.label :image, class: "form__content__image__upload--icon" do
-              = icon('fas', 'camera')
-              .form__content__image__upload--icon--text
-                ドラッグアンドドロップ
-                %br
-                またはクリックしてファイルをアップロード
-            = f.file_field :image, accept: "image/png, image/jpeg", class: "form__content__image__upload--file"
-  .form
-    -#= form_with (model: @products, local: ture) do |f|
-    = form_for "#" do |f|
+          = f.fields_for :images do |image|
+            = image.label :image, "出品画像", class: "form__content__image--label"
+            = image.label :image, "必須", class: "form__content__image--require"
+            %p.form__content__image--comment
+            最大10枚までアップロードできます
+            %br
+            .form__content__image__upload
+              = image.label :image, class: "form__content__image__upload--icon" do
+                = icon('fas', 'camera')
+                .form__content__image__upload--icon--text
+                  ドラッグアンドドロップ
+                  %br
+                  またはクリックしてファイルをアップロード
+              = image.file_field :image, accept: "image/png, image/jpeg", class: "form__content__image__upload--file"
       .form__content
         .form__content__name
           = f.label :name, "商品名", class: "form__content__name--label"
@@ -44,10 +41,10 @@
           = f.select :category_id, @parent_category.all.map{ |category| [category.name, category.id] }, {prompt: true}, {class: "form__content__category--field", id: "parent_category"}
           %br
         .form__content__brand
-          = f.label :brand_id, "ブランド", class: "form__content__brand--label"
+          = f.label :brand, "ブランド", class: "form__content__brand--label"
           = f.label "任意", class: "form__content__brand--optional"
           %br
-          = f.text_field :brand_id, placeholder: "例）シャネル", class: "form__content__brand--field"
+          = f.text_field :brand, placeholder: "例）シャネル", class: "form__content__brand--field"
           %br
         .form__content__condition
           = f.label :product_condition, "商品の状態", class: "form__content__condition--label"
