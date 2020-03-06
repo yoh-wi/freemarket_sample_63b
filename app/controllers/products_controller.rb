@@ -12,8 +12,6 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    @parent_category = Category.where(ancestry: nil)
-    @payer = ShippingPayerMethod.where(ancestry: nil)
     if @product.save
       redirect_to root_path
     else
