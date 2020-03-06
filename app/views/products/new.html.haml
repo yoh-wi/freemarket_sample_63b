@@ -1,7 +1,7 @@
 .wrapper
   = render 'users/header'
   .form
-    = form_with(model: @product, local: true) do |f|
+    = form_with(model: @product, remote: true) do |f|
       .form__content
         .form__content__image
           = f.fields_for :images do |image|

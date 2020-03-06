@@ -11,7 +11,7 @@ $(function(){
 
   function appendChildrenBox(insertHTML){
     var childSelectHtml =  `<div class='category-select-form__added' id= 'children_wrapper'>
-                              <select class="form__content__category--field" id="child_category" name="category_id">
+                              <select class="form__content__category--field" id="child_category" name="product[category_id]">
                                 <option value="選択してください">選択してください</option>
                                 ${insertHTML}
                               </select>
@@ -20,16 +20,16 @@ $(function(){
   }
   function appendGrandchildrenBox(insertHTML){
     var grandchildSelectHtml =  `<div class='category-select-form__added' id= 'grandchildren_wrapper'>
-                              <select class="form__content__category--field" id="grandchild_category" name="category_id">
-                                <option value="選択してください">選択してください</option>
-                                ${insertHTML}
-                              </select>
-                            </div>`;
+                                  <select class="form__content__category--field" id="grandchild_category" name="product[category_id]">
+                                    <option value="選択してください">選択してください</option>
+                                    ${insertHTML}
+                                  </select>
+                                 </div>`;
     $('.form__content__category').append(grandchildSelectHtml);
   }
   function appendMethod(insertHTML){
     var methodSelectHtml = `<div class= 'method-select-form__added' id= 'method_wrapper'>
-                              <select class= "form__content__method--field" id= "method">
+                              <select class= "form__content__method--field" id= "method" name="product[shipping_payer_method_id]">
                                 <option value="選択してください">選択してください</option>
                                 ${insertHTML}
                               </select>
