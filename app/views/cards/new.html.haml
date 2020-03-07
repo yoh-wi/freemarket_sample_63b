@@ -6,7 +6,7 @@
       %section.card-info
         .card-info__head
           クレジットカード情報入力
-        .card-info__form
+        .card-info__content
           = form_with(model: @card, local: true, class: "card-form") do |f|
             .card-form__number
               = f.label :number, "カード番号", class: "card-form__number--label"
