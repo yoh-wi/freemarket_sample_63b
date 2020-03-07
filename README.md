@@ -28,7 +28,7 @@ Things you may want to cover:
 - has_one :address, dependent: :destroy
 - has_many :evaluations
 - has_many :likes, dependent: :destroy
-- has_many :liked_products, through: :likes, source: :product
+- has_many :liked_products, through: :likes, source: :products
 
 ## productsテーブル
 |Column|Type|Options|
