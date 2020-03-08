@@ -1,14 +1,15 @@
 $(function(){
+  //子・孫カテゴリの選択肢
   function appendOption(category){
     var html = `<option value="${category.id}"> ${category.name}</option>`;
     return html;
   }
-
+  //配送方法の選択肢
   function appendMethodOption(method){
     var html = `<option value="${method.id}"> ${method.name}</option>`;
     return html;
   }
-
+  //子カテゴリのセレクトボックス
   function appendChildrenBox(insertHTML){
     var childSelectHtml =  `<div class='category-select-form__added' id= 'children_wrapper'>
                               <select class="form__content__category--field" id="child_category" name="product[category_id]">
@@ -18,6 +19,7 @@ $(function(){
                             </div>`;
     $('.form__content__category').append(childSelectHtml);
   }
+  //孫カテゴリのセレクトボックス
   function appendGrandchildrenBox(insertHTML){
     var grandchildSelectHtml =  `<div class='category-select-form__added' id= 'grandchildren_wrapper'>
                                   <select class="form__content__category--field" id="grandchild_category" name="product[category_id]">
@@ -27,6 +29,7 @@ $(function(){
                                  </div>`;
     $('.form__content__category').append(grandchildSelectHtml);
   }
+  //配送方法のセレクトボックス
   function appendMethod(insertHTML){
     var methodSelectHtml = `<div class= 'method-select-form__added' id= 'method_wrapper'>
                               <select class= "form__content__method--field" id= "method" name="product[shipping_payer_method_id]">
@@ -36,7 +39,7 @@ $(function(){
                             </div>`;
     $('.form__content__method').append(methodSelectHtml);
   }
-
+  //親カテゴリ選択後、子カテゴリをappend
   $('#parent_category').on('change', function(e){
     e.preventDefault();
     var parentCategory = $('#parent_category').val();
@@ -64,7 +67,7 @@ $(function(){
       $('#grandchildren_wrapper').remove();
     }
   })
-
+  //子カテゴリを選択後、孫カテゴリをappend
   $('.form__content__category').on('change', '#child_category', function(){
     var childCategory = $('#child_category option:selected').val();
     if (childCategory != '選択してください'){
@@ -89,7 +92,7 @@ $(function(){
       $('#grandchildren_wrapper').remove();
     }
   })
-
+  //支払方法を選択後、配送方法をappend
   $('#payer').on('change', function(){
     var payer = $('#payer').val();
     if (payer != ''){
@@ -111,4 +114,56 @@ $(function(){
       $('#method_wrapper').remove();
     }
   })
+
+  //挿入するfile_field
+  function buildFileField(index){
+    var fileHtml = `<div data-index="${index}" class="js-file_group">
+                      <label><i class="fas fa-camera"></i></label>
+                      <input class="js-file" type="file"
+                       name="product[images_attributes][${index}][src]"
+                       id="product_images_attributes_${index}_src"><br>
+                    </div>`;
+    return fileHtml;
+  }
+  //挿入するimageのプレビュー
+  function buildImg(index, url){
+    var imgHtml = `<div class='js-preview'>
+                    <div class='js-img'>
+                      <img data-index="${index}" src="${url}" width="120px" height="100px">
+                    </div>
+                    <div class="js-remove">削除</div>
+                   </div>`;
+    return imgHtml
+  }
+
+  let fileIndex = [1,2,3];
+  //1回目imageプレビュー＋file_field追加
+  $('#image_box').on('change', '.js-file_group', function(e){
+    console.log(fileIndex.length);
+    const targetIndex = $(this).data('index');
+    const file = e.target.files[0];
+    const blobUrl = window.URL.createObjectURL(file);
+    if (img = $(`img[data-index="${targetIndex}"]`)[0]){
+      img.setAttribute('src', blobUrl);
+    }else{
+      $('.js-file_group').remove();
+      $('#previews').append(buildImg(targetIndex, blobUrl));
+      $('#previews').append(buildFileField(fileIndex[0]));
+      $('.form__content__image__upload').remove();
+      fileIndex.shift();
+      if (fileIndex.length == 0) {
+        $('.js-file_group').remove();
+      }
+      return fileIndex;
+    }
+  })
+  //image削除ボタン
+  $(document).on('click', '.js-remove', function(){
+    $(this).parent().remove();
+    fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+    if (fileIndex.length == 1){
+      $('#previews').append(buildFileField(fileIndex[0]));
+    }
+    console.log(fileIndex.length)
+  });
 })
