@@ -1,8 +1,8 @@
 class Product < ApplicationRecord
-  
+
   enum product_condition: [:brand_new, :almost_new, :good, :little_dirty, :dirty, :too_dirty]
   enum days_of_shipping: [:days1_2, :days2_3, :days4_7]
-  enum trade_status: [:for_sale, :tarading, :sold]
+  enum trade_status: [:for_sale, :trading, :sold]
 
   has_many :images, inverse_of: :product
   accepts_nested_attributes_for :images, allow_destroy: true
