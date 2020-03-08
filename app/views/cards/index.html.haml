@@ -1,0 +1,27 @@
+.mypage
+  = render "products/header"
+  .mypage-main
+    = render "users/mypage-side"
+    .mypage-main__container
+      %section.card-info
+        .card-info__head
+          支払い方法
+        .card-info__content
+          .card-info__content__title
+            クレジットカード一覧
+          .card-info__content__list
+            .card-info__content__list__detail
+              ************0000
+              %br
+              04/20
+            .card-info__content__list__delete
+              = link_to "削除する", "#", class: "card-info__content__list__delete--btn"
+              -# method: :delete, 
+          .card-info__content__add
+            = link_to new_card_path, class: "card-info__content__add--btn" do
+              = icon('far', 'credit-card', class: "card-icon")
+              クレジットカードを追加する
+          .card-info__content__help
+            = link_to "#", class: "card-info__content__help--link" do
+              支払い方法について
+              = icon('fas', 'chevron-right', class: "arrow-right-icon")

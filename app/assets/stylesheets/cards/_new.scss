@@ -1,0 +1,117 @@
+.mypage {
+  min-width: 1068px;
+  background-color: $light_gray;
+  .mypage-main {
+    width: 1020px;
+    margin: 40px auto 0;
+    padding: 0 0 40px;
+    @include clearfix();
+    &__container {
+      width: 700px;
+      float: right; 
+      .card-info {
+        background: $white;
+        &__head {
+          font-size: 24px;
+          font-weight: bold;
+          text-align: center;
+          padding: 8px 24px;
+          border-bottom: solid 2px $light_gray;
+        }
+        &__content {
+          padding: 40px 40px 60px;
+          .card-form {
+            max-width: 350px;
+            margin: 0 auto;
+            &__number {
+              &--label {
+                font-size: 14px;
+                font-weight: 600;
+              }
+              &--require {
+                @include require();
+              }
+              &--field {
+                @include field();
+                margin: 8px 0 0;
+                padding: 0 16px;
+              }
+              ul.card-list {
+                margin: 8px 0 0; 
+                li {
+                  height: 20px;
+                  display: inline-block;
+                  vertical-align: middle;
+                  margin: 0 2px;
+                  img {
+                  height: 20px;
+                  }
+                }
+              }
+            }
+            &__expire {
+              margin: 32px 0 0;
+              &--label {
+                font-size: 14px;
+                font-weight: 600;
+              }
+              &--require {
+                @include require();
+              }
+              &--date {
+                width: 100%;
+                height: 48px;
+                margin: 8px 0 0;
+                .month {
+                  @include month_year_box();
+                }
+                .year {
+                  @include month_year_box();
+                  margin-left: 3px;
+                }
+              }
+            }
+            &__security {
+              margin: 32px 0 0;
+              &--label {
+                font-size: 14px;
+                font-weight: 600;
+              }
+              &--require {
+                @include require();
+              }
+              &--field {
+                @include field();
+                margin: 8px 0 0;
+                padding: 0 16px;
+              }
+              &--explain {
+                font-size: 14px;
+                color: $blue;
+                text-align: right;
+                margin: 8px 0 0;
+                span {
+                  width: 14px;
+                  height: 14px;
+                  border-radius: 50%;
+                  color: $white;
+                  background-color: $blue;
+                  font-size: 12px;
+                  text-align: center;
+                  line-height: 14px;
+                  display: inline-block;
+                }
+              }
+            }
+            &__btn {
+              margin: 32px 0 0;
+              &--submit {
+                @include btn();
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

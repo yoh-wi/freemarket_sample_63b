@@ -1,4 +1,5 @@
 .header {
+  background-color: $white;
   padding: 15px 60px 10px;
   &__box {
     width: 100%;
@@ -53,27 +54,87 @@
     display: flex;
     justify-content: space-between;
     &__left {
-      &__item {
+      display: flex;
+      position: relative;
+      &__category {
         line-height: 38px;
-        margin-right: 10px;
-        display: inline-block;
+        padding-left: 20px;
+        &:first-child {
+          padding-left: 0px;
+        }
         a {
-          color: #333;
+          color: $gray;
           line-height: 32px;
-          padding: 10px 10px 10px 0px;
+          padding: 10px 20px 20px 0px;
           text-decoration: none;
           &:hover {
-            color: $orange;            
+            color: $orange;         
           }
         }
+        &:hover ul.first {
+          display: block;
+        }
+        &__tree {
+          width: 240px;
+          background-color: $white;
+          position: absolute;
+          top: 40px;
+          left: 0px;
+          z-index: 10;
+          ul.first {
+            display: none;
+            position: relative;
+            li {
+              a {
+                width: 240px;
+                line-height: 38px;
+                display: block;
+                padding: 3px 8px 3px 5px;
+                border-bottom: solid 1px $gray3;
+              }
+              &:hover ul.second {
+                display: block;
+              }
+              ul.second {
+                display: none;
+                min-height: 480px;
+                background-color: $white;
+                position: absolute;
+                top: 0px;
+                left: 240px;
+                li {
+                  a {
+                    @include pulldown-menu();
+                  }
+                  &:hover ul.third {
+                    display: block;
+                  }
+                  ul.third {
+                    display: none;
+                    min-height: 480px;
+                    background-color: $white;
+                    position: absolute;
+                    top: 0px;
+                    left: 250px;
+                    li {
+                      a {
+                        @include pulldown-menu();
+                      }
+                    } 
+                  } 
+                }
+              }
+            }
+          }
+        }      
       }
     }
     &__right {
+      display: flex;
       &__user {
         margin-left: 15px;
-        display: inline-block;
         a {
-          color: #333;
+          color: $gray;
           line-height: 32px;
           padding: 10px 0px;
           text-decoration: none;

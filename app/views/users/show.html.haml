@@ -1,0 +1,82 @@
+.mypage
+  = render "products/header"
+  .mypage-main
+    = render "mypage-side"
+    .mypage-main__container
+      .mypage-main__container__content
+        %section.user-icon
+          = link_to "#" do
+            .user-icon__img
+              -# 仮置き画像
+              = image_tag("https://placebear.com/100/100", alt: "ユーザー画像", class: "user-img")
+            .user-icon__name
+              username
+            .user-icon__number
+              .user-icon__number--element
+                評価      
+                %span
+                  0
+              .user-icon__number--element
+                出品数
+                %span
+                  0
+        %section.notification-todo
+          %ul.tabs
+            %li
+              .tab-title
+                = link_to "お知らせ", "#"
+            %li
+              .tab-title
+                = link_to "やることリスト", "#"
+          .notification-todo__content
+            %ul
+              %li
+                = link_to "#", class: "tab-list" do
+                  .tab-list__content
+                    .tab-list__content__icon
+                      = image_tag("logo/logo.png", class: "logo-icon")
+                    .tab-list__content__body  
+                      .tab-list__content__body--text
+                        登録特典500ポイントプレゼント！
+                      .tab-list__content__body--time
+                        = icon('far', 'clock', class: "clock-icon")
+                        %span 5時間前
+                  .tab-list__content__arrow    
+                    = icon('fas', 'chevron-right', class: "arrow-right")
+              %li
+                = link_to "#", class: "tab-list" do
+                  .tab-list__content
+                    .tab-list__content__icon
+                      = image_tag("logo/logo.png", class: "logo-icon")
+                    .tab-list__content__body  
+                      .tab-list__content__body--text
+                        新規登録が完了しました。
+                      .tab-list__content__body--time
+                        = icon('far', 'clock', class: "clock-icon")
+                        %span 7時間前
+                  .tab-list__content__arrow    
+                    = icon('fas', 'chevron-right', class: "arrow-right")
+              %li
+                .content-all
+                  = link_to "一覧を見る", "#", class: "content-all__link"
+        %section.mypage-tab
+          .mypage-tab__head
+            購入した商品
+          .mypage-tab__container
+            %ul.tabs
+              %li
+                .tab-title
+                  = link_to "取引中", "#"
+              %li
+                .tab-title
+                  = link_to "過去の取引", "#"
+            .mypage-tab__container__content
+              %ul
+                %li
+                  .tab-list__notfound
+                    .tab-list__notfound--now
+                      取引中の商品がありません
+                    .tab-list__notfound--past
+                      過去に取引した商品がありません
+  = render "products/footer"
+  = render "products/display-btn"
