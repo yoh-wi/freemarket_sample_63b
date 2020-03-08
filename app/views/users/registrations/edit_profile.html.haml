@@ -1,5 +1,19 @@
-%h1 profile
-= form_with(url: update_profile_path, model: current_user, local: true) do |form|
-  = form.text_field :nickname, placeholder: '例）AYA☆セール中'
-  = form.text_area :profile, placeholder: '例）こんにちは！ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に９号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪'
-  = form.submit '変更する'
+.mypage
+  = render "products/header"
+  .mypage-main
+    = render "users/mypage-side"
+    .mypage-main__container
+      .mypage-main__container__content
+        .profile-name
+          プロフィール
+        %section.profile-content
+          = form_with(url: update_profile_path, model: current_user, local: true) do |form|
+            .profile-content__icon
+              .profile-content__icon__img
+                = image_tag("https://placebear.com/100/100", alt: "ユーザー画像", class: "user-img")
+              .profile-content__icon__name
+                = form.text_field :nickname, placeholder: '例）AYA☆セール中', class: "profile-content__icon__name--field"
+            .profile-content__text
+              = form.text_area :profile, class: "profile-content__text--area", placeholder: '例）こんにちは！ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に９号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪'
+
+            = form.submit '変更する', class: "profile-btn"
