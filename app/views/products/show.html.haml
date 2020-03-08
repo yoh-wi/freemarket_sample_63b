@@ -8,7 +8,7 @@
         .detail-main__show__content__top
           .detail-box
             %h2.detail-box--title
-              product1
+              = @product.name
             .detail-box__body
               .detail-box__body__content
                 .detail-box__body__content__list
@@ -23,32 +23,32 @@
 
             .detail-box__price
               %span.detail-box__price--text
-                ¥30000
+                ¥#{@product.price}
               .detail-box__price__box
                 %span
                   (税込み)
                 %span
                   送料込み
             .detail-box--name
-              product1
+              = @product.name
             .detail-box__table
               %table.detail-box__table__item
                 %tr
                   %th.item-left
                     出品者
                   %td.item-right
-                    hoge
+                    = @product.seller.nickname
               %table.detail-box__table__item
                 %tr
                   %th.item-left
                     カテゴリー
                   %td.item-right
                     .item-right__box
-                      = link_to "ベビー・キッズ", "#", class: "item-right--box--link"
+                      = link_to @product.category.parent.parent.name, category_path(@product.category.parent.parent), class: "item-right--box--link"
                     .item-right__box
-                      = link_to "ベビー服(男女兼用)~95cm", "#", class: "item-right--box--link"
+                      = link_to @product.category.parent.name, category_path(@product.category.parent), class: "item-right--box--link"
                     .item-right__box
-                      = link_to "アウター", "#", class: "item-right--box--link"
+                      = link_to @product.category.name, category_path(@product.category), class: "item-right--box--link"
               %table.detail-box__table__item
                 %tr
                   %th.item-left
@@ -76,7 +76,7 @@
                   %th.item-left
                     発送元の地域
                   %td.item-right
-                    = link_to "岩手県", "#", class: "item-right--box"
+                    = link_to @product.prefecture.name, "#", class: "item-right--box"
               %table.detail-box__table__item
                 %tr
                   %th.item-left
