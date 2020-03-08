@@ -18,4 +18,7 @@ Rails.application.routes.draw do
       get 'select_method', default: { format: 'json' }
     end
   end
+  resources :products, only: [:index, :new, :show]
+  resources :users, only: [:show, :edit]
+  resources :cards, only: [:index, :new, :create, :destroy]
 end

@@ -1,0 +1,42 @@
+.mypage-side {
+  width: 280px;
+  margin-right: 40px;
+  float: left;
+  &__nav {
+    &__list {
+      ul {
+        li {
+          border-top: solid 1px $pale_gray2;
+          &:first-child {
+            border: 0;
+          }
+        }
+      }
+      &--item {          
+        font-size: 14px;
+        min-width: 48px;
+        color: $gray;
+        background-color: $white;
+        display: block;
+        padding: 14px;
+        text-decoration: none;
+        position: relative;
+        &:hover {
+          background-color: $snow;
+        }
+      }
+      &--icon {
+        color: $pale_gray;
+        position: absolute;
+        top: 50%;
+        right: 16px;
+        transform: translate(0, -50%);
+      }
+    }
+    &__head {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 35px 0 5px;
+    }
+  }
+}

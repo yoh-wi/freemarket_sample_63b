@@ -24,7 +24,7 @@
       .form {
         padding: 24px 16px 40px;
         border-top: 1px solid $light_gray;
-        &__content {
+        &__contents {
           max-width: 343px;
           margin: 0 auto;
           &__nickname {
@@ -110,6 +110,7 @@
             margin: 24px 0 0;
             &__title {
               font-size: 14px;
+              font-weight: bold;
             }
             &__text {
               margin: 8px 0 0;
@@ -117,7 +118,7 @@
               line-height: 1.5;
             }
           }
-          &__name {
+          &__kanji {
             margin: 24px 0 0;
             &__label {
               .name-label {
@@ -225,16 +226,7 @@
             }
           }
           &--btn {
-            margin: 24px 0 0;
-            background-color: $light_blue;
-            border: 1px solid $light_blue;
-            color: $white;
-            display: block;
-            width: 100%;
-            line-height: 48px;
-            font-size: 14px;
-            transition: all ease-out .3s;
-            text-align: center;
+            @include btn();
           }
         }
         &__text {
