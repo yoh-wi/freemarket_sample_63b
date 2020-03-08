@@ -3,13 +3,14 @@
   .form
     = form_with(model: @product, remote: true) do |f|
       .form__content
-        .form__content__image
+        .form__content__image#image_box
           = f.fields_for :images do |image|
             = image.label :image, "出品画像", class: "form__content__image--label"
             = image.label :image, "必須", class: "form__content__image--require"
             %p.form__content__image--comment
             最大10枚までアップロードできます
             %br
+            #previews
             .form__content__image__upload
               = image.label :image, class: "form__content__image__upload--icon" do
                 = icon('fas', 'camera')
@@ -17,7 +18,8 @@
                   ドラッグアンドドロップ
                   %br
                   またはクリックしてファイルをアップロード
-              = image.file_field :image, accept: "image/png, image/jpeg", class: "form__content__image__upload--file"
+              .js-file_group{data: {index: "#{image.index}"}}
+                = image.file_field :image, accept: "image/png, image/jpeg", class: "form__content__image__upload--file"
       .form__content
         .form__content__name
           = f.label :name, "商品名", class: "form__content__name--label"
