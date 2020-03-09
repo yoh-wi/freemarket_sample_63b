@@ -117,17 +117,22 @@ $(function(){
 
   //挿入するfile_field
   function buildFileField(index){
-    var fileHtml = `<div data-index="${index}" class="js-file_group">
-                      <label><i class="fas fa-camera"></i></label>
-                      <input class="js-file" type="file"
-                       name="product[images_attributes][${index}][src]"
-                       id="product_images_attributes_${index}_src"><br>
-                    </div>`;
+    var fileHtml = `<label class="js-file_group" data-index="${index}">
+                        <i class="fas fa-camera"></i>
+                        <input class="js-file" type="file"
+                        name="product[images_attributes][${index}][src]"
+                        id="product_images_attributes_${index}_src"><br>
+                    </label>`;
+    return fileHtml;
+  }
+  //11個目の隠れたjs-file_group
+  function buildHiddenFileField(index){
+    var fileHtml = `<input type="hidden" class="js-file_group" data-index="${index}">`;
     return fileHtml;
   }
   //挿入するimageのプレビュー
   function buildImg(index, url){
-    var imgHtml = `<div class='js-preview'>
+    var imgHtml = `<div class='js-preview' data-index="${index}">
                     <div class='js-img'>
                       <img data-index="${index}" src="${url}" width="120px" height="100px">
                     </div>
@@ -136,34 +141,64 @@ $(function(){
     return imgHtml
   }
 
-  let fileIndex = [1,2,3];
-  //1回目imageプレビュー＋file_field追加
+  let fileIndex = [1,2,3,4,5,6,7,8,9,10,11];
+  //imageプレビュー＋file_field追加
   $('#image_box').on('change', '.js-file_group', function(e){
-    console.log(fileIndex.length);
     const targetIndex = $(this).data('index');
     const file = e.target.files[0];
     const blobUrl = window.URL.createObjectURL(file);
     if (img = $(`img[data-index="${targetIndex}"]`)[0]){
       img.setAttribute('src', blobUrl);
-    }else{
+    }else if (fileIndex.length > 6){
       $('.js-file_group').remove();
       $('#previews').append(buildImg(targetIndex, blobUrl));
       $('#previews').append(buildFileField(fileIndex[0]));
       $('.form__content__image__upload').remove();
       fileIndex.shift();
-      if (fileIndex.length == 0) {
+      if (fileIndex.length <= 6){
         $('.js-file_group').remove();
+        $('#previews2').append(buildFileField(fileIndex[0] - 1));
+      }
+      return fileIndex;
+    }else{
+      $('.js-file_group').remove();
+      $('#previews2').append(buildImg(targetIndex, blobUrl));
+      $('#previews2').append(buildFileField(fileIndex[0]));
+      fileIndex.shift();
+      if (fileIndex.length == 1){
+        $('.js-file_group').remove();
+        $('#previews2').append(buildHiddenFileField(fileIndex[0] - 1));
       }
       return fileIndex;
     }
   })
   //image削除ボタン
-  $(document).on('click', '.js-remove', function(){
+  $('#previews').on('click', '.js-remove', function(){
+    const removedIndex = $(this).parent().data('index');
+    const jsFileIndex = $('.js-file_group').data('index');
     $(this).parent().remove();
-    fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
-    if (fileIndex.length == 1){
-      $('#previews').append(buildFileField(fileIndex[0]));
+    $('.js-file_group').remove();
+    fileIndex.unshift(jsFileIndex);
+    if (fileIndex.length == 7){
+      const previewImg = $('#previews2').children()[0];
+      $(previewImg).remove();
+      $('#previews').append(previewImg);
+      $('#previews').append(buildFileField(removedIndex));
+    }else if (fileIndex.length <= 6){
+      const previewImg = $('#previews2').children()[0];
+      $(previewImg).remove();
+      $('#previews').append(previewImg);
+      $('#previews2').append(buildFileField(removedIndex));
+    }else{
+      $('#previews').append(buildFileField(removedIndex));
     }
-    console.log(fileIndex.length)
+  });
+  $('#previews2').on('click', '.js-remove', function(){
+    const removedIndex = $(this).parent().data('index');
+    const jsFileIndex = $('.js-file_group').data('index');
+    $(this).parent().remove();
+    $('.js-file_group').remove();
+    fileIndex.unshift(jsFileIndex);
+    $('#previews2').append(buildFileField(removedIndex));
   });
 })

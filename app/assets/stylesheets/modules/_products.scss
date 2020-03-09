@@ -415,3 +415,73 @@ body {
     }
   }
 }
+#previews {
+  display: flex;
+  .js-preview {
+    margin-top: 15px;
+    background-color: $light_gray;
+    text-align: center;
+    margin-right: 4px;
+    width: 120px;
+    height: 150px;
+    .js-img {
+      height: 120px;
+      padding: 10px 0;
+    }
+    .js-remove {
+      padding-top: 4px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border-top: solid 1px $pale_gray;
+    }
+  }
+  .js-file_group {
+    margin-top: 15px;
+    height: 150px;
+    width: 100%;
+    line-height: 150px;
+    border: dashed 1px $pale_gray;
+    text-align: center;
+    background-color: $light_gray;
+    font-size: 1.3rem;
+    cursor: pointer;
+    .js-file {
+      display: none;
+    }
+  }
+}
+#previews2{
+  display: flex;
+  .js-preview {
+    margin-top: 15px;
+    background-color: $light_gray;
+    text-align: center;
+    margin-right: 4px;
+    width: 120px;
+    height: 150px;
+    .js-img {
+      height: 120px;
+      padding: 10px 0;
+    }
+    .js-remove {
+      padding-top: 4px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border-top: solid 1px $pale_gray;
+    }
+  }
+  .js-file_group {
+    margin-top: 15px;
+    height: 150px;
+    width: 100%;
+    line-height: 150px;
+    border: dashed 1px $pale_gray;
+    text-align: center;
+    background-color: $light_gray;
+    font-size: 1.3rem;
+    cursor: pointer;
+    .js-file {
+      display: none;
+    }
+  }
+}
