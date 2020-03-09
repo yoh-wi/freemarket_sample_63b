@@ -20,6 +20,7 @@
                   またはクリックしてファイルをアップロード
               .js-file_group{data: {index: "#{image.index}"}}
                 = image.file_field :image, accept: "image/png, image/jpeg", class: "form__content__image__upload--file"
+            #previews2
       .form__content
         .form__content__name
           = f.label :name, "商品名", class: "form__content__name--label"
