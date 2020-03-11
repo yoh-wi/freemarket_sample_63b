@@ -97,51 +97,23 @@
         .main-pickup__product-head
           = link_to "新規投稿商品"
         .main-pickup__product-lists
-          .main-pickup__product-list
-            = link_to "products/show" do
-              .main-pickup__product-list--image
-                = image_tag("pict/pict-reason-01.jpg", alt: "画像", class: "main-pickup__product-list--img")
-              .main-pickup__product-list--body
-                .main-pickup__product-list--name
-                  product1
-                .main-pickup__product-list--detail
-                  .main-pickup__product-list--price
-                    10000円
-                    %br
-                    %span <税込>
-                  .main-pickup__product-list--like
-                    = icon('fas', 'star')
-                    1
-          .main-pickup__product-list
-            = link_to "#" do
-              .main-pickup__product-list--image
-                = image_tag("pict/pict-reason-02.jpg", alt: "画像", class: "main-pickup__product-list--img")
-              .main-pickup__product-list--body
-                .main-pickup__product-list--name
-                  product2
-                .main-pickup__product-list--detail
-                  .main-pickup__product-list--price
-                    20000円
-                    %br
-                    %span <税込>
-                  .main-pickup__product-list--like
-                    = icon('fas', 'star')
-                    2
-          .main-pickup__product-list
-            = link_to "#" do
-              .main-pickup__product-list--image
-                = image_tag("pict/pict-reason-03.jpg", alt: "画像", class: "main-pickup__product-list--img")
-              .main-pickup__product-list--body
-                .main-pickup__product-list--name
-                  product3
-                .main-pickup__product-list--detail
-                  .main-pickup__product-list--price
-                    30000円
-                    %br
-                    %span <税込>
-                  .main-pickup__product-list--like
-                    = icon('fas', 'star')
-                    3
+          - @products.each do |product|
+            .main-pickup__product-list
+              = link_to product_path(product) do
+                .main-pickup__product-list--image
+                  = image_tag product.images[0].image.url, alt: "画像", class: "main-pickup__product-list--img"
+                .main-pickup__product-list--body
+                  .main-pickup__product-list--name
+                    = product.name
+                  .main-pickup__product-list--detail
+                    .main-pickup__product-list--price
+                      = product.price
+                      %br
+                      %span <税込>
+                    .main-pickup__product-list--like
+                      = icon('fas', 'star')
+                      1
+
     .main-pickup
       .main-pickup__head
         ピックアップブランド
@@ -149,52 +121,23 @@
         .main-pickup__product-head
           = link_to "アーカイブ"
         .main-pickup__product-lists
-          .main-pickup__product-list
-            = link_to "#" do
-              .main-pickup__product-list--image
-                = image_tag("pict/bg-topMiddleDl-pict.jpg", alt: "画像", class: "main-pickup__product-list--img")
-              .main-pickup__product-list--body
-                .main-pickup__product-list--name
-                  product1
-                .main-pickup__product-list--detail
-                  .main-pickup__product-list--price
-                    10000円
-                    %br
-                    %span <税込>
-                  .main-pickup__product-list--like
-                    = icon('fas', 'star')
-                    1
-          .main-pickup__product-list
-            = link_to "#" do
-              .main-pickup__product-list--image
-                = image_tag("pict/bg-mainVisual-pict_pc.jpg", alt: "画像", class: "main-pickup__product-list--img")
-              .main-pickup__product-list--body
-                .main-pickup__product-list--name
-                  product2
-                .main-pickup__product-list--detail
-                  .main-pickup__product-list--price
-                    20000円
-                    %br
-                    %span <税込>
-                  .main-pickup__product-list--like
-                    = icon('fas', 'star')
-                    2
-          .main-pickup__product-list
-            = link_to "#" do
-              .main-pickup__product-list--image
-                = image_tag("pict/bg-appBanner-pict.jpg", alt: "画像", class: "main-pickup__product-list--img")
-              .main-pickup__product-list--body
-                .main-pickup__product-list--name
-                  product3
-                .main-pickup__product-list--detail
-                  .main-pickup__product-list--price
-                    30000円
-                    %br
-                    %span <税込>
-                  .main-pickup__product-list--like
-                    = icon('fas', 'star')
-                    3
+          - @products.each do |product|
+            .main-pickup__product-list
+              = link_to product_path(product) do
+                .main-pickup__product-list--image
+                  = image_tag product.images[0].image.url, alt: "画像", class: "main-pickup__product-list--img"
+                .main-pickup__product-list--body
+                  .main-pickup__product-list--name
+                    = product.name
+                  .main-pickup__product-list--detail
+                    .main-pickup__product-list--price
+                      = product.price
+                      %br
+                      %span <税込>
+                    .main-pickup__product-list--like
+                      = icon('fas', 'star')
+                      1
+
 
   = render "footer"
   = render "display-btn"
-
