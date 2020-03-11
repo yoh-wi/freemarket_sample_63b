@@ -186,7 +186,6 @@ $(document).on('turbolinks:load', ()=> {
       $('#previews').append(buildFileField(removedIndex));
     }else if (fileIndex.length <= 6){
       const previewImg = $('#previews2').children('.js-preview')[0];
-      console.log(previewImg);
       $(previewImg).remove();
       $('#previews').append(previewImg);
       $('#previews2').append(buildFileField(removedIndex));
