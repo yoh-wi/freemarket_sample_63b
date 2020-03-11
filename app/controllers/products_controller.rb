@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    @product.images.build
+    @product.images.new
     @parent_category = Category.where(ancestry: nil)
     @payer = ShippingPayerMethod.where(ancestry: nil)
   end
@@ -33,6 +33,6 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:id, :name, :description, :category_id, :brand, :product_condition, :shipping_payer_method_id, :prefecture_id, :days_of_shipping, :price, :trade_status, images_attributes:[:image, :_destroy, :id]).merge(seller_id: current_user.id)
+    params.require(:product).permit(:id, :name, :description, :category_id, :brand, :product_condition, :shipping_payer_method_id, :prefecture_id, :days_of_shipping, :price, :trade_status, images_attributes: [:image, :_destroy, :id]).merge(seller_id: current_user.id)
   end
 end

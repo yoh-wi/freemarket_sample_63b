@@ -449,6 +449,18 @@ body {
       display: none;
     }
   }
+  .changed-js-file_group {
+    font-size: 0;
+    display: none;
+    width: 0;
+    height: 0;
+  }
+}
+.changed-js-file_group {
+  font-size: 0;
+  display: none;
+  width: 0;
+  height: 0;
 }
 #previews2{
   display: flex;
@@ -483,5 +495,11 @@ body {
     .js-file {
       display: none;
     }
+  }
+  .changed-js-file_group {
+    font-size: 0;
+    display: none;
+    width: 0;
+    height: 0;
   }
 }

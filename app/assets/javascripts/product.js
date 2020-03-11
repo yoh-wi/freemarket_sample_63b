@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load', ()=> {
   //子・孫カテゴリの選択肢
   function appendOption(category){
     var html = `<option value="${category.id}"> ${category.name}</option>`;
@@ -120,8 +120,8 @@ $(function(){
     var fileHtml = `<label class="js-file_group" data-index="${index}">
                         <i class="fas fa-camera"></i>
                         <input class="js-file" type="file"
-                        name="product[images_attributes][${index}][src]"
-                        id="product_images_attributes_${index}_src"><br>
+                        name="product[images_attributes][${index}][image]"
+                        id="product_images_attributes_${index}_image"><br>
                     </label>`;
     return fileHtml;
   }
@@ -150,10 +150,10 @@ $(function(){
     if (img = $(`img[data-index="${targetIndex}"]`)[0]){
       img.setAttribute('src', blobUrl);
     }else if (fileIndex.length > 6){
-      $('.js-file_group').remove();
+      $('.js-file_group').attr('class','changed-js-file_group');
       $('#previews').append(buildImg(targetIndex, blobUrl));
       $('#previews').append(buildFileField(fileIndex[0]));
-      $('.form__content__image__upload').remove();
+      $('.form__content__image__upload').attr('class', 'changed-js-file_group');
       fileIndex.shift();
       if (fileIndex.length <= 6){
         $('.js-file_group').remove();
@@ -161,7 +161,7 @@ $(function(){
       }
       return fileIndex;
     }else{
-      $('.js-file_group').remove();
+      $('.js-file_group').attr('class','changed-js-file_group');
       $('#previews2').append(buildImg(targetIndex, blobUrl));
       $('#previews2').append(buildFileField(fileIndex[0]));
       fileIndex.shift();
@@ -185,7 +185,8 @@ $(function(){
       $('#previews').append(previewImg);
       $('#previews').append(buildFileField(removedIndex));
     }else if (fileIndex.length <= 6){
-      const previewImg = $('#previews2').children()[0];
+      const previewImg = $('#previews2').children('.js-preview')[0];
+      console.log(previewImg);
       $(previewImg).remove();
       $('#previews').append(previewImg);
       $('#previews2').append(buildFileField(removedIndex));
