@@ -18,7 +18,7 @@ ladys_shoes = Category.find(67).children.ids
 mens_shoes = Category.find(248).children.ids
 shoes_size_id = ladys_shoes + mens_shoes
 
-baby_girls = Category.find(345).children.ids
+baby_girls = Category.find(346).children.ids
 baby_boys = Category.find(358).children.ids
 babys_both = Category.find(367).children.ids
 baby_clothes_size_id = baby_girls + baby_boys + babys_both
