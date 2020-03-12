@@ -205,7 +205,7 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
-  enum:
+  enums:
     product:
       product_condition:
         brand_new: "新品、未使用"
@@ -216,5 +216,5 @@ ja:
         too_dirty: "全体的に状態が悪い"
       days_of_shipping:
         days1_2: "1〜2日で発送"
-        days2_3: "2〜3で発送"
-        days4_7: "4〜7で発送"
+        days2_3: "2〜3日で発送"
+        days4_7: "4〜7日で発送"

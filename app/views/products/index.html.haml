@@ -105,10 +105,10 @@
                   = image_tag("pict/pict-reason-01.jpg", alt: "画像", class: "main-pickup__product-list--img")
                 .main-pickup__product-list--body
                   .main-pickup__product-list--name
-                    product1
+                    = product.name
                   .main-pickup__product-list--detail
                     .main-pickup__product-list--price
-                      10000円
+                      #{product.price}円
                       %br
                       %span <税込>
                     .main-pickup__product-list--like

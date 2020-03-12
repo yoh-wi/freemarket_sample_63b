@@ -12,15 +12,16 @@
             .detail-box__body
               .detail-box__body__content
                 .detail-box__body__content__list
-                  = image_tag("http://placekitten.com/350/250/", alt: "画像", class: "detail-box__body__content__list--image")
+                  = image_tag @product.images[0].image.url, alt: "画像", class: "detail-box__body__content__list--image" 
                   .detail-small
-                    .detail-small__list
-                      = image_tag("http://placekitten.com/350/250/", alt: "画像", class: "detail-small__list--image")                   
-                    .detail-small__list
-                      = image_tag("http://placekitten.com/350/250/", alt: "画像", class: "detail-small__list--image")
-                    .detail-small__list
-                      = image_tag("http://placekitten.com/350/250/", alt: "画像", class: "detail-small__list--image")
-
+                    - @product.images.each do |i|
+                      .detail-small__list
+                        = image_tag i.image.url, alt: "画像", class: "detail-small__list--image"
+                      .detail-small__list
+                        = image_tag("pict/bg-mainVisual-pict_pc.jpg", alt: "画像", class: "detail-small__list--image")                   
+                      .detail-small__list
+                        = image_tag("pict/bg-topMiddleDl-pict.jpg", alt: "画像", class: "detail-small__list--image")
+                        
             .detail-box__price
               %span.detail-box__price--text
                 ¥#{@product.price}
@@ -64,13 +65,13 @@
                   %th.item-left
                     商品の状態
                   %td.item-right
-                    未使用に近い
+                    = @product.product_condition_i18n
               %table.detail-box__table__item
                 %tr
                   %th.item-left
                     配送料の負担
                   %td.item-right
-                    送料込み（出品者負担）
+                    = @product.days_of_shipping_i18n
               %table.detail-box__table__item
                 %tr
                   %th.item-left
@@ -82,9 +83,13 @@
                   %th.item-left
                     発送日の目安
                   %td.item-right
-                    4-7日で発送
-              .detail-box__table--btn
-                購入画面に進む
+                    = @product.shipping_payer_method.payer_or_method
+              - if @product.seller_id == current_user.id
+                .detail-box__table--btn
+                  = link_to "商品編集画面に進む", edit_product_path(@product)
+              - else
+                .detail-box__table--btn
+                  = link_to "購入画面に進む", buy_product_path(@product)
             .detail-box__option
               .detail-box__option__item
                 .detail-box__option__item__icon

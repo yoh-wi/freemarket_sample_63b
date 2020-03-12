@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
   def index
-    @products = Product.all
+    @products = Product.all.limit(3)
   end
 
   def show
@@ -24,6 +24,15 @@ class ProductsController < ApplicationController
     end
   end
 
+  def edit
+    @product = Product.find(params[:id])
+    @parent_category = Category.where(ancestry: nil)
+    @payer = ShippingPayerMethod.where(ancestry: nil)
+    if @product.seller_id != current_user.id
+      redirect_back(fallback_location: product_path(@product))
+    end
+  end
+
   def select_child_category
     @child_category = Category.find(params[:parent_category_id]).children
   end
@@ -34,6 +43,13 @@ class ProductsController < ApplicationController
 
   def select_method
     @method = ShippingPayerMethod.find(params[:payer_id]).children
+  end
+
+  def buy
+    @product = Product.find(params[:id])
+    if @product.seller_id == current_user.id
+      redirect_back(fallback_location: product_path(@product))
+    end
   end
 
   private
