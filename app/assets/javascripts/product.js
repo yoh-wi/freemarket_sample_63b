@@ -29,16 +29,19 @@ $(document).on('turbolinks:load', ()=> {
                                  </div>`;
     $('.form__content__category').append(grandchildSelectHtml);
   }
-  //配送方法のセレクトボックス
-  function appendMethod(insertHTML){
-    var methodSelectHtml = `<div class= 'method-select-form__added' id= 'method_wrapper'>
-                              <select class= "form__content__method--field" id= "method" name="product[shipping_payer_method_id]">
-                                <option value="選択してください">選択してください</option>
-                                ${insertHTML}
-                              </select>
-                            </div>`;
-    $('.form__content__method').append(methodSelectHtml);
+  //サイズのセレクトボックス
+  function appendSize(insertHTML){
+    var sizeSelectHtml = `<div class='category-select-form__added' id='size_wrapper'>
+                            <label class='form__content__category--label'>サイズ</label>
+                            <label class='form__content__category--require'>必須</label>
+                            <select class='form__content__category--field' id='size' name="product[size_id]">
+                              <option value='選択してください'>選択してください</option>
+                              ${insertHTML}
+                            </select>
+                          </div>`;
+    $('.form__content__category').append(sizeSelectHtml);
   }
+  
   //親カテゴリ選択後、子カテゴリをappend
   $('#parent_category').on('change', function(e){
     e.preventDefault();
@@ -53,6 +56,7 @@ $(document).on('turbolinks:load', ()=> {
       .done(function(children){
         $('#children_wrapper').remove();
         $('#grandchildren_wrapper').remove();
+        $('#size_wrapper').remove();
         var insertHTML = '';
         children.forEach(function(child){
           insertHTML += appendOption(child);
@@ -79,6 +83,7 @@ $(document).on('turbolinks:load', ()=> {
       })
       .done(function(grandchildren){
         $('#grandchildren_wrapper').remove();
+        $('#size_wrapper').remove();
         var insertHTML = '';
         grandchildren.forEach(function(grandchild){
           insertHTML += appendOption(grandchild);
@@ -92,6 +97,41 @@ $(document).on('turbolinks:load', ()=> {
       $('#grandchildren_wrapper').remove();
     }
   })
+  //孫カテゴリを選択後、サイズをappend
+  $('.form__content__category').on('change', '#grandchild_category', function(){
+    var grandchildCategory =$('#grandchild_category option:selected').val();
+    if (grandchildCategory != '選択してください'){
+      $.ajax({
+        url: 'select_size',
+        type: 'GET',
+        data: {grandchild_category_id: grandchildCategory},
+        dataType: 'json'
+      })
+      .done(function(sizes){
+        $('#size_wrapper').remove();
+        var insertHTML = '';
+        sizes.forEach(function(size){
+          insertHTML += appendOption(size);
+        });
+        appendSize(insertHTML);
+      })
+      .fail(function(){
+        alert('サイズの取得に失敗しました');
+      })
+    }else{
+      $('#size_wrapper').remove();
+    }
+  })
+  //配送方法のセレクトボックス
+  function appendMethod(insertHTML){
+    var methodSelectHtml = `<div class= 'method-select-form__added' id= 'method_wrapper'>
+                              <select class= "form__content__method--field" id= "method" name="product[shipping_payer_method_id]">
+                                <option value="選択してください">選択してください</option>
+                                ${insertHTML}
+                              </select>
+                            </div>`;
+    $('.form__content__method').append(methodSelectHtml);
+  }
   //支払方法を選択後、配送方法をappend
   $('#payer').on('change', function(){
     var payer = $('#payer').val();
