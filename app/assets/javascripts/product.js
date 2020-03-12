@@ -108,12 +108,14 @@ $(document).on('turbolinks:load', ()=> {
         dataType: 'json'
       })
       .done(function(sizes){
-        $('#size_wrapper').remove();
-        var insertHTML = '';
-        sizes.forEach(function(size){
+        if (sizes != ''){
+          $('#size_wrapper').remove();
+          var insertHTML = '';
+          sizes.forEach(function(size){
           insertHTML += appendOption(size);
-        });
-        appendSize(insertHTML);
+          });
+          appendSize(insertHTML);
+        }
       })
       .fail(function(){
         alert('サイズの取得に失敗しました');
