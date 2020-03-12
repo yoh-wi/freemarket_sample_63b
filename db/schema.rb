@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_11_094629) do
+ActiveRecord::Schema.define(version: 2020_03_12_123354) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "last_name_kanji", null: false
@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 2020_03_11_094629) do
     t.integer "trade_status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "size_id"
+    t.index ["size_id"], name: "index_products_on_size_id"
   end
 
   create_table "shipping_payer_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -103,4 +105,5 @@ ActiveRecord::Schema.define(version: 2020_03_11_094629) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "products", "sizes"
 end
