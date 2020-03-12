@@ -326,6 +326,13 @@ body {
     }
     &__category {
       @include form-label;
+      .category-select-form__added {
+        margin-top: 5px;
+      }
+      #size_wrapper {
+        margin-top: 30px;
+        margin-bottom: 20px;
+      }
     }
     &__brand {
       @include form-label;
