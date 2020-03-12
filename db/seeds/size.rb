@@ -11,6 +11,6 @@ Size.create!([
   #ベビー服~100cm以上
   {id: 32, name: '100cm'}, {id: 33, name: '110cm'}, {id: 34, name: '120cm'}, {id: 35, name: '130cm'}, {id: 36, name: '140cm'}, {id: 37, name: '150cm'}, {id: 38, name: '160cm'},
   #子ども靴
-  {id: 39, name: '10.5cm以下'}, {id: 41, name: '11cm・11.5cm'}, {id: 42, name: '12cm・12.5cm'}, {id: 43, name: '13cm・13.5cm'}, 
-  {id: 44, name: '14cm・14.5cm'}, {id: 45, name: '15cm・15.5cm'}, {id: 46, name: '16cm・16.5cm'}, {id: 47, name: '17cm以上'}
+  {id: 39, name: '10.5cm以下'}, {id: 40, name: '11cm・11.5cm'}, {id: 41, name: '12cm・12.5cm'}, {id: 42, name: '13cm・13.5cm'}, 
+  {id: 43, name: '14cm・14.5cm'}, {id: 44, name: '15cm・15.5cm'}, {id: 45, name: '16cm・16.5cm'}, {id: 46, name: '17cm以上'}
   ])

@@ -176,6 +176,3 @@ end
 kids_shoes_size_id.each do |i|
   SizeCategory.create!(size_id: 46, category_id: i)
 end
-kids_shoes_size_id.each do |i|
-  SizeCategory.create!(size_id: 47, category_id: i)
-end
