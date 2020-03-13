@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
   def index
-    @products = Product.all.limit(3)
+    @products = Product.where(trade_status: '0').limit(3).order(id: "DESC")
   end
 
   def new
