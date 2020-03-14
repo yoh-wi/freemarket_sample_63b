@@ -4,7 +4,7 @@
     = render "users/mypage-side"
     .mypage-main__container
       .mypage-main__container__content
-        .profile-name
+        %h2.profile-name
           プロフィール
         %section.profile-content
           = form_with(url: update_profile_path, model: current_user, local: true) do |form|
