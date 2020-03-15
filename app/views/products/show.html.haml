@@ -55,11 +55,13 @@
                   %th.item-left
                     ブランド
                   %td.item-right
+                    = @product.brand
               %table.detail-box__table__item
                 %tr
                   %th.item-left
                     商品のサイズ
                   %td.item-right
+                    -# = @product.size.name
               %table.detail-box__table__item
                 %tr
                   %th.item-left
@@ -84,12 +86,16 @@
                     発送日の目安
                   %td.item-right
                     = @product.shipping_payer_method.payer_or_method
-              - if @product.seller_id == current_user.id
+              - if user_signed_in?    
+                - if @product.seller_id == current_user.id
+                  .detail-box__table--btn
+                    = link_to "商品編集画面に進む", edit_product_path(@product)
+                - else
+                  .detail-box__table--btn
+                    = link_to "購入画面に進む", buy_product_path(@product)
+              - else   
                 .detail-box__table--btn
-                  = link_to "商品編集画面に進む", edit_product_path(@product)
-              - else
-                .detail-box__table--btn
-                  = link_to "購入画面に進む", buy_product_path(@product)
+                  = link_to "購入画面に進む", buy_product_path(@product)   
             .detail-box__option
               .detail-box__option__item
                 .detail-box__option__item__icon

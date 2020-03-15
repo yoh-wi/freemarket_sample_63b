@@ -47,8 +47,10 @@ class ProductsController < ApplicationController
 
   def buy
     @product = Product.find(params[:id])
-    if @product.seller_id == current_user.id
-      redirect_back(fallback_location: product_path(@product))
+    if user_signed_in?
+      if @product.seller_id == current_user.id
+        redirect_back(fallback_location: product_path(@product))
+      end
     end
   end
 
