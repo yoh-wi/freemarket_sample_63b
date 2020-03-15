@@ -61,7 +61,8 @@
                   %th.item-left
                     商品のサイズ
                   %td.item-right
-                    -# = @product.size.name
+                    -# サイズテーブル表示調整
+                    -# = @product.category.size.name
               %table.detail-box__table__item
                 %tr
                   %th.item-left
@@ -121,12 +122,12 @@
         .detail-main__show__content__links
           .before-link
             = icon('fas', 'angle-left', class: "before-link--icon")
-            = link_to "前の商品", "#", class: "before-link--text"
+            = link_to "前の商品", @product.previous, class: "before-link--text"
           .after-link
-            = link_to "後ろの商品", "#", class: "after-link--text"
+            = link_to "後ろの商品", @product.next, class: "after-link--text"
             = icon('fas', 'angle-right', class: "after-link--icon")
 
         .detail-main__show__content__items
-          = link_to "ベビー・キッズをもっと見る", "#", class: "detail-main__show__content__items--transition"
+          = link_to "#{@product.category.parent.parent.name}をもっと見る", "#", class: "detail-main__show__content__items--transition"
 
   = render "footer"
