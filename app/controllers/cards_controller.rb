@@ -50,7 +50,6 @@ class CardsController < ApplicationController
     end
   end
   
-
   def create
   end
 

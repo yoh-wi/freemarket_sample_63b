@@ -19,8 +19,16 @@ Rails.application.routes.draw do
       get 'select_method', default: { format: 'json' }
     end
   end
+
   resources :products, only: [:index, :show, :new]
   resources :users, only: [:show, :edit]
-  resources :cards, only: [:index, :new, :create, :destroy]
+  
+  resources :cards, only: [:new, :show, :create, :destroy] do
+    collection do
+      post 'show', to: 'cards#show'
+      post 'pay', to: 'cards#pay'
+      post 'delete', to: 'cards#delete'
+    end
+  end
 
 end
