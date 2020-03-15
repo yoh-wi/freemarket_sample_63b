@@ -9,6 +9,7 @@
         .card-info__content
           .card-info__content__title
             クレジットカード一覧
+          - if @card.present?
           .card-info__content__list
             .card-info__content__list__detail
               = "**** **** ****" + @default_card_information.last4

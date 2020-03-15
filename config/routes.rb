@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   resources :products, only: [:index, :show, :new]
   resources :users, only: [:show, :edit]
-  
+
   resources :cards, only: [:new, :show, :create, :destroy] do
     collection do
       post 'show', to: 'cards#show'
