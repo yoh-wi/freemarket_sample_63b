@@ -25,4 +25,5 @@ Rails.application.routes.draw do
   resources :products
   resources :users, only: [:show, :edit]
   resources :cards, only: [:index, :new, :create, :destroy]
+
 end
