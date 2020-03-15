@@ -33,7 +33,8 @@
           = f.label :require, "必須", class: "form__content__description--require"
           %br
           = f.text_area :description, placeholder: "商品の説明（必須1000文字以内）&#13;&#10;（色、素材、重さ、定価、注意点など）&#13;&#10;&#13;&#10;例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。".html_safe, class: "form__content__description--area"
-          %p.form__content__description--counter#counter 0/1000
+          %p.form__content__description--counter#counter
+            0/1000
           %br
       .form__content
         %p.form__content__title 商品の詳細

@@ -243,4 +243,10 @@ $(document).on('turbolinks:load', ()=> {
     fileIndex.unshift(jsFileIndex);
     $('#previews2').append(buildFileField(removedIndex));
   });
-})
+  //descriptionの文字数カウント
+  $('.form__content__description--area').on('keyup', function(){
+  var count = $(this).val().length;
+  var counter = `${count}/1000` 
+  $('#counter').text(counter);
+  });
+});
