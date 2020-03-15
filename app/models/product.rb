@@ -15,6 +15,23 @@ class Product < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
 
+  #バリデーション
+  parents = []
+  Category.all.each do |p|
+    if p.children?
+      parents << p.id
+    end
+  end
+  payers = []
+  ShippingPayerMethod.all.each do |p|
+    if p.children?
+      payers << p.id
+    end
+  end
+
   validates :images, length: { minimum: 1, maximum: 10 }
   validates :name, :description, :category_id, :product_condition, :shipping_payer_method_id, :prefecture_id, :days_of_shipping, :price, :seller_id, presence: true
+  validates :size_id, presence: true, if: Proc.new { |p| p.category.sizes.present? }
+  validates :category_id, exclusion: {in: parents }
+  validates :shipping_payer_method_id, exclusion: {in: payers }
 end
