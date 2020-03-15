@@ -7,7 +7,7 @@ class Product < ApplicationRecord
   has_many :images, inverse_of: :product
   accepts_nested_attributes_for :images, allow_destroy: true
   belongs_to :category
-  belongs_to :size
+  belongs_to :size, optional: true
   belongs_to :shipping_payer_method
   belongs_to :seller, class_name: 'User'
   belongs_to :buyer, class_name: 'User', optional: true
