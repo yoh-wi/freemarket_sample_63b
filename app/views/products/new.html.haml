@@ -50,7 +50,7 @@
           = f.label :product_condition, "商品の状態", class: "form__content__condition--label"
           = f.label :require, "必須", class: "form__content__condition--require"
           %br
-          = f.select :product_condition, Product.product_conditions_i18n.keys.map{|k| [I18n.t("enum.product.product_condition.#{k}"), k]}, {prompt: true}, {class: "form__content__condition--field"}
+          = f.select :product_condition, Product.product_conditions_i18n.keys.map{|k| [I18n.t("enums.product.product_condition.#{k}"), k]}, {prompt: true}, {class: "form__content__condition--field"}
           %br
       .form__content
         .form__content__title
@@ -72,7 +72,7 @@
           = f.label :days_of_shipping, "発送までの日数", class: "form__content__days--label"
           = f.label :require, "必須", class: "form__content__days--require"
           %br
-          = f.select :days_of_shipping, Product.days_of_shippings_i18n.keys.map{|k| [I18n.t("enum.product.days_of_shipping.#{k}"), k]}, {prompt: true}, {class: "form__content__days--field"}
+          = f.select :days_of_shipping, Product.days_of_shippings_i18n.keys.map{|k| [I18n.t("enums.product.days_of_shipping.#{k}"), k]}, {prompt: true}, {class: "form__content__days--field"}
         
       .form__content
         .form__content__title

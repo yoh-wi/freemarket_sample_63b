@@ -18,4 +18,11 @@ class Product < ApplicationRecord
   validates :images, length: { minimum: 1, maximum: 10 }
   validates :name, :description, :category_id, :product_condition, :shipping_payer_method_id, :prefecture_id, :days_of_shipping, :price, :seller_id, presence: true
 
+  def previous
+    Product.where('id < ?', self.id).order('id DESC').first
+  end
+
+  def next
+    Product.where('id > ?', self.id).order('id ASC').first
+  end
 end
