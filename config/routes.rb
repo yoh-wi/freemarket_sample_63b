@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   root to:"products#index"
-  resources :products, only: [:index, :new, :create, :edit, :update] do
+  resources :products do
     collection do
       get 'select_child_category', default: { format: 'json' }
       get 'select_grandchild_category', default: { format: 'json' }
@@ -22,7 +22,6 @@ Rails.application.routes.draw do
     end
   end
   resources :categories, only: [:index, :show]
-  resources :products
   resources :users, only: [:show, :edit]
   resources :cards, only: [:index, :new, :create, :destroy]
 
