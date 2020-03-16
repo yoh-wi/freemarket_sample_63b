@@ -1,11 +1,11 @@
 class ProductsController < ApplicationController
-
+  before_action :set_product, only:[:show, :edit, :buy]
+  
   def index
     @products = Product.where(trade_status: '0').limit(3).order(id: "DESC")
   end
 
   def show
-    @product = Product.find(params[:id])
   end
   
   def new
@@ -25,7 +25,6 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find(params[:id])
     @parent_category = Category.where(ancestry: nil)
     @payer = ShippingPayerMethod.where(ancestry: nil)
     if @product.seller_id != current_user.id
@@ -46,7 +45,6 @@ class ProductsController < ApplicationController
   end
 
   def buy
-    @product = Product.find(params[:id])
     if user_signed_in?
       if @product.seller_id == current_user.id
         redirect_back(fallback_location: product_path(@product))
@@ -57,5 +55,9 @@ class ProductsController < ApplicationController
   private
   def product_params
     params.require(:product).permit(:id, :name, :description, :category_id, :brand, :product_condition, :shipping_payer_method_id, :prefecture_id, :days_of_shipping, :price, :trade_status, images_attributes:[:image, :_destroy, :id]).merge(seller_id: current_user.id)
+  end
+
+  def set_product
+    @product = Product.find(params[:id])
   end
 end
