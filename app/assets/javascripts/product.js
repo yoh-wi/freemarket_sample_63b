@@ -249,4 +249,12 @@ $(document).on('turbolinks:load', ()=> {
   var counter = `${count}/1000` 
   $('#counter').text(counter);
   });
+  //price入力後、手数料と利益をだす
+  $('.form__content__price--half-field').on('change', function(){
+    var price = $(this).val();
+    var fee = price * 0.1;
+    var profit = price - fee
+    $('.form__content__fee--right').text(`¥${fee}`);
+    $('.form__content__profit--right').text(`¥${profit}`);
+  })
 });
