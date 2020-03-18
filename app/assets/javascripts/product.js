@@ -13,7 +13,7 @@ $(document).on('turbolinks:load', ()=> {
   function appendChildrenBox(insertHTML){
     var childSelectHtml =  `<div class='category-select-form__added' id= 'children_wrapper'>
                               <select class="form__content__category--field" id="child_category" name="product[category_id]">
-                                <option value="選択してください">選択してください</option>
+                                <option value="">選択してください</option>
                                 ${insertHTML}
                               </select>
                             </div>`;
@@ -23,7 +23,7 @@ $(document).on('turbolinks:load', ()=> {
   function appendGrandchildrenBox(insertHTML){
     var grandchildSelectHtml =  `<div class='category-select-form__added' id= 'grandchildren_wrapper'>
                                   <select class="form__content__category--field" id="grandchild_category" name="product[category_id]">
-                                    <option value="選択してください">選択してください</option>
+                                    <option value="">選択してください</option>
                                     ${insertHTML}
                                   </select>
                                  </div>`;
@@ -35,7 +35,7 @@ $(document).on('turbolinks:load', ()=> {
                             <label class='form__content__category--label'>サイズ</label>
                             <label class='form__content__category--require'>必須</label>
                             <select class='form__content__category--field' id='size' name="product[size_id]">
-                              <option value='選択してください'>選択してください</option>
+                              <option value=''>選択してください</option>
                               ${insertHTML}
                             </select>
                           </div>`;
@@ -74,7 +74,7 @@ $(document).on('turbolinks:load', ()=> {
   //子カテゴリを選択後、孫カテゴリをappend
   $('.form__content__category').on('change', '#child_category', function(){
     var childCategory = $('#child_category option:selected').val();
-    if (childCategory != '選択してください'){
+    if (childCategory != ''){
       $.ajax({
         url: 'select_grandchild_category',
         type: 'GET',
@@ -100,7 +100,7 @@ $(document).on('turbolinks:load', ()=> {
   //孫カテゴリを選択後、サイズをappend
   $('.form__content__category').on('change', '#grandchild_category', function(){
     var grandchildCategory =$('#grandchild_category option:selected').val();
-    if (grandchildCategory != '選択してください'){
+    if (grandchildCategory != ''){
       $.ajax({
         url: 'select_size',
         type: 'GET',
@@ -128,7 +128,7 @@ $(document).on('turbolinks:load', ()=> {
   function appendMethod(insertHTML){
     var methodSelectHtml = `<div class= 'method-select-form__added' id= 'method_wrapper'>
                               <select class= "form__content__method--field" id= "method" name="product[shipping_payer_method_id]">
-                                <option value="選択してください">選択してください</option>
+                                <option value="">選択してください</option>
                                 ${insertHTML}
                               </select>
                             </div>`;
