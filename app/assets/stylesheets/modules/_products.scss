@@ -370,6 +370,11 @@ body {
         font-size: 16px;
       }
     }
+    .attention {
+      color: red;
+      font-size: 0.9rem;
+      text-align: right;
+    }
     &__fee {
       margin: 0 40px;
       display: flex;

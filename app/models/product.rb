@@ -30,6 +30,7 @@ class Product < ApplicationRecord
   end
   validates :images, length: { minimum: 1, maximum: 10 }
   validates :name, :description, :category_id, :product_condition, :shipping_payer_method_id, :prefecture_id, :days_of_shipping, :price, :seller_id, presence: true
+  validates :price,numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
   validates :size_id, presence: true, if: Proc.new { |p| p.category.sizes.present? }
   validates :category_id, exclusion: {in: parents }
   validates :shipping_payer_method_id, exclusion: {in: payers }

@@ -250,11 +250,19 @@ $(document).on('turbolinks:load', ()=> {
   $('#counter').text(counter);
   });
   //price入力後、手数料と利益をだす
-  $('.form__content__price--half-field').on('change', function(){
+  $('.form__content__price--half-field').on('change keyup', function(){
     var price = $(this).val();
-    var fee = price * 0.1;
+    var fee = Math.round(price * 0.1);
     var profit = price - fee
-    $('.form__content__fee--right').text(`¥${fee}`);
-    $('.form__content__profit--right').text(`¥${profit}`);
+    if (price  >= 300 && price <= 9999999){
+      $('.attention').remove();
+      $('.form__content__fee--right').text(`¥${fee}`);
+      $('.form__content__profit--right').text(`¥${profit}`);
+    }else{
+      $('.attention').remove();
+      $('.form__content__fee--right').text(`ー`);
+      $('.form__content__profit--right').text(`ー`);
+      $('.form__content__price').append(`<p class="attention">300以上9999999以下で入力してください</p>`)
+    }
   })
 });
