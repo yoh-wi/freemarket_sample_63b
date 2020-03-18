@@ -53,7 +53,7 @@ class ProductsController < ApplicationController
   end
 
   def buy_complete
-    @product.update(buyer_id: current_user.id)
+    @product.update(buyer_id: current_user.id, trade_status: 1)
   end
 
   private
