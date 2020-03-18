@@ -18,7 +18,8 @@ Rails.application.routes.draw do
       get 'select_method', default: { format: 'json' }
     end
     member do
-      get 'buy'
+      get 'buy_confirmation'
+      post 'buy_complete'
     end
   end
   resources :categories, only: [:index, :show]

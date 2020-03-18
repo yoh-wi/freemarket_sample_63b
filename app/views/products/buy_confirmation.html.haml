@@ -1,0 +1,54 @@
+.wrapper
+  = render 'users/header'
+  .buy-confirmation
+    .buy-confirmation__container
+      .buy-head
+        購入内容の確認
+      .buy-content
+        .item-box
+          .item-box__image
+            = image_tag @product.images[0].image.url, class: "item-box__image--img"
+          .item-box__detail
+            .item-box__detail--name
+              = @product.name
+            .item-box__detail--price
+              ¥#{@product.price}&nbsp
+              (税込)&nbsp
+              送料込み
+      .buy-content
+        -# = form_with model: @product, local: truer, class: "buy-item__form" do |f|
+        -#   = f.label :price, "支払い金額", class: "buy-item__form--label"
+        -#   = f.text_field :price, class: "buy-item__form--price"
+        -#   = f.label :pay, "支払い方法", class: "buy-item__form--label"
+        .buy-form
+          .buy-form__price
+            .buy-form__price--label
+              支払い金額
+            .buy-form__price--value
+              ¥#{@product.price}
+          .buy-form__point
+            = check_box_tag :point
+            = label_tag :point, "ポイントを使用（所持ポイント:0）", class: "buy-form__point--label"
+          .buy-form__info
+            .buy-form__info--label
+              支払い方法
+            .buy-form__info--text
+              クレジットカード
+          .buy-form__info
+            .buy-form__info--label
+              配送先
+            .buy-form__info--text
+              登録住所
+          .buy-form__submit
+            = button_to "購入する", buy_complete_product_path(@product), class: "buy-form__submit--btn"
+
+
+            
+
+
+            
+
+      
+
+
+  = render 'users/footer'

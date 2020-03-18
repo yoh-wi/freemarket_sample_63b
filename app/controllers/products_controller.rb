@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only:[:show, :edit, :buy]
+  before_action :set_product, only:[:show, :edit, :buy_confirmation, :buy_complete]
   
   def index
     @products = Product.where(trade_status: '0').limit(3).order(id: "DESC")
@@ -44,12 +44,16 @@ class ProductsController < ApplicationController
     @method = ShippingPayerMethod.find(params[:payer_id]).children
   end
 
-  def buy
+  def buy_confimation
     if user_signed_in?
       if @product.seller_id == current_user.id
         redirect_back(fallback_location: product_path(@product))
       end
     end
+  end
+
+  def buy_complete
+    @product.update(buyer_id: current_user.id)
   end
 
   private
