@@ -1,8 +1,13 @@
 class ProductsController < ApplicationController
-
+  before_action :set_product, only:[:show, :edit, :buy]
+  
   def index
+    @products = Product.where(trade_status: '0').limit(3).order(id: "DESC")
   end
 
+  def show
+  end
+  
   def new
     @product = Product.new
     @product.images.new
@@ -21,6 +26,14 @@ class ProductsController < ApplicationController
     end
   end
 
+  def edit
+    @parent_category = Category.where(ancestry: nil)
+    @payer = ShippingPayerMethod.where(ancestry: nil)
+    if @product.seller_id != current_user.id
+      redirect_back(fallback_location: product_path(@product))
+    end
+  end
+
   def select_child_category
     @child_category = Category.find(params[:parent_category_id]).children
   end
@@ -36,9 +49,21 @@ class ProductsController < ApplicationController
   def select_size
     @sizes = Category.find(params[:grandchild_category_id]).sizes
   end
+  
+  def buy
+    if user_signed_in?
+      if @product.seller_id == current_user.id
+        redirect_back(fallback_location: product_path(@product))
+      end
+    end
+  end
 
   private
   def product_params
     params.require(:product).permit(:id, :name, :description, :category_id, :size_id, :brand, :product_condition, :shipping_payer_method_id, :prefecture_id, :days_of_shipping, :price, :trade_status, images_attributes: [:image, :_destroy, :id]).merge(seller_id: current_user.id)
+  end
+
+  def set_product
+    @product = Product.find(params[:id])
   end
 end

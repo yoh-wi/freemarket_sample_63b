@@ -8,83 +8,95 @@
         .detail-main__show__content__top
           .detail-box
             %h2.detail-box--title
-              product1
+              = @product.name
             .detail-box__body
               .detail-box__body__content
                 .detail-box__body__content__list
-                  = image_tag("http://placekitten.com/350/250/", alt: "画像", class: "detail-box__body__content__list--image")
+                  = image_tag @product.images[0].image.url, alt: "画像", class: "detail-box__body__content__list--image" 
                   .detail-small
-                    .detail-small__list
-                      = image_tag("http://placekitten.com/350/250/", alt: "画像", class: "detail-small__list--image")                   
-                    .detail-small__list
-                      = image_tag("http://placekitten.com/350/250/", alt: "画像", class: "detail-small__list--image")
-                    .detail-small__list
-                      = image_tag("http://placekitten.com/350/250/", alt: "画像", class: "detail-small__list--image")
-
+                    - @product.images.each do |i|
+                      .detail-small__list
+                        = image_tag i.image.url, alt: "画像", class: "detail-small__list--image"
+                      .detail-small__list
+                        = image_tag("pict/bg-mainVisual-pict_pc.jpg", alt: "画像", class: "detail-small__list--image")                   
+                      .detail-small__list
+                        = image_tag("pict/bg-topMiddleDl-pict.jpg", alt: "画像", class: "detail-small__list--image")
+                        
             .detail-box__price
               %span.detail-box__price--text
-                ¥30000
+                ¥#{@product.price}
               .detail-box__price__box
                 %span
                   (税込み)
                 %span
                   送料込み
             .detail-box--name
-              product1
+              = @product.name
             .detail-box__table
               %table.detail-box__table__item
                 %tr
                   %th.item-left
                     出品者
                   %td.item-right
-                    hoge
+                    = @product.seller.nickname
               %table.detail-box__table__item
                 %tr
                   %th.item-left
                     カテゴリー
                   %td.item-right
                     .item-right__box
-                      = link_to "ベビー・キッズ", "#", class: "item-right--box--link"
+                      = link_to @product.category.root.name, category_path(@product.category.root), class: "item-right--box--link"
                     .item-right__box
-                      = link_to "ベビー服(男女兼用)~95cm", "#", class: "item-right--box--link"
+                      = link_to @product.category.parent.name, category_path(@product.category.parent), class: "item-right--box--link"
                     .item-right__box
-                      = link_to "アウター", "#", class: "item-right--box--link"
+                      = link_to @product.category.name, category_path(@product.category), class: "item-right--box--link"
               %table.detail-box__table__item
                 %tr
                   %th.item-left
                     ブランド
                   %td.item-right
+                    = @product.brand
               %table.detail-box__table__item
                 %tr
                   %th.item-left
                     商品のサイズ
                   %td.item-right
+                    -# サイズテーブル表示調整
+                    -# = @product.category.size.name
               %table.detail-box__table__item
                 %tr
                   %th.item-left
                     商品の状態
                   %td.item-right
-                    未使用に近い
+                    = @product.product_condition_i18n
               %table.detail-box__table__item
                 %tr
                   %th.item-left
                     配送料の負担
                   %td.item-right
-                    送料込み（出品者負担）
+                    = @product.shipping_payer_method.root.payer_or_method
               %table.detail-box__table__item
                 %tr
                   %th.item-left
                     発送元の地域
                   %td.item-right
-                    = link_to "岩手県", "#", class: "item-right--box"
+                    = link_to @product.prefecture.name, "#", class: "item-right--box"
               %table.detail-box__table__item
                 %tr
                   %th.item-left
                     発送日の目安
                   %td.item-right
-                    4-7日で発送
-              .detail-box__table--btn
-                購入画面に進む
+                    = @product.days_of_shipping_i18n
+              - if user_signed_in?    
+                - if @product.seller_id == current_user.id
+                  .detail-box__table--btn
+                    = link_to "商品編集画面に進む", edit_product_path(@product)
+                - else
+                  .detail-box__table--btn
+                    = link_to "購入画面に進む", buy_product_path(@product)
+              - else   
+                .detail-box__table--btn
+                  = link_to "購入画面に進む", buy_product_path(@product)   
             .detail-box__option
               .detail-box__option__item
                 .detail-box__option__item__icon
@@ -110,12 +122,12 @@
         .detail-main__show__content__links
           .before-link
             = icon('fas', 'angle-left', class: "before-link--icon")
-            = link_to "前の商品", "#", class: "before-link--text"
+            = link_to "前の商品", @product.previous, class: "before-link--text"
           .after-link
-            = link_to "後ろの商品", "#", class: "after-link--text"
+            = link_to "後ろの商品", @product.next, class: "after-link--text"
             = icon('fas', 'angle-right', class: "after-link--icon")
 
         .detail-main__show__content__items
-          = link_to "ベビー・キッズをもっと見る", "#", class: "detail-main__show__content__items--transition"
+          = link_to "#{@product.category.parent.parent.name}をもっと見る", "#", class: "detail-main__show__content__items--transition"
 
   = render "footer"

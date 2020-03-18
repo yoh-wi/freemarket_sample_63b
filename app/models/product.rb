@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
 
+
   enum product_condition: [:brand_new, :almost_new, :good, :little_dirty, :dirty, :too_dirty]
   enum days_of_shipping: [:days1_2, :days2_3, :days4_7]
   enum trade_status: [:for_sale, :trading, :sold]
@@ -34,4 +35,12 @@ class Product < ApplicationRecord
   validates :size_id, presence: true, if: Proc.new { |p| p.category.sizes.present? }
   validates :category_id, exclusion: {in: parents }
   validates :shipping_payer_method_id, exclusion: {in: payers }
+
+  def previous
+    Product.where('id < ?', self.id).order('id DESC').first
+  end
+
+  def next
+    Product.where('id > ?', self.id).order('id ASC').first
+  end
 end
