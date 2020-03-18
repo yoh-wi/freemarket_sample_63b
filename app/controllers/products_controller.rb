@@ -15,6 +15,8 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to root_path
     else
+      @parent_category = Category.where(ancestry: nil)
+      @payer = ShippingPayerMethod.where(ancestry: nil)
       render :new
     end
   end
