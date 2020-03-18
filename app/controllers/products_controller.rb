@@ -44,7 +44,7 @@ class ProductsController < ApplicationController
     @method = ShippingPayerMethod.find(params[:payer_id]).children
   end
 
-  def buy_confimation
+  def buy_confirmation
     if user_signed_in?
       if @product.seller_id == current_user.id
         redirect_back(fallback_location: product_path(@product))

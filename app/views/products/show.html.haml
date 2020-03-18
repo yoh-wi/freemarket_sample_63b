@@ -128,6 +128,6 @@
             = icon('fas', 'angle-right', class: "after-link--icon")
 
         .detail-main__show__content__items
-          = link_to "#{@product.category.parent.parent.name}をもっと見る", "#", class: "detail-main__show__content__items--transition"
+          = link_to "#{@product.category.root.name}をもっと見る", "#", class: "detail-main__show__content__items--transition"
 
   = render "footer"
