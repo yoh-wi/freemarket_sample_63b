@@ -17,10 +17,6 @@
                     - @product.images.each do |i|
                       .detail-small__list
                         = image_tag i.image.url, alt: "画像", class: "detail-small__list--image"
-                      .detail-small__list
-                        = image_tag("pict/bg-mainVisual-pict_pc.jpg", alt: "画像", class: "detail-small__list--image")                   
-                      .detail-small__list
-                        = image_tag("pict/bg-topMiddleDl-pict.jpg", alt: "画像", class: "detail-small__list--image")
                         
             .detail-box__price
               %span.detail-box__price--text
@@ -29,7 +25,10 @@
                 %span
                   (税込み)
                 %span
-                  送料込み
+                  - if @product.shipping_payer_method.parent.id == 1
+                    送料込み
+                  - else
+                    着払い
             .detail-box--name
               = @product.name
             .detail-box__table
