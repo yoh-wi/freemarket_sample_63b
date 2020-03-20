@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :user do
+    id {1}
     nickname {"hiro"}
     sequence(:email) { |n| "hiro#{n}@example.com"}
     password {"password"}
