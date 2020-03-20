@@ -3,13 +3,14 @@
   .form
     = form_with(model: @product, remote: true) do |f|
       .form__content
-        .form__content__image
+        .form__content__image#image_box
+          = f.label :image, "出品画像", class: "form__content__image--label"
+          = f.label :image, "必須", class: "form__content__image--require"
+          %p.form__content__image--comment
+          最大10枚までアップロードできます
+          %br
           = f.fields_for :images do |image|
-            = image.label :image, "出品画像", class: "form__content__image--label"
-            = image.label :image, "必須", class: "form__content__image--require"
-            %p.form__content__image--comment
-            最大10枚までアップロードできます
-            %br
+            #previews
             .form__content__image__upload
               = image.label :image, class: "form__content__image__upload--icon" do
                 = icon('fas', 'camera')
@@ -17,7 +18,9 @@
                   ドラッグアンドドロップ
                   %br
                   またはクリックしてファイルをアップロード
-              = image.file_field :image, accept: "image/png, image/jpeg", class: "form__content__image__upload--file"
+              .js-file_group{data: {index: "#{image.index}"}}
+                = image.file_field :image, type: 'file', accept: "image/png, image/jpeg", class: "form__content__image__upload--file"
+            #previews2
       .form__content
         .form__content__name
           = f.label :name, "商品名", class: "form__content__name--label"
@@ -30,7 +33,8 @@
           = f.label :require, "必須", class: "form__content__description--require"
           %br
           = f.text_area :description, placeholder: "商品の説明（必須1000文字以内）&#13;&#10;（色、素材、重さ、定価、注意点など）&#13;&#10;&#13;&#10;例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。".html_safe, class: "form__content__description--area"
-          %p.form__content__description--counter#counter 0/1000
+          %p.form__content__description--counter#counter
+            0/1000
           %br
       .form__content
         %p.form__content__title 商品の詳細
