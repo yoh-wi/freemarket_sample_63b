@@ -19,7 +19,8 @@ Rails.application.routes.draw do
       get 'select_size', default: { format: 'json' }
     end
     member do
-      get 'buy'
+      get 'buy_confirmation'
+      post 'buy_complete'
     end
   end
 

@@ -61,8 +61,7 @@
                   %th.item-left
                     商品のサイズ
                   %td.item-right
-                    -# サイズテーブル表示調整
-                    -# = @product.category.size.name
+                    = @product.size.name
               %table.detail-box__table__item
                 %tr
                   %th.item-left
@@ -93,10 +92,10 @@
                     = link_to "商品編集画面に進む", edit_product_path(@product)
                 - else
                   .detail-box__table--btn
-                    = link_to "購入画面に進む", buy_product_path(@product)
+                    = link_to "購入画面に進む", buy_confirmation_product_path(@product)
               - else   
                 .detail-box__table--btn
-                  = link_to "購入画面に進む", buy_product_path(@product)   
+                  = link_to "購入画面に進む", buy_confirmation_product_path(@product)   
             .detail-box__option
               .detail-box__option__item
                 .detail-box__option__item__icon
@@ -128,6 +127,6 @@
             = icon('fas', 'angle-right', class: "after-link--icon")
 
         .detail-main__show__content__items
-          = link_to "#{@product.category.parent.parent.name}をもっと見る", "#", class: "detail-main__show__content__items--transition"
+          = link_to "#{@product.category.root.name}をもっと見る", "#", class: "detail-main__show__content__items--transition"
 
   = render "footer"
