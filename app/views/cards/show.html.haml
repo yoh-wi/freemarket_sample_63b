@@ -9,16 +9,15 @@
         .card-info__content
           .card-info__content__title
             クレジットカード一覧
-          - if @card.present?
           .card-info__content__list
             .card-info__content__list__detail
-              = "**** **** ****" + @default_card_information.last4
+              -# = "**** **** ****" + @default_card_information.last4
               %br
-              - exp_month = @default_card_information.exp_month.to_s
-              - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
-              = exp_month + " / " + exp_year
-              = form_tag(card_delete_path, method: :post, id: 'charge-form',  name: "inputForm") do
-                %input{ type: "hidden", name: "card_id", value: "" }
+              -# - exp_month = @default_card_information.exp_month.to_s
+              -# - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+              -# = exp_month + " / " + exp_year
+              -# = form_tag(card_delete_path, method: :post, id: 'charge-form',  name: "inputForm") do
+              -#   %input{ type: "hidden", name: "card_id", value: "" }
             .card-info__content__list__delete
               = link_to "削除する", "#", class: "card-info__content__list__delete--btn"
           .card-info__content__add
@@ -29,3 +28,4 @@
             = link_to "#", class: "card-info__content__help--link" do
               支払い方法について
               = icon('fas', 'chevron-right', class: "arrow-right-icon")
+
