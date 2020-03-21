@@ -23,12 +23,10 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show, :new]
   resources :users, only: [:show, :edit]
 
-  resources :cards, only: [:new, :show, :create, :destroy] do
-    # collection do
-    #   post 'show', to: 'cards#show'
-    #   post 'pay', to: 'cards#pay'
-    #   post 'delete', to: 'cards#delete'
-    # end
+  resources :cards, only: [:index, :new, :show, :create, :destroy] do
+    collection do
+      post 'delete', to: 'cards#delete'
+    end
   end
 
 end
