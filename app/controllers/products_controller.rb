@@ -9,10 +9,14 @@ class ProductsController < ApplicationController
   end
   
   def new
-    @product = Product.new
-    @product.images.new
-    @parent_category = Category.where(ancestry: nil)
-    @payer = ShippingPayerMethod.where(ancestry: nil)
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    else
+      @product = Product.new
+      @product.images.new
+      @parent_category = Category.where(ancestry: nil)
+      @payer = ShippingPayerMethod.where(ancestry: nil)
+    end
   end
 
   def create
@@ -55,6 +59,8 @@ class ProductsController < ApplicationController
       if @product.seller_id == current_user.id
         redirect_back(fallback_location: product_path(@product))
       end
+    else
+      redirect_to new_user_session_path
     end
   end
 
