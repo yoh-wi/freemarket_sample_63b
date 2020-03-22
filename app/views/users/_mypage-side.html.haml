@@ -3,7 +3,7 @@
     .mypage-side__nav__list
       %ul
         %li
-          = link_to "#", class: "mypage-side__nav__list--item" do
+          = link_to user_path(current_user), class: "mypage-side__nav__list--item" do
             マイページ
             = icon('fas', 'chevron-right', class: "mypage-side__nav__list--icon")
         %li
@@ -80,9 +80,14 @@
             プロフィール
             = icon('fas', 'chevron-right', class: "mypage-side__nav__list--icon")
         %li
-          = link_to "#", class: "mypage-side__nav__list--item" do
-            発送元・お届け先住所変更
-            = icon('fas', 'chevron-right', class: "mypage-side__nav__list--icon")
+          - if current_user.address.present?
+            = link_to edit_users_address_path, class: "mypage-side__nav__list--item" do
+              発送元・お届け先住所変更
+              = icon('fas', 'chevron-right', class: "mypage-side__nav__list--icon")
+          - else
+            = link_to new_users_address_path, class: "mypage-side__nav__list--item" do
+              発送元・お届け先住所変更
+              = icon('fas', 'chevron-right', class: "mypage-side__nav__list--icon")
         %li
           = link_to cards_path, class: "mypage-side__nav__list--item" do
             支払い方法

@@ -10,7 +10,7 @@
               -# 仮置き画像
               = image_tag("https://placebear.com/100/100", alt: "ユーザー画像", class: "user-img")
             .user-icon__name
-              username
+              = current_user.nickname
             .user-icon__number
               .user-icon__number--element
                 評価      

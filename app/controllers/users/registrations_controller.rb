@@ -40,7 +40,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def birthday_join
     # パラメータ取得
     date = params[:user]
-    binding.pry
     # ブランク時のエラー回避のため、ブランクだったら何もしない
     if date["birthday(1i)"].empty? && date["birthday(2i)"].empty? && date["birthday(3i)"].empty?
       return
