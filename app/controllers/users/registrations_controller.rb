@@ -38,13 +38,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def birthday_join
-    # パラメータ取得
     date = params[:user]
-    # ブランク時のエラー回避のため、ブランクだったら何もしない
     if date["birthday(1i)"].empty? && date["birthday(2i)"].empty? && date["birthday(3i)"].empty?
       return
     end
-    # 年月日別々できたものを結合して新しいDate型変数を作って返す
     params[:user][:birthday] = Date.new date["birthday(1i)"].to_i,date["birthday(2i)"].to_i,date["birthday(3i)"].to_i
   end
   # PUT /resource
