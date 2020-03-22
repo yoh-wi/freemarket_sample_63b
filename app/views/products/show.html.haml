@@ -56,7 +56,8 @@
                   %th.item-left
                     商品のサイズ
                   %td.item-right
-                    = @product.size.name
+                    - if @product.size.present?
+                      = @product.size.name
               %table.detail-box__table__item
                 %tr
                   %th.item-left

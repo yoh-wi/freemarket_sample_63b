@@ -51,11 +51,12 @@
           -# = f.collection_select :category_id, @child_category.all.map{ |category| [category.name, category.id] }, {prompt: true}, {class: "form__content__category--field", id: "child_category"}
           -# = f.collection_select :category_id, @child_category, :id, :name, { include_blank: '選択してください', selected: @product.category.parent.id }, class: 'form__content__category--field'
           -# = f.collection_select :category_id, @grandchild_category, :id, :name, { include_blank: '選択してください' }, class: 'form__content__category--field'
-        .form__content__category
-          = f.label :size_id, "サイズ", class: "form__content__category--label"
-          = f.label :require, "必須", class: "form__content__category--require"
-          %br
-          = f.select :size_id, @sizes.map {|size| [size.name, size.id]}, { include_blank: '選択してください' }, {class: "form__content__category--field", id: "size"}
+        - if @sizes.present?
+          .form__content__category
+            = f.label :size_id, "サイズ", class: "form__content__category--label"
+            = f.label :require, "必須", class: "form__content__category--require"
+            %br
+            = f.select :size_id, @sizes.map {|size| [size.name, size.id]}, { include_blank: '選択してください' }, {class: "form__content__category--field", id: "size"}
         .form__content__brand
           = f.label :brand, "ブランド", class: "form__content__brand--label"
           = f.label "任意", class: "form__content__brand--optional"
