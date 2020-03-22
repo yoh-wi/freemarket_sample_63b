@@ -16,12 +16,7 @@
                   .detail-small
                     - @product.images.each do |i|
                       .detail-small__list
-                        = image_tag i.image.url, alt: "画像", class: "detail-small__list--image"
-                      .detail-small__list
-                        = image_tag("pict/bg-mainVisual-pict_pc.jpg", alt: "画像", class: "detail-small__list--image")                   
-                      .detail-small__list
-                        = image_tag("pict/bg-topMiddleDl-pict.jpg", alt: "画像", class: "detail-small__list--image")
-                        
+                        = image_tag i.image.url, alt: "画像", class: "detail-small__list--image"           
             .detail-box__price
               %span.detail-box__price--text
                 ¥#{@product.price}

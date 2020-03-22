@@ -32,7 +32,12 @@ class ProductsController < ApplicationController
 
   def edit
     @parent_category = Category.where(ancestry: nil)
+    # @parent_category = @product.category.root.siblings
+    @child_category = @product.category.root.children
+    @grandchild_category = @product.category.parent.children
     @payer = ShippingPayerMethod.where(ancestry: nil)
+    @payer_method = @product.shipping_payer_method.parent.children
+    @sizes = @product.category.sizes
     if @product.seller_id != current_user.id
       redirect_back(fallback_location: product_path(@product))
     end

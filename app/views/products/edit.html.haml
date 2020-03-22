@@ -1,1 +1,126 @@
-商品編集画面
+.wrapper
+  = render 'users/header'
+  .form
+    = form_with(model: @product, remote: true) do |f|
+      .form__content
+        .form__content__image#image_box
+          = f.label :image, "出品画像", class: "form__content__image--label"
+          = f.label :image, "必須", class: "form__content__image--require"
+          %p.form__content__image--comment
+          最大10枚までアップロードできます
+          %br
+          = f.fields_for :images do |image|
+            #previews
+            .form__content__image__upload
+              = image.label :image, class: "form__content__image__upload--icon" do
+                = icon('fas', 'camera')
+                .form__content__image__upload--icon--text
+                  ドラッグアンドドロップ
+                  %br
+                  またはクリックしてファイルをアップロード
+              .js-file_group{data: {index: "#{image.index}"}}
+                = image.file_field :image, type: 'file', accept: "image/png, image/jpeg", class: "form__content__image__upload--file"
+            #previews2
+      .form__content
+        .form__content__name
+          = f.label :name, "商品名", class: "form__content__name--label"
+          = f.label :require, "必須", class: "form__content__name--require"
+          %br
+          = f.text_field :name, placeholder: '40文字まで', class: "form__content__name--field"
+          %br
+        .form__content__description
+          = f.label :description, "商品の説明", class: "form__content__description--label"
+          = f.label :require, "必須", class: "form__content__description--require"
+          %br
+          = f.text_area :description, placeholder: "商品の説明（必須1000文字以内）&#13;&#10;（色、素材、重さ、定価、注意点など）&#13;&#10;&#13;&#10;例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。".html_safe, class: "form__content__description--area"
+          %p.form__content__description--counter#counter
+            0/1000
+          %br
+      .form__content
+        %p.form__content__title 商品の詳細
+        .form__content__category
+          = f.label :category_id, "カテゴリー", class: "form__content__category--label"
+          = f.label :require, "必須", class: "form__content__category--require"
+          %br
+          -# = f.collection_select :category_id, @parent_category, :id, :name, { include_blank: '選択してください', selected: @product.category.root.id }, class: 'form__content__category--field'
+          = f.select :category_id, @parent_category.map{ |category| [category.name, category.id] }, { include_blank: '選択してください', selected: @product.category.root.id }, {class: "form__content__category--field", id: "parent_category"}
+          -# = f.select :category_id, options_for_select(@categories.map{ |category| [category.name, category.id] }, @product.category.root.name), {}, {class: "form__content__category--field", id: "parent_category"}
+          = f.select :category_id, @child_category.map{ |category| [category.name, category.id] }, { include_blank: '選択してください', selected: @product.category.parent.id }, {class: "form__content__category--field", id: "child_category"}
+          = f.select :category_id, @grandchild_category.map{ |category| [category.name, category.id] }, { include_blank: '選択してください' }, {class: "form__content__category--field", id: "grandchild_category"}
+          %br
+          -# = f.collection_select :category_id, @child_category.all.map{ |category| [category.name, category.id] }, {prompt: true}, {class: "form__content__category--field", id: "child_category"}
+          -# = f.collection_select :category_id, @child_category, :id, :name, { include_blank: '選択してください', selected: @product.category.parent.id }, class: 'form__content__category--field'
+          -# = f.collection_select :category_id, @grandchild_category, :id, :name, { include_blank: '選択してください' }, class: 'form__content__category--field'
+        .form__content__category
+          = f.label :size_id, "サイズ", class: "form__content__category--label"
+          = f.label :require, "必須", class: "form__content__category--require"
+          %br
+          = f.select :size_id, @sizes.map {|size| [size.name, size.id]}, { include_blank: '選択してください' }, {class: "form__content__category--field", id: "size"}
+        .form__content__brand
+          = f.label :brand, "ブランド", class: "form__content__brand--label"
+          = f.label "任意", class: "form__content__brand--optional"
+          %br
+          = f.text_field :brand, placeholder: "例）シャネル", class: "form__content__brand--field"
+          %br
+        .form__content__condition
+          = f.label :product_condition, "商品の状態", class: "form__content__condition--label"
+          = f.label :require, "必須", class: "form__content__condition--require"
+          %br
+          = f.select :product_condition, Product.product_conditions_i18n.keys.map{|k| [I18n.t("enums.product.product_condition.#{k}"), k]}, {prompt: true}, {class: "form__content__condition--field"}
+          %br
+      .form__content
+        .form__content__title
+          %p.form__content__title--title 配送について
+          .form__content__title--question
+          = link_to "#" do
+            = icon('far', 'question-circle')
+        .form__content__method
+          = f.label :shipping_payer_method_id, "配送料の負担", class: "form__content__method--label"
+          = f.label :require, "必須", class: "form__content__method--require"
+          %br
+          = f.select :shipping_payer_method_id, @payer.map {|method| [method.payer_or_method, method.id]}, { include_blank: '選択してください', selected: @product.shipping_payer_method.parent.id }, {class: "form__content__method--field", id: "payer"}
+          = f.select :shipping_payer_method_id, @payer_method.map {|method| [method.payer_or_method, method.id]}, { include_blank: '選択してください' }, {class: "form__content__method--field", id: "payer"}
+          -# = f.collection_select :shipping_payer_method_id, @payer, :id, :name, { include_blank: '選択してください' }, class: 'form__content__method--field'
+          -# = f.collection_select :shipping_payer_method_id, @product.shipping_payer_method.parent.children, :id, :name, { include_blank: '選択してください'}, class: 'form__content__category--field'
+        .form__content__area
+          = f.label :prefecture_id, "発送元の地域", class: "form__content__area--label"
+          = f.label :require, "必須", class: "form__content__area--require"
+          %br
+          = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: true},{class: "form__content__area--field"}
+        .form__content__days
+          = f.label :days_of_shipping, "発送までの日数", class: "form__content__days--label"
+          = f.label :require, "必須", class: "form__content__days--require"
+          %br
+          = f.select :days_of_shipping, Product.days_of_shippings_i18n.keys.map{|k| [I18n.t("enums.product.days_of_shipping.#{k}"), k]}, {prompt: true}, {class: "form__content__days--field"}
+        
+      .form__content
+        .form__content__title
+          %p.form__content__title--title 価格（¥300〜9,999,999)
+          .form__content__title--question
+            = link_to "#" do
+              = icon('far', 'question-circle')
+        .form__content__price
+          = f.label :price, "販売価格", class: "form__content__price--label"
+          = f.label :require, "必須", class: "form__content__price--require"
+          .form__content__price--yen
+            ¥
+            = f.number_field :price, placeholder: "0", class: "form__content__price--half-field"
+        .form__content__fee
+          .form__content__fee--left
+            販売手数料（10％）
+          .form__content__fee--right
+            ー
+        .form__content__profit
+          .form__content__profit--left
+            販売利益
+          .form__content__profit--right
+            ー
+        .form__content__btn
+          = f.submit "出品情報を更新する", class: "form__content__btn--submit"
+          .form__content__btn--back
+            = link_to "もどる", root_path
+
+        .form__content__attention
+          禁止されている行為および出品物を必ずご確認ください。偽ブランド品や盗品物などの販売は犯罪であり、法律により処罰される可能性があります。また、出品をもちまして加盟店規約に同意したことになります。
+
+  = render "users/footer"
