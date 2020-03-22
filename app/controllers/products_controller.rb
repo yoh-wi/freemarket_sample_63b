@@ -1,14 +1,22 @@
 class ProductsController < ApplicationController
-
+  before_action :set_product, only:[:show, :edit, :buy_confirmation, :buy_complete]
+  
   def index
     @products = Product.where(trade_status: '0').limit(3).order(id: "DESC")
   end
 
+  def show
+  end
+  
   def new
-    @product = Product.new
-    @product.images.build
-    @parent_category = Category.where(ancestry: nil)
-    @payer = ShippingPayerMethod.where(ancestry: nil)
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    else
+      @product = Product.new
+      @product.images.new
+      @parent_category = Category.where(ancestry: nil)
+      @payer = ShippingPayerMethod.where(ancestry: nil)
+    end
   end
 
   def create
@@ -16,7 +24,17 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to root_path
     else
+      @parent_category = Category.where(ancestry: nil)
+      @payer = ShippingPayerMethod.where(ancestry: nil)
       render :new
+    end
+  end
+
+  def edit
+    @parent_category = Category.where(ancestry: nil)
+    @payer = ShippingPayerMethod.where(ancestry: nil)
+    if @product.seller_id != current_user.id
+      redirect_back(fallback_location: product_path(@product))
     end
   end
 
@@ -32,8 +50,30 @@ class ProductsController < ApplicationController
     @method = ShippingPayerMethod.find(params[:payer_id]).children
   end
 
+  def select_size
+    @sizes = Category.find(params[:grandchild_category_id]).sizes
+  end
+  
+  def buy_confirmation
+    if user_signed_in?
+      if @product.seller_id == current_user.id
+        redirect_back(fallback_location: product_path(@product))
+      end
+    else
+      redirect_to new_user_session_path
+    end
+  end
+
+  def buy_complete
+    @product.update(buyer_id: current_user.id, trade_status: 1)
+  end
+
   private
   def product_params
-    params.require(:product).permit(:id, :name, :description, :category_id, :brand, :product_condition, :shipping_payer_method_id, :prefecture_id, :days_of_shipping, :price, :trade_status, images_attributes:[:image, :_destroy, :id]).merge(seller_id: current_user.id)
+    params.require(:product).permit(:id, :name, :description, :category_id, :size_id, :brand, :product_condition, :shipping_payer_method_id, :prefecture_id, :days_of_shipping, :price, :trade_status, images_attributes: [:image, :_destroy, :id]).merge(seller_id: current_user.id)
+  end
+
+  def set_product
+    @product = Product.find(params[:id])
   end
 end

@@ -1,5 +1,5 @@
 .detail-main {
-  background-color: #f8f8f8;
+  background-color: $gray3;
   &__show {
     padding: 40px;
     margin: 0 auto;
@@ -28,9 +28,11 @@
                 margin: 0 auto;
                 &--image {
                   object-fit: cover;
+                  max-width: 100%;
                   height: 346px;
                 }
                 .detail-small {
+                  max-width: 100%;
                   display: flex;
                   justify-content: center;
                   margin-top: 10px;
@@ -39,6 +41,7 @@
                     margin: 0 10px 0 0;
                     &--image {
                       object-fit: cover;
+                      max-width: 100%;
                       height: 87px;
                     }
                   }
@@ -75,6 +78,10 @@
             }
             &--btn {
               @include btn();
+              a {
+                color: $white;
+                text-decoration: none;
+              }
             }
           }
           &__option {
@@ -132,6 +139,7 @@
               width: 60%;
               font-size: 18px;
               border-radius: 100px;
+              cursor: pointer;
             }
           }
         }

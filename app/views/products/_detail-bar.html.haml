@@ -2,11 +2,11 @@
   .detail-bar__link
     = link_to "FURIMA", "#", class: "detail-bar__link--top"
     = icon('fas', 'angle-right', class: "detail-bar__link--icon")
-    = link_to "ベビー・キッズ", "#", class: "detail-bar__link--parent-category"
+    = link_to @product.category.parent.parent.name, "#", class: "detail-bar__link--parent-category"
     = icon('fas', 'angle-right', class: "detail-bar__link--icon")
-    = link_to "ベビー服(男女兼用)~95cm", "#", class: "detail-bar__link--child-category"
+    = link_to @product.category.parent.name, "#", class: "detail-bar__link--child-category"
     = icon('fas', 'angle-right', class: "detail-bar__link--icon")
-    = link_to "アウター", "#", class: "detail-bar__link--grandchild-category"
+    = link_to @product.category.name, "#", class: "detail-bar__link--grandchild-category"
     = icon('fas', 'angle-right', class: "detail-bar__link--icon")
-    = link_to "product3", "#", class: "detail-bar__link--product"
+    = link_to @product.name, "#", class: "detail-bar__link--product"
   

@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 2020_03_14_080028) do
     t.integer "trade_status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "size_id"
+    t.index ["size_id"], name: "index_products_on_size_id"
   end
 
   create_table "shipping_payer_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -75,6 +77,19 @@ ActiveRecord::Schema.define(version: 2020_03_14_080028) do
     t.datetime "updated_at", null: false
     t.string "ancestry"
     t.index ["ancestry"], name: "index_shipping_payer_methods_on_ancestry"
+  end
+
+  create_table "size_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "size_id", null: false
+    t.integer "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sizes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -98,4 +113,5 @@ ActiveRecord::Schema.define(version: 2020_03_14_080028) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "products", "sizes"
 end
