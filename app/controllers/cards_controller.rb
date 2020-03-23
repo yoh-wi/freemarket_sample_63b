@@ -15,26 +15,32 @@ class CardsController < ApplicationController
 
   def new
     @card = Card.new
-    # card = Card.where(user: current_user).first
-    # redirect_to action: :show if card.present?
   end
 
   def create
     Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
-
     customer = Payjp::Customer.create(
       email: current_user.email,
       card: params[:card_token],
       metadata: {user_id: current_user.id}
     )
-
     @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
-    
     if @card.save
       redirect_to action: "index"
     else
       redirect_to action: "new"
     end
+  end
+
+  def buy_confirmation
+    card = Card.where(user_id: current_user.id).first
+    Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
+    charge = Payjp::Charge.create(
+      amount: @product.price,
+      customer: card.customer_id,
+      currency: 'jpy',
+      )
+      redirect_to action: :"buy_complete"
   end
 
   def delete

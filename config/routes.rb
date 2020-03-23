@@ -31,6 +31,8 @@ Rails.application.routes.draw do
   resources :cards, only: [:index, :new, :show, :create, :destroy] do
     collection do
       post 'delete', to: 'cards#delete'
+      post 'buy_confirmation', to: 'products#buy_confirmation'
+      get 'buy_complete', to: 'purchase#buy_complete'
     end
   end
 
