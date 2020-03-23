@@ -90,6 +90,9 @@
                 - if @product.seller_id == current_user.id
                   .detail-box__table--btn
                     = link_to "商品編集画面に進む", edit_product_path(@product)
+                  %p or
+                  .detail-box__table--btn
+                    = link_to "この商品を削除する", product_path(@product), mothod: :delete
                 - else
                   .detail-box__table--btn
                     = link_to "購入画面に進む", buy_product_path(@product)

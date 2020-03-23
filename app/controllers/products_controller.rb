@@ -34,6 +34,9 @@ class ProductsController < ApplicationController
     end
   end
 
+  def destroy
+  end
+
   def select_child_category
     @child_category = Category.find(params[:parent_category_id]).children
   end
