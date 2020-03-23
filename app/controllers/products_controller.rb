@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only:[:show, :edit, :buy]
+  before_action :set_product, only:[:show, :edit, :buy_confirmation, :buy_complete]
   
   def index
     @products = Product.where(trade_status: '0').limit(3).order(id: "DESC")
@@ -9,10 +9,14 @@ class ProductsController < ApplicationController
   end
   
   def new
-    @product = Product.new
-    @product.images.new
-    @parent_category = Category.where(ancestry: nil)
-    @payer = ShippingPayerMethod.where(ancestry: nil)
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    else
+      @product = Product.new
+      @product.images.new
+      @parent_category = Category.where(ancestry: nil)
+      @payer = ShippingPayerMethod.where(ancestry: nil)
+    end
   end
 
   def create
@@ -53,12 +57,18 @@ class ProductsController < ApplicationController
     @sizes = Category.find(params[:grandchild_category_id]).sizes
   end
   
-  def buy
+  def buy_confirmation
     if user_signed_in?
       if @product.seller_id == current_user.id
         redirect_back(fallback_location: product_path(@product))
       end
+    else
+      redirect_to new_user_session_path
     end
+  end
+
+  def buy_complete
+    @product.update(buyer_id: current_user.id, trade_status: 1)
   end
 
   private
