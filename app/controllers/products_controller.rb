@@ -40,7 +40,10 @@ class ProductsController < ApplicationController
 
   def destroy
     if @product.destroy
+      flash[:notice] = '商品を削除しました'
       redirect_to user_path
+    else
+      render :show
     end
   end
 
