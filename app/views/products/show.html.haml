@@ -86,7 +86,7 @@
                     = link_to "商品編集画面に進む", edit_product_path(@product)
                   %p.detail-box__table--or or
                   .detail-box__table--destroy-btn
-                    = link_to "この商品を削除する", product_path(@product), mothod: :delete, data: { confirm: '削除しますか？' } 
+                    = link_to "この商品を削除する", product_path(@product), method: :delete, data: { confirm: '削除しますか？' }
                 - else
                   .detail-box__table--btn
                     = link_to "購入画面に進む", buy_confirmation_product_path(@product)

@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only:[:show, :edit, :buy_confirmation, :buy_complete]
+  before_action :set_product, only:[:show, :edit, :destroy, :buy_confirmation, :buy_complete]
   
   def index
     @products = Product.where(trade_status: '0').limit(3).order(id: "DESC")
@@ -39,6 +39,9 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+    if @product.destroy
+      redirect_to user_path
+    end
   end
 
   def select_child_category
