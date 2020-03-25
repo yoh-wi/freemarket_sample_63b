@@ -38,7 +38,6 @@
                     出品者
                   %td.item-right
                     = @product.seller.nickname
-              %table.detail-box__table__item
                 %tr
                   %th.item-left
                     カテゴリー
@@ -49,49 +48,45 @@
                       = link_to @product.category.parent.name, category_path(@product.category.parent), class: "item-right--box--link"
                     .item-right__box
                       = link_to @product.category.name, category_path(@product.category), class: "item-right--box--link"
-              %table.detail-box__table__item
                 %tr
                   %th.item-left
                     ブランド
                   %td.item-right
                     = @product.brand
-              %table.detail-box__table__item
-                %tr
-                  %th.item-left
-                    商品のサイズ
-                  %td.item-right
-                    = @product.size.name
-              %table.detail-box__table__item
+                - if @product.size.present?
+                  %tr
+                    %th.item-left
+                      商品のサイズ
+                    %td.item-right
+                      = @product.size.name
                 %tr
                   %th.item-left
                     商品の状態
                   %td.item-right
                     = @product.product_condition_i18n
-              %table.detail-box__table__item
                 %tr
                   %th.item-left
                     配送料の負担
                   %td.item-right
                     = @product.shipping_payer_method.root.payer_or_method
-              %table.detail-box__table__item
                 %tr
                   %th.item-left
                     発送元の地域
                   %td.item-right
                     = link_to @product.prefecture.name, "#", class: "item-right--box"
-              %table.detail-box__table__item
                 %tr
                   %th.item-left
                     発送日の目安
                   %td.item-right
                     = @product.days_of_shipping_i18n
+
               - if user_signed_in?    
                 - if @product.seller_id == current_user.id
                   .detail-box__table--btn
                     = link_to "商品編集画面に進む", edit_product_path(@product)
-                  %p or
-                  .detail-box__table--btn
-                    = link_to "この商品を削除する", product_path(@product), mothod: :delete
+                  %p.detail-box__table--or or
+                  .detail-box__table--destroy-btn
+                    = link_to "この商品を削除する", product_path(@product), mothod: :delete, data: { confirm: '削除しますか？' } 
                 - else
                   .detail-box__table--btn
                     = link_to "購入画面に進む", buy_confirmation_product_path(@product)
