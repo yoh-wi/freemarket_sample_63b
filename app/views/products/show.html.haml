@@ -85,8 +85,17 @@
                   .detail-box__table--btn
                     = link_to "商品編集画面に進む", edit_product_path(@product)
                   %p.detail-box__table--or or
-                  .detail-box__table--destroy-btn
-                    = link_to "この商品を削除する", product_path(@product), method: :delete, data: { confirm: '削除しますか？' }
+                  .detail-box__table--destroy-btn#modal-open-btn この商品を削除する
+                  = link_to "", product_path(@product), method: :delete, id: 'item-delete-btn'
+                  #overlay
+                    #modalWindow
+                      .modal-message-box
+                        .modal-message-box__title 確認
+                        .modal-message-box__content
+                          削除すると二度と復活できません。
+                          %br 本当に削除しますか？
+                      %button#modal-close-btn キャンセル
+                      %button#delete-comformation-btn 削除する
                 - else
                   .detail-box__table--btn
                     = link_to "購入画面に進む", buy_confirmation_product_path(@product)
