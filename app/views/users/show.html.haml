@@ -1,5 +1,8 @@
 .mypage
   = render "products/header"
+  - if flash[:notice]
+    .mypage-flash
+      = flash[:notice]
   .mypage-main
     = render "mypage-side"
     .mypage-main__container
