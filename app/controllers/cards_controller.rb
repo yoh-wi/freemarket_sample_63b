@@ -32,17 +32,6 @@ class CardsController < ApplicationController
     end
   end
 
-  def buy_confirmation
-    card = Card.where(user_id: current_user.id).first
-    Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
-    charge = Payjp::Charge.create(
-      amount: @product.price,
-      customer: card.customer_id,
-      currency: 'jpy',
-      )
-      redirect_to action: :"buy_complete"
-  end
-
   def delete
     card = Card.where(user_id: current_user.id).first
     if card.blank?
