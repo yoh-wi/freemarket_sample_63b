@@ -184,6 +184,9 @@ $(document).on('turbolinks:load', ()=> {
   }
 
   let fileIndex = [1,2,3,4,5,6,7,8,9,10,11];
+  lastIndex = $('.js-file_group:last').data('index');
+  console.log(lastIndex)
+  fileIndex.splice(0, lastIndex);
   //imageプレビュー＋file_field追加
   $('#image_box').on('change', '.js-file_group', function(e){
     const targetIndex = $(this).data('index');
@@ -265,4 +268,8 @@ $(document).on('turbolinks:load', ()=> {
       $('.form__content__price').append(`<p class="attention">300以上9999999以下で入力してください</p>`)
     }
   })
+  // 商品詳細ページの画像切り替え
+  $('.detail-small__list--image').on('mouseover', function(){
+    $('.detail-box__body__content__list--image').attr({src:$(this).attr('src'),alt:$(this).attr('alt')});
+  });
 });

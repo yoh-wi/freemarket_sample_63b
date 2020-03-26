@@ -19,6 +19,10 @@ Rails.application.routes.draw do
       get 'select_size', default: { format: 'json' }
     end
     member do
+      get 'select_child_category', default: { format: 'json' }
+      get 'select_grandchild_category', default: { format: 'json' }
+      get 'select_method', default: { format: 'json' }
+      get 'select_size', default: { format: 'json' }
       get 'buy_confirmation'
       post 'buy_complete'
     end

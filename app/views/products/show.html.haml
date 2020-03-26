@@ -12,11 +12,11 @@
             .detail-box__body
               .detail-box__body__content
                 .detail-box__body__content__list
-                  = image_tag @product.images[0].image.url, alt: "画像", class: "detail-box__body__content__list--image" 
+                  = image_tag @product.images[0].image.url, alt: "画像", class: "detail-box__body__content__list--image"
                   .detail-small
                     - @product.images.each do |i|
-                      .detail-small__list
-                        = image_tag i.image.url, alt: "画像", class: "detail-small__list--image"           
+                      .detail-small__list#sub-image
+                        = image_tag i.image.url, alt: "画像", class: "detail-small__list--image"
             .detail-box__price
               %span.detail-box__price--text
                 ¥#{@product.price}

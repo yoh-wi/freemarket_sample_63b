@@ -334,6 +334,9 @@ body {
         margin-bottom: 20px;
       }
     }
+    &__size {
+      @include form-label;
+    }
     &__brand {
       @include form-label;
     }

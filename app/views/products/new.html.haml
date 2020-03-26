@@ -10,6 +10,7 @@
           最大10枚までアップロードできます
           %br
           = f.fields_for :images do |image|
+            
             #previews
             .form__content__image__upload
               = image.label :image, class: "form__content__image__upload--icon" do

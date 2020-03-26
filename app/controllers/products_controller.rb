@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only:[:show, :edit, :buy_confirmation, :buy_complete]
+  before_action :set_product, only:[:show, :edit, :update, :buy_confirmation, :buy_complete]
   
   def index
     @products = Product.where(trade_status: '0').limit(3).order(id: "DESC")
@@ -32,7 +32,6 @@ class ProductsController < ApplicationController
 
   def edit
     @parent_category = Category.where(ancestry: nil)
-    # @parent_category = @product.category.root.siblings
     @child_category = @product.category.root.children
     @grandchild_category = @product.category.parent.children
     @payer = ShippingPayerMethod.where(ancestry: nil)
@@ -40,6 +39,15 @@ class ProductsController < ApplicationController
     @sizes = @product.category.sizes
     if @product.seller_id != current_user.id
       redirect_back(fallback_location: product_path(@product))
+    end
+  end
+
+  def update
+    @product.update(product_params)
+    if @product.save
+      redirect_to root_path
+    else
+      render :edit
     end
   end
 
