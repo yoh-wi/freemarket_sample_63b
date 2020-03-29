@@ -47,6 +47,7 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
   gem 'rails-controller-testing'
+  gem 'faker'
 end
 
 group :development do

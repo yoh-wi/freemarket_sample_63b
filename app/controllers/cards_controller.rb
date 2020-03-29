@@ -1,6 +1,8 @@
 class CardsController < ApplicationController
   
   require "payjp"
+  before_action :user_login, only:[:index, :new, :create, :delete, :show]
+
 
   def index
     card = Card.where(user_id: current_user.id).first
@@ -53,6 +55,12 @@ class CardsController < ApplicationController
       customer = Payjp::Customer.retrieve(card.customer_id)
       @default_card_information = customer.cards.retrieve(card.card_id)
     end
+  end
+
+  private
+
+  def user_login
+    redirect_to new_user_session_path unless user_signed_in?
   end
 
 end
