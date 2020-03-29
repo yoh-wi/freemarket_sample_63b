@@ -17,6 +17,8 @@ Rails.application.routes.draw do
       get 'select_grandchild_category', default: { format: 'json' }
       get 'select_method', default: { format: 'json' }
       get 'select_size', default: { format: 'json' }
+      post 'buy_confirmation', to: 'products#buy_confirmation'
+      get 'buy_complete', to: 'products#buy_complete'
     end
     member do
       get 'buy_confirmation'
@@ -28,12 +30,6 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show]
   resources :users, only: [:show, :edit]
 
-  resources :cards, only: [:index, :new, :show, :create, :destroy] do
-    collection do
-      post 'delete', to: 'cards#delete'
-      post 'buy_confirmation', to: 'products#buy_confirmation'
-      get 'buy_complete', to: 'products#buy_complete'
-    end
-  end
+  resources :cards, only: [:index, :new, :create, :destroy]
 
 end

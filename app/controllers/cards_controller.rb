@@ -2,7 +2,7 @@ class CardsController < ApplicationController
   
   require "payjp"
   before_action :user_login, only:[:index, :new, :create, :delete, :show]
-
+  before_action :set_card
 
   def index
     card = Card.where(user_id: current_user.id).first
@@ -34,7 +34,7 @@ class CardsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     card = Card.where(user_id: current_user.id).first
     if card.blank?
     else
@@ -46,21 +46,14 @@ class CardsController < ApplicationController
       redirect_to action: "new"
   end
 
-  def show
-    card = Card.where(user_id: current_user.id).first
-    if card.blank?
-      redirect_to action: "new"
-    else
-      Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      @default_card_information = customer.cards.retrieve(card.card_id)
-    end
-  end
-
   private
 
   def user_login
     redirect_to new_user_session_path unless user_signed_in?
+  end
+
+  def set_card
+    @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
   end
 
 end

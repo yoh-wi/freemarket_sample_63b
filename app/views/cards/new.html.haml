@@ -11,7 +11,7 @@
             .card-form__number
               = f.label :card_number, "カード番号", class: "card-form__number--label"
               %span.card-form__number--require 必須
-              = f.text_field :card_number, id: "card_number", type: "text", maxlenght: "16", placeholder: "半角数字のみ", class: "card-form__number--field"
+              = f.text_field :card_number, id: "card_number", type: "text", maxlength: "16", placeholder: "半角数字のみ", class: "card-form__number--field"
               %ul.card-list
                 %li
                   = image_tag("logo/logo_visa.gif")
@@ -34,6 +34,9 @@
                 %span.expire-month 月
                 %br
               .card-form__expire--date
+                -# != sprintf(f.date_select(:expiration_date,with_css_classes:'XXXXX', order:[:month,:year,:day], use_month_numbers:true, discard_day:true, start_year:Time.now.year-2000, end_year:Time.now.year-2000+10, date_separator:'%s'),'月') + '年'
+                -# = f.select :exp_year,　start_year:Time.now.year-2000, end_year:Time.now.year-2000+10 ,{} , class: 'select-expire', id: 'exp_year'
+
                 = f.select :exp_year, [["20",2020],["21",2021],["22",2022],["23",2023],["24",2024],["25",2025],["26",2026],["27",2027],["28",2028],["29",2029]],{} , class: 'select-expire', id: 'exp_year'
                 %span.expire-year 年
               -# .card-form__expire--date
