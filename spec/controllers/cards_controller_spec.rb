@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe CardsController, type: :controller do
 
   let(:user) { create(:user) }
+  let(:card) { create(:card, user_id: user.id) }
 
   describe 'GET #create' do
     context 'log in' do
@@ -21,7 +22,6 @@ RSpec.describe CardsController, type: :controller do
     context 'log in' do
       before do
         login user
-        FactoryBot.build(:card)
       end
       it '登録したクレジットカードが表示できる' do
         allow(Payjp::Customer).to receive(:create).and_return(PayjpMock.prepare_customer_information)
