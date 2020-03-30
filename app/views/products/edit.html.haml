@@ -10,7 +10,6 @@
           最大10枚までアップロードできます
           %br
           #previews
-            .form__content__image__upload
             - if @product.persisted?
               - i = 0
               - imagelength = @product.images.length
@@ -52,7 +51,7 @@
                     = icon('fas', 'camera')
                     = f.file_field :image, type: 'file', name: "product[images_attributes][#{i+20}][image]", id: "product_images_attributes_#{i+20}_image", accept: "image/png, image/jpeg", class: 'js-file'
               - if imagelength == 10
-                .js-file_group{data: {index: "#{i+20}"}}
+                = f.file_field :image, type: 'hidden', data: {index: "#{i+20}"}, class: "js-file_group"
        
       .form__content
         .form__content__name
