@@ -495,6 +495,9 @@ body {
       font-size: 0.9rem;
       cursor: pointer;
       border-top: solid 1px $pale_gray;
+      // .hidden-destroy {
+      //   display: none;
+      // }
     }
   }
   .js-file_group {
@@ -518,3 +521,8 @@ body {
     height: 0;
   }
 }
+// #delete-id {
+  // .hidden-destroy {
+  //   display: none;
+//   }
+// }

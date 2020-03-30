@@ -9,37 +9,53 @@
           %p.form__content__image--comment
           最大10枚までアップロードできます
           %br
-          -# - i = 0
-          -# - fileIndex = @product.images.length
-          = f.fields_for :images, @product.images.first do |image|
-            #previews
-              -# .form__content__image__upload
-              - i = 0
-              - fileIndex = @product.images.length
-              - fileIndex.times do
-                
-                .js-preview{data: {index: "#{i}"}}
-                  .js-img
-                    = image_tag @product.images[i].image.url, width: 120, height: 100
-                  .js-remove 
-                    削除
-                - i += 1
-              .js-file_group{data: {index: "#{i}"}}
-                = image.label :image do
+          
+
+          #previews
+            .form__content__image__upload
+            - i = 0
+            - imagelength = @product.images.length
+            - if imagelength < 5
+              - repeatnumber = imagelength
+            - else
+              - repeatnumber = 5
+            
+            - repeatnumber.times do
+              .js-preview{data: {index: "#{i+20}"}}
+                .js-img
+                  = image_tag @product.images[i].image.url, data: {index: "#{i+20}"}, width: 120, height: 100
+                .js-remove 
+                  削除
+              - i += 1
+            - if imagelength < 5
+              = f.label :image, for: "product_images_attributes_#{i+20}_image", class: "js-file_group", data: {index: "#{i+20}"} do
+                = icon('fas', 'camera')
+                = f.file_field :image, type: 'file', name: "product[images_attributes][#{i+20}][image]", id: "product_images_attributes_#{i+20}_image", accept: "image/png, image/jpeg", class: 'js-file'
+         
+          #previews2
+            - if imagelength >= 5
+              - if imagelength >= 6
+                - (imagelength - 5).times do
+                  .js-preview{data: {index: "#{i+20}"}}
+                    .js-img
+                      = image_tag @product.images[i].image.url, data: {index: "#{i+20}"}, width: 120, height: 100
+                    .js-remove 
+                      削除
+                    
+                  - i += 1
+              - if imagelength < 10    
+                = f.label :image, for: "product_images_attributes_#{i+20}_image", class: "js-file_group", data: {index: "#{i+20}"} do
                   = icon('fas', 'camera')
-                  = image.file_field :image, type: 'file', accept: "image/png, image/jpeg", class: "js-file"
-              -# = image.label :image, class: "form__content__image__upload--icon" do
-              -#   = icon('fas', 'camera')
-              -#   .form__content__image__upload--icon--text
-              -#     ドラッグアンドドロップ
-              -#     %br
-              -#     またはクリックしてファイルをアップロード
-              -#   .js-file_group{data: {index: "#{image.index}"}}
-              -#     = image.file_field :image, type: 'file', accept: "image/png, image/jpeg", class: "form__content__image__upload--file"
-                -# = image.hidden_field :id 
-                
-              
-            #previews2
+                  = f.file_field :image, type: 'file', name: "product[images_attributes][#{i+20}][image]", id: "product_images_attributes_#{i+20}_image", accept: "image/png, image/jpeg", class: 'js-file'
+            - if imagelength == 10
+              .js-file_group{data: {index: "#{i+20}"}}
+          #delete-id
+            = f.fields_for :images, @product.images do |image|        
+              = image.label :image, for: "product_images_attributes_#{image.index+20}_image",  data: {index: "#{image.index+20}"} do  
+                = image.file_field :image, type: 'file', data: {index: "#{image.index+20}"}, name: "product[images_attributes][#{image.index+20}][image]", id: "product_images_attributes_#{image.index+20}_image", accept: "image/png, image/jpeg", class: "hidden-destroy"
+                = image.check_box :_destroy, data:{ index: "#{image.index+20}" }, class: 'hidden-destroy'
+            
+                  
       .form__content
         .form__content__name
           = f.label :name, "商品名", class: "form__content__name--label"

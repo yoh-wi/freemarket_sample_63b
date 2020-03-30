@@ -184,9 +184,10 @@ $(document).on('turbolinks:load', ()=> {
   }
 
   let fileIndex = [1,2,3,4,5,6,7,8,9,10,11];
-  lastIndex = $('.js-file_group:last').data('index');
-  console.log(lastIndex)
+  lastIndex = $('.js-file_group:last').data('index')-20;
   fileIndex.splice(0, lastIndex);
+  console.log(lastIndex);
+  
   //imageプレビュー＋file_field追加
   $('#image_box').on('change', '.js-file_group', function(e){
     const targetIndex = $(this).data('index');
@@ -199,11 +200,12 @@ $(document).on('turbolinks:load', ()=> {
       $('#previews').append(buildImg(targetIndex, blobUrl));
       $('#previews').append(buildFileField(fileIndex[0]));
       $('.form__content__image__upload').attr('class', 'changed-js-file_group');
-      fileIndex.shift();
-      if (fileIndex.length <= 6){
+      if (fileIndex.length == 7){
         $('.js-file_group').remove();
-        $('#previews2').append(buildFileField(fileIndex[0] - 1));
+        $('#previews2').append(buildFileField(fileIndex[0]));
       }
+      fileIndex.shift();
+      console.log(fileIndex);
       return fileIndex;
     }else{
       $('.js-file_group').attr('class','changed-js-file_group');
@@ -214,6 +216,7 @@ $(document).on('turbolinks:load', ()=> {
         $('.js-file_group').remove();
         $('#previews2').append(buildHiddenFileField(fileIndex[0] - 1));
       }
+      console.log(fileIndex);
       return fileIndex;
     }
   })
@@ -221,6 +224,10 @@ $(document).on('turbolinks:load', ()=> {
   $('#previews').on('click', '.js-remove', function(){
     const removedIndex = $(this).parent().data('index');
     const jsFileIndex = $('.js-file_group').data('index');
+    const hiddenCheck = $(`input[data-index="${removedIndex}"].hidden-destroy`);
+    // もしチェックボックスが存在すればチェックを入れる
+    if (hiddenCheck) hiddenCheck.prop('checked', true);
+
     $(this).parent().remove();
     $('.js-file_group').remove();
     fileIndex.unshift(jsFileIndex);
@@ -241,6 +248,10 @@ $(document).on('turbolinks:load', ()=> {
   $('#previews2').on('click', '.js-remove', function(){
     const removedIndex = $(this).parent().data('index');
     const jsFileIndex = $('.js-file_group').data('index');
+    const hiddenCheck = $(`input[data-index="${removedIndex}"].hidden-destroy`);
+    // もしチェックボックスが存在すればチェックを入れる
+    if (hiddenCheck) hiddenCheck.prop('checked', true);
+
     $(this).parent().remove();
     $('.js-file_group').remove();
     fileIndex.unshift(jsFileIndex);
@@ -272,4 +283,7 @@ $(document).on('turbolinks:load', ()=> {
   $('.detail-small__list--image').on('mouseover', function(){
     $('.detail-box__body__content__list--image').attr({src:$(this).attr('src'),alt:$(this).attr('alt')});
   });
+  // $(document).ready(function() {
+  //   $('#previews').append(buildFileField(fileIndex[0]));
+  // });
 });
