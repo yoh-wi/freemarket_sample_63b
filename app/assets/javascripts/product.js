@@ -186,8 +186,6 @@ $(document).on('turbolinks:load', ()=> {
   let fileIndex = [1,2,3,4,5,6,7,8,9,10,11];
   lastIndex = $('.js-file_group:last').data('index')-20;
   fileIndex.splice(0, lastIndex);
-  console.log(lastIndex);
-  
   //imageプレビュー＋file_field追加
   $('#image_box').on('change', '.js-file_group', function(e){
     const targetIndex = $(this).data('index');
@@ -205,7 +203,6 @@ $(document).on('turbolinks:load', ()=> {
         $('#previews2').append(buildFileField(fileIndex[0]));
       }
       fileIndex.shift();
-      console.log(fileIndex);
       return fileIndex;
     }else{
       $('.js-file_group').attr('class','changed-js-file_group');
@@ -216,7 +213,6 @@ $(document).on('turbolinks:load', ()=> {
         $('.js-file_group').remove();
         $('#previews2').append(buildHiddenFileField(fileIndex[0] - 1));
       }
-      console.log(fileIndex);
       return fileIndex;
     }
   })
