@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only:[:show, :edit, :update, :buy_confirmation, :buy_complete]
+
+  before_action :set_product, only:[:show, :edit, :update, :destroy, :buy_confirmation, :buy_complete]
   
   def index
     @products = Product.where(trade_status: '0').limit(3).order(id: "DESC")
@@ -47,6 +48,15 @@ class ProductsController < ApplicationController
       redirect_to root_path
     else
       render :edit
+    end
+  end
+  
+  def destroy
+    if @product.destroy
+      flash[:notice] = '商品を削除しました'
+      redirect_to user_path
+    else
+      render :show
     end
   end
 

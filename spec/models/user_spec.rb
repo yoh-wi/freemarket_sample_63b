@@ -44,5 +44,8 @@ describe User do
     it "名前カナ（名）が全角カタカナでなければ登録できない" do
       expect(FactoryBot.build(:user, last_name_kana: "ひろ")).to_not be_valid
     end
+    it "有効なメールアドレスでないと登録できない" do
+      expect(FactoryBot.build(:user, email: "t@t")).to_not be_valid
+    end
   end
 end

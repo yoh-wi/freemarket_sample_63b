@@ -1,6 +1,14 @@
 .mypage {
   min-width: 1068px;
   background-color: $light_gray;
+  .mypage-flash {
+    height: 72px;
+    width: 100%;
+    background-color: $flash_color;
+    line-height: 72px;
+    text-align: center;
+    color: $light_blue;
+  }
   .mypage-main {
     width: 1020px;
     margin: 40px auto 0;
