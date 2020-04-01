@@ -17,7 +17,7 @@
                 - repeatnumber = imagelength
               - else
                 - repeatnumber = 5
-              
+              -# product.jsのfileIndexとiの番号が重なると、削除した画像と新たに追加した番号が同じ場合に両方削除されるためi＋20
               - repeatnumber.times do
                 .js-preview{data: {index: "#{i+20}"}}
                   .js-img
