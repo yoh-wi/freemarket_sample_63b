@@ -29,14 +29,12 @@
           &__list {
             max-width: 350px;
             margin: 20px auto;
-            display: flex;
             &__detail {
-              width: 75%;
+              width: 100%;
               line-height: 1.5;
             }
             &__delete {
               width: 25%;
-              
               &--btn {
                 border: solid 1px $light_blue;
                 border-radius: 4px;

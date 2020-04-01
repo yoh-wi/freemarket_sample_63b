@@ -58,18 +58,12 @@
               &--require {
                 @include require();
               }
-              &--date {
-                @include half-field();
-                // width: 100%;
-                // height: 48px;
-                // margin: 8px 0 0;
-                .month {
-                  @include month_year_box();
-                }
-                .year {
-                  @include month_year_box();
-                  margin-left: 3px;
-                }
+              &--month {
+                @include month_year_box();
+              }
+              &--year {
+                @include month_year_box();
+                margin-left: 3px;
               }
             }
             &__security {
