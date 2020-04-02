@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
   before_action :set_product, only:[:show, :edit, :buy_confirmation, :buy_complete]
-  
+  before_action :set_card, only:[:buy_confirmation]
+
+
   def index
     @products = Product.where(trade_status: '0').limit(3).order(id: "DESC")
   end
@@ -83,4 +85,12 @@ class ProductsController < ApplicationController
   def set_product
     @product = Product.find(params[:id])
   end
+
+  def set_card
+    card = Card.where(user_id: current_user.id).first
+    Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
+    customer = Payjp::Customer.retrieve(card.customer_id)
+    @default_card_information = customer.cards.retrieve(card.card_id)
+  end
+
 end
