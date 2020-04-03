@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only:[:show, :edit, :buy_confirmation, :buy_complete]
-  before_action :set_card, only:[:buy_confirmation]
 
+  before_action :set_product, only:[:show, :edit, :destroy, :buy_confirmation, :buy_complete]
+  before_action :set_card, only:[:buy_confirmation]
 
   def index
     @products = Product.where(trade_status: '0').limit(3).order(id: "DESC")
@@ -37,6 +37,15 @@ class ProductsController < ApplicationController
     @payer = ShippingPayerMethod.where(ancestry: nil)
     if @product.seller_id != current_user.id
       redirect_back(fallback_location: product_path(@product))
+    end
+  end
+
+  def destroy
+    if @product.destroy
+      flash[:notice] = '商品を削除しました'
+      redirect_to user_path
+    else
+      render :show
     end
   end
 
