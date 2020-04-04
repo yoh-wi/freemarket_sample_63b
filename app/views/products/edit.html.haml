@@ -1,1 +1,156 @@
-商品編集画面
+.wrapper
+  = render 'users/header'
+  .form
+    = form_with(model: @product, remote: true) do |f|
+      .form__content
+        .form__content__image#image_box
+          = f.label :image, "出品画像", class: "form__content__image--label"
+          = f.label :image, "必須", class: "form__content__image--require"
+          %p.form__content__image--comment
+          最大10枚までアップロードできます
+          %br
+          #previews
+            - if @product.persisted?
+              - i = 0
+              - imagelength = @product.images.length
+              - if imagelength < 5
+                - repeatnumber = imagelength
+              - else
+                - repeatnumber = 5
+              -# product.jsのfileIndexとiの番号が重なると、削除した画像と新たに追加した番号が同じ場合に両方削除されるためi＋20
+              - repeatnumber.times do
+                .js-preview{data: {index: "#{i+20}"}}
+                  .js-img
+                    = image_tag @product.images[i].image.url, data: {index: "#{i+20}"}, width: 120, height: 100
+                  .js-remove 
+                    削除
+                - i += 1
+              - if imagelength < 5
+                = f.label :image, for: "product_images_attributes_#{i+20}_image", class: "js-file_group", data: {index: "#{i+20}"} do
+                  = icon('fas', 'camera')
+                  = f.file_field :image, type: 'file', name: "product[images_attributes][#{i+20}][image]", id: "product_images_attributes_#{i+20}_image", accept: "image/png, image/jpeg", class: 'js-file'
+          #delete-id
+            = f.fields_for :images, @product.images do |image|        
+              = image.label :image, for: "product_images_attributes_#{image.index+20}_image",  data: {index: "#{image.index+20}"} do  
+                = image.file_field :image, type: 'file', data: {index: "#{image.index+20}"}, name: "product[images_attributes][#{image.index+20}][image]", id: "product_images_attributes_#{image.index+20}_image", accept: "image/png, image/jpeg", class: "hidden-destroy"
+                = image.check_box :_destroy, data:{ index: "#{image.index+20}" }, class: 'hidden-destroy'          
+
+          - if @product.persisted?
+            #previews2
+              - if imagelength >= 5
+                - if imagelength >= 6
+                  - (imagelength - 5).times do
+                    .js-preview{data: {index: "#{i+20}"}}
+                      .js-img
+                        = image_tag @product.images[i].image.url, data: {index: "#{i+20}"}, width: 120, height: 100
+                      .js-remove 
+                        削除
+                    - i += 1
+                - if imagelength < 10    
+                  = f.label :image, for: "product_images_attributes_#{i+20}_image", class: "js-file_group", data: {index: "#{i+20}"} do
+                    = icon('fas', 'camera')
+                    = f.file_field :image, type: 'file', name: "product[images_attributes][#{i+20}][image]", id: "product_images_attributes_#{i+20}_image", accept: "image/png, image/jpeg", class: 'js-file'
+              - if imagelength == 10
+                = f.file_field :image, type: 'hidden', data: {index: "#{i+20}"}, class: "js-file_group"
+       
+      .form__content
+        .form__content__name
+          = f.label :name, "商品名", class: "form__content__name--label"
+          = f.label :require, "必須", class: "form__content__name--require"
+          %br
+          = f.text_field :name, placeholder: '40文字まで', class: "form__content__name--field"
+          %br
+        .form__content__description
+          = f.label :description, "商品の説明", class: "form__content__description--label"
+          = f.label :require, "必須", class: "form__content__description--require"
+          %br
+          = f.text_area :description, placeholder: "商品の説明（必須1000文字以内）&#13;&#10;（色、素材、重さ、定価、注意点など）&#13;&#10;&#13;&#10;例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。".html_safe, class: "form__content__description--area"
+          %p.form__content__description--counter#counter
+            #{@product.description.length}/1000
+          %br
+      
+      .form__content
+        %p.form__content__title 商品の詳細
+        .form__content__category
+          = f.label :category_id, "カテゴリー", class: "form__content__category--label"
+          = f.label :require, "必須", class: "form__content__category--require"
+          #parent_wrapper  
+            = f.collection_select :category_id, @parent_category, :id, :name, { prompt: true }, data: {val: "#{@product.category.root.id}"}, class: "form__content__category--field", id: "parent_category"
+          .category-select-form__added#children_wrapper  
+            = f.collection_select :category_id, @child_category, :id, :name, { prompt: true }, data: {val: "#{@product.category.parent.id}"}, class: "form__content__category--field", id: "child_category"
+          .category-select-form__added#grandchildren_wrapper
+            = f.collection_select :category_id, @grandchild_category, :id, :name, { prompt: true }, data: {val: "#{@product.category.id}"}, class: "form__content__category--field", id: "grandchild_category"
+        
+          - if @sizes.present?
+            .category-select-form__added#size_wrapper
+              = f.label :size_id, "サイズ", class: "form__content__size--label"
+              = f.label :require, "必須", class: "form__content__size--require"
+              %br
+              = f.collection_select :size_id, @sizes, :id, :name, { prompt: true }, data: {val: "#{@product.size.id}"}, class: "form__content__size--field", id: "size"
+        .form__content__brand
+          = f.label :brand, "ブランド", class: "form__content__brand--label"
+          = f.label "任意", class: "form__content__brand--optional"
+          %br
+          = f.text_field :brand, placeholder: "例）シャネル", class: "form__content__brand--field"
+          %br
+        .form__content__condition
+          = f.label :product_condition, "商品の状態", class: "form__content__condition--label"
+          = f.label :require, "必須", class: "form__content__condition--require"
+          %br
+          = f.select :product_condition, Product.product_conditions_i18n.keys.map{|k| [I18n.t("enums.product.product_condition.#{k}"), k]}, {include_blank: "選択してください"}, {class: "form__content__condition--field"}
+          %br
+      
+      .form__content
+        .form__content__title
+          %p.form__content__title--title 配送について
+          .form__content__title--question
+          = link_to "#" do
+            = icon('far', 'question-circle')
+        .form__content__method
+          = f.label :shipping_payer_method_id, "配送料の負担", class: "form__content__method--label"
+          = f.label :require, "必須", class: "form__content__method--require"
+          %br
+          = f.select :shipping_payer_method_id, @payer.map {|method| [method.payer_or_method, method.id]}, { include_blank: '選択してください', selected: @product.shipping_payer_method.parent.id }, {class: "form__content__method--field", id: "payer"}
+          = f.select :shipping_payer_method_id, @payer_method.map {|method| [method.payer_or_method, method.id]}, { include_blank: '選択してください' }, {class: "form__content__method--field", id: "method_wrapper"}
+        .form__content__area
+          = f.label :prefecture_id, "発送元の地域", class: "form__content__area--label"
+          = f.label :require, "必須", class: "form__content__area--require"
+          %br
+          = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: "選択してください"},{class: "form__content__area--field"}
+        .form__content__days
+          = f.label :days_of_shipping, "発送までの日数", class: "form__content__days--label"
+          = f.label :require, "必須", class: "form__content__days--require"
+          %br
+          = f.select :days_of_shipping, Product.days_of_shippings_i18n.keys.map{|k| [I18n.t("enums.product.days_of_shipping.#{k}"), k]}, {include_blank: "選択してください"}, {class: "form__content__days--field"}
+        
+      .form__content
+        .form__content__title
+          %p.form__content__title--title 価格（¥300〜9,999,999)
+          .form__content__title--question
+            = link_to "#" do
+              = icon('far', 'question-circle')
+        .form__content__price
+          = f.label :price, "販売価格", class: "form__content__price--label"
+          = f.label :require, "必須", class: "form__content__price--require"
+          .form__content__price--yen
+            ¥
+            = f.number_field :price, placeholder: "0", class: "form__content__price--half-field"
+        .form__content__fee
+          .form__content__fee--left
+            販売手数料（10％）
+          .form__content__fee--right
+            ¥#{@product.calculate_fee(@product.price)}
+        .form__content__profit
+          .form__content__profit--left
+            販売利益
+          .form__content__profit--right
+            ¥#{@product.calculate_profit(@product.price)}
+        .form__content__btn
+          = f.submit "出品情報を更新する", class: "form__content__btn--submit"
+          .form__content__btn--back
+            = link_to "もどる", root_path
+
+        .form__content__attention
+          禁止されている行為および出品物を必ずご確認ください。偽ブランド品や盗品物などの販売は犯罪であり、法律により処罰される可能性があります。また、出品をもちまして加盟店規約に同意したことになります。
+
+  = render "users/footer"
