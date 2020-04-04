@@ -30,11 +30,23 @@
               支払い方法
             .buy-form__info--text
               クレジットカード
+              - if @default_card_information.blank?
+                %br /
+              - else
+                %br
+                = "**** **** **** " + @default_card_information.last4
+                %br
+                - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+                - exp_month = @default_card_information.exp_month.to_s
+                = exp_month + " / " + exp_year
+              %br
+              = form_tag(action: :buy_confirmation, method: :post) do
+                %br
           .buy-form__info
             .buy-form__info--label
               配送先
             .buy-form__info--text
               登録住所
-          .buy-form__submit
-            = button_to "購入する", buy_complete_product_path(@product), class: "buy-form__submit--btn"
+              .buy-form__submit
+                = button_to "購入する", buy_complete_product_path(@product), class: "buy-form__submit--btn"
   = render 'users/footer'
