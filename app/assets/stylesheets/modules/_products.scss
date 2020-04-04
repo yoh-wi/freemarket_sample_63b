@@ -334,6 +334,9 @@ body {
         margin-bottom: 20px;
       }
     }
+    &__size {
+      @include form-label;
+    }
     &__brand {
       @include form-label;
     }
@@ -513,5 +516,10 @@ body {
     display: none;
     width: 0;
     height: 0;
+  }
+}
+#delete-id {
+  .hidden-destroy {
+    display: none;
   }
 }

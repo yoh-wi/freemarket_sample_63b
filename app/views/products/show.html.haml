@@ -12,12 +12,11 @@
             .detail-box__body
               .detail-box__body__content
                 .detail-box__body__content__list
-                  = image_tag @product.images[0].image.url, alt: "画像", class: "detail-box__body__content__list--image" 
+                  = image_tag @product.images[0].image.url, alt: "画像", class: "detail-box__body__content__list--image"
                   .detail-small
                     - @product.images.each do |i|
-                      .detail-small__list
+                      .detail-small__list#sub-image
                         = image_tag i.image.url, alt: "画像", class: "detail-small__list--image"
-                        
             .detail-box__price
               %span.detail-box__price--text
                 ¥#{@product.price}
@@ -53,6 +52,7 @@
                     ブランド
                   %td.item-right
                     = @product.brand
+              %table.detail-box__table__item
                 - if @product.size.present?
                   %tr
                     %th.item-left
