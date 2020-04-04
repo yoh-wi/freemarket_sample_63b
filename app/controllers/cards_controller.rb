@@ -5,7 +5,7 @@ class CardsController < ApplicationController
   before_action :set_card
 
   def index
-    card = Card.where(user_id: current_user.id).first
+    card = Card.find_by(user_id: current_user.id)
     if card.blank?
       redirect_to action: "new"
     else
@@ -35,7 +35,7 @@ class CardsController < ApplicationController
   end
 
   def destroy
-    card = Card.where(user_id: current_user.id).first
+    card = Card.find_by(user_id: current_user.id)
     if card.blank?
     else
       Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
