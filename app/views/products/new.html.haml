@@ -2,6 +2,7 @@
   = render 'users/header'
   .form
     = form_with(model: @product, remote: true) do |f|
+      = render 'error_message', model: f.object
       .form__content
         .form__content__image#image_box
           = f.label :image, "出品画像", class: "form__content__image--label"
