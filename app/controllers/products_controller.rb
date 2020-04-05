@@ -21,11 +21,15 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    binding.pry
     if @product.save
       redirect_to root_path
     else
       @parent_category = Category.where(ancestry: nil)
       @payer = ShippingPayerMethod.where(ancestry: nil)
+      @selected_category = @product.category
+      @selected_size = @product.size
+      @selected_method = @product.shipping_payer_method
       render :new
     end
   end

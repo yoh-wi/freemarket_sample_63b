@@ -43,8 +43,19 @@
           = f.label :category_id, "カテゴリー", class: "form__content__category--label"
           = f.label :require, "必須", class: "form__content__category--require"
           %br
-          = f.select :category_id, @parent_category.all.map{ |category| [category.name, category.id] }, {prompt: true}, {class: "form__content__category--field", id: "parent_category"}
+          - if @selected_category.blank?
+            = f.select :category_id, @parent_category.all.map{ |category| [category.name, category.id] }, {prompt: true}, {class: "form__content__category--field", id: "parent_category"}
+          - else
+            = f.select :category_id, @parent_category.all.map{ |category| [category.name, category.id] }, {prompt: @selected_category.root}, {class: "form__content__category--field", id: "parent_category"}
+            = f.select :category_id, @selected_category.root.children.all.map{ |category| [category.name, category.id] }, {prompt: @selected_category.parent}, {class: "form__content__category--field category-select-form__added", id: "children_wrapper"}
+            = f.select :category_id, @selected_category.parent.children.all.map{ |category| [category.name, category.id] }, {prompt: @selected_category.parent}, {class: "form__content__category--field category-select-form__added", id: "grandchildren_wrapper", name: "product[category_id]"}
           %br
+        .form__content__size
+          - if @selected_size.present?
+            = f.label :size_id, "サイズ", class: "form__content__size--label"
+            = f.label :require, "必須", class: "form__content__size--require"
+            = f.select :size_id, @selected_category.sizes.all.map{|size| [size.name, size.id]}, {prompt: @selected_size}, {class:'form__content__size--field category-select-form__added', id: 'size_wrapper', name: "product[size_id]"}
+
         .form__content__brand
           = f.label :brand, "ブランド", class: "form__content__brand--label"
           = f.label "任意", class: "form__content__brand--optional"
@@ -67,7 +78,13 @@
           = f.label :shiping_payer_method_id, "配送料の負担", class: "form__content__method--label"
           = f.label :require, "必須", class: "form__content__method--require"
           %br
-          = f.select :shipping_payer_method_id, @payer.all.map {|method| [method.payer_or_method, method.id]}, {prompt: true}, {class: "form__content__method--field", id: "payer"}
+          - if @selected_method.blank?
+            = f.select :shipping_payer_method_id, @payer.all.map {|method| [method.payer_or_method, method.id]}, {prompt: true}, {class: "form__content__method--field", id: "payer"}
+          - else
+            = f.select :shipping_payer_method_id, @payer.all.map {|method| [method.payer_or_method, method.id]}, {prompt: @selected_method.parent}, {class: "form__content__method--field", id: "payer"}
+            = f.label :shiping_payer_method_id, "配送の方法", class: "form__content__method--label"
+            = f.label :require, "必須", class: "form__content__method--require"
+            = f.select :shipping_payer_method_id, @selected_method.parent.children.all.map {|method| [method.payer_or_method, method.id]}, {prompt: @selected_method}, {class: "form__content__method--field", name: "product[shipping_payer_method_id]"}
         .form__content__area
           = f.label :prefecture_id, "発送元の地域", class: "form__content__area--label"
           = f.label :require, "必須", class: "form__content__area--require"
