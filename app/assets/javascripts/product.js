@@ -48,7 +48,7 @@ $(document).on('turbolinks:load', ()=> {
     var parentCategory = $('#parent_category').val();
     if (parentCategory != ''){
       $.ajax({
-        url: 'select_child_category',
+        url: '/products/select_child_category',
         type: 'GET',
         data: {parent_category_id : parentCategory},
         dataType: 'json'
@@ -76,7 +76,7 @@ $(document).on('turbolinks:load', ()=> {
     var childCategory = $('#child_category option:selected').val();
     if (childCategory != ''){
       $.ajax({
-        url: 'select_grandchild_category',
+        url: '/products/select_grandchild_category',
         type: 'GET',
         data: {child_category_id: childCategory},
         dataType: 'json'
@@ -102,7 +102,7 @@ $(document).on('turbolinks:load', ()=> {
     var grandchildCategory =$('#grandchild_category option:selected').val();
     if (grandchildCategory != ''){
       $.ajax({
-        url: 'select_size',
+        url: '/products/select_size',
         type: 'GET',
         data: {grandchild_category_id: grandchildCategory},
         dataType: 'json'
@@ -139,7 +139,7 @@ $(document).on('turbolinks:load', ()=> {
     var payer = $('#payer').val();
     if (payer != ''){
       $.ajax({
-        url: 'select_method',
+        url: '/products/select_method',
         type: 'GET',
         data: {payer_id: payer},
         dataType: 'json'

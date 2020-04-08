@@ -26,9 +26,11 @@ class ProductsController < ApplicationController
     else
       @parent_category = Category.where(ancestry: nil)
       @payer = ShippingPayerMethod.where(ancestry: nil)
+      @image
       @selected_category = @product.category
       @selected_size = @product.size
       @selected_method = @product.shipping_payer_method
+      binding.pry
       render :new
     end
   end
