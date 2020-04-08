@@ -1,9 +1,10 @@
 .wrapper
   = render 'users/header'
-  .form
+  .form#product-form
     = form_with(model: @product, remote: true) do |f|
       .form__content
-        = render 'error_message', model: f.object
+        .form__content__errors
+          = render 'error_message', model: f.object
         .form__content__image#image_box
           = f.label :image, "出品画像", class: "form__content__image--label"
           = f.label :image, "必須", class: "form__content__image--require"
@@ -47,14 +48,17 @@
             = f.select :category_id, @parent_category.all.map{ |category| [category.name, category.id] }, {prompt: true}, {class: "form__content__category--field", id: "parent_category"}
           - else
             = f.select :category_id, @parent_category.all.map{ |category| [category.name, category.id] }, {prompt: @selected_category.root}, {class: "form__content__category--field", id: "parent_category"}
-            = f.select :category_id, @selected_category.root.children.all.map{ |category| [category.name, category.id] }, {prompt: @selected_category.parent}, {class: "form__content__category--field category-select-form__added", id: "children_wrapper"}
-            = f.select :category_id, @selected_category.parent.children.all.map{ |category| [category.name, category.id] }, {prompt: @selected_category.parent}, {class: "form__content__category--field category-select-form__added", id: "grandchildren_wrapper", name: "product[category_id]"}
+            .category-select-form__added#children_wrapper
+              = f.select :category_id, @selected_category.root.children.all.map{ |category| [category.name, category.id] }, {prompt: @selected_category.parent}, {class: "form__content__category--field category-select-form__added", id: "child_category"}
+            .category-select-form__added#grandchildren_wrapper
+              = f.select :category_id, @selected_category.parent.children.all.map{ |category| [category.name, category.id] }, {prompt: @selected_category.parent}, {class: "form__content__category--field category-select-form__added", id: "grandchild_category", name: "product[category_id]"}
           %br
         .form__content__size
           - if @selected_size.present?
-            = f.label :size_id, "サイズ", class: "form__content__size--label"
-            = f.label :require, "必須", class: "form__content__size--require"
-            = f.select :size_id, @selected_category.sizes.all.map{|size| [size.name, size.id]}, {prompt: @selected_size}, {class:'form__content__size--field category-select-form__added', id: 'size_wrapper', name: "product[size_id]"}
+            .category-select-form__added#size_wrapper
+              = f.label :size_id, "サイズ", class: "form__content__size--label"
+              = f.label :require, "必須", class: "form__content__size--require"
+              = f.select :size_id, @selected_category.sizes.all.map{|size| [size.name, size.id]}, {prompt: @selected_size}, {class:'form__content__size--field category-select-form__added', id: 'size_wrapper', name: "product[size_id]"}
 
         .form__content__brand
           = f.label :brand, "ブランド", class: "form__content__brand--label"

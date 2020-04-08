@@ -282,6 +282,10 @@ body {
         a:active { color: rgb(0, 149, 238); text-decoration:none;}
       }
     }
+    &__errors {
+      margin-left: 40px;
+      color: red;
+    }
     &__image {
       @include form-label;
       &--comment {
@@ -333,6 +337,9 @@ body {
         margin-top: 30px;
         margin-bottom: 20px;
       }
+    }
+    &__size {
+      @include form-label;
     }
     &__brand {
       @include form-label;
