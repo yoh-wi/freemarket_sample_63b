@@ -157,7 +157,7 @@
 }
 
 @mixin month_year_box() {
-  width: calc( 50% - 25px );
+  width: calc( 50% - 30px );
   display: inline-block;
   height: 48px;
   border-radius: 4px;
@@ -167,6 +167,7 @@
   font-size: 16px;
   padding: 0 16px;
   margin-right: 2px;
+  margin: 8px 0 0;
 }
 
 @mixin pulldown-menu() {

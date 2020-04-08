@@ -43,4 +43,13 @@ class Product < ApplicationRecord
   def next
     Product.where('id > ?', self.id).order('id ASC').first
   end
+
+  def calculate_fee(price)
+    (price * 0.1).floor
+  end
+
+  def calculate_profit(price)
+    price - calculate_fee(price)
+  end
+
 end

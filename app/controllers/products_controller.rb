@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only:[:show, :edit, :destroy, :buy_confirmation, :buy_complete]
-  
+
+  before_action :set_product, only:[:show, :edit, :update, :destroy, :buy_confirmation, :buy_complete]
+  before_action :set_card, only:[:buy_confirmation]
+
   def index
     @products = Product.where(trade_status: '0').limit(3).order(id: "DESC")
   end
@@ -37,12 +39,24 @@ class ProductsController < ApplicationController
 
   def edit
     @parent_category = Category.where(ancestry: nil)
+    @child_category = @product.category.root.children
+    @grandchild_category = @product.category.parent.children
     @payer = ShippingPayerMethod.where(ancestry: nil)
+    @payer_method = @product.shipping_payer_method.parent.children
+    @sizes = @product.category.sizes
     if @product.seller_id != current_user.id
       redirect_back(fallback_location: product_path(@product))
     end
   end
 
+  def update
+    if @product.update(product_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
+  
   def destroy
     if @product.destroy
       flash[:notice] = '商品を削除しました'
@@ -79,6 +93,13 @@ class ProductsController < ApplicationController
   end
 
   def buy_complete
+    card = Card.find_by(user_id: current_user.id)
+    Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
+    charge = Payjp::Charge.create(
+      amount: @product.price,
+      customer: card.customer_id,
+      currency: 'jpy',
+      )
     @product.update(buyer_id: current_user.id, trade_status: 1)
   end
 
@@ -90,4 +111,12 @@ class ProductsController < ApplicationController
   def set_product
     @product = Product.find(params[:id])
   end
+
+  def set_card
+    card = Card.find_by(user_id: current_user.id)
+    Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
+    customer = Payjp::Customer.retrieve(card.customer_id)
+    @default_card_information = customer.cards.retrieve(card.card_id)
+  end
+
 end
