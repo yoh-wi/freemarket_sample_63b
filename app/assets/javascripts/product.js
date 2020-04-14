@@ -46,7 +46,6 @@ $(document).on('turbolinks:load', ()=> {
   $('#parent_category').on('change', function(e){
     e.preventDefault();
     var parentCategory = $('#parent_category').val();
-    console.log(parentCategory)
     if (parentCategory != ''){
       $.ajax({
         url: 'select_child_category',
@@ -280,31 +279,4 @@ $(document).on('turbolinks:load', ()=> {
   $('.detail-small__list--image').on('mouseover', function(){
     $('.detail-box__body__content__list--image').attr({src:$(this).attr('src'),alt:$(this).attr('alt')});
   });
-
-  // function buildCategoryMenu(category){
-  //   var categoryHtml = `<li>
-  //                   ${category.name}
-                    
-  //                  </li>`;
-  //   return categoryHtml
-  // }
-  // $('.header-menu__parent').on('mouseover', function(e){
-  //   e.preventDefault();
-  //   var parentCategory = $('.header-menu__parent').val();
-  //   console.log(parentCategory)
-  //   $.ajax({
-  //     url: 'select_child_category',
-  //     type: 'GET',
-  //     data: {parent_category_id: parentCategory},
-  //     dataType: 'json'
-  //   })
-  //   .done(function(children){
-  //     children.forEach(function(child){
-  //      $(".second").append(buildCategoryMenu(child));
-  //     })
-  //   })
-  //   .fail(function(){
-  //     alert('カテゴリの取得に失敗しました');
-  //   })
-  // });
 });
