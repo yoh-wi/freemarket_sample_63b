@@ -16,31 +16,19 @@
         .header-nav__left__category
           = link_to "カテゴリー"
           .header-nav__left__category__tree  
-            %ul.first
-              %li
-                = link_to "レディース"  
-                %ul.second
-                  %li
-                    = link_to "トップス"
-                    %ul.third
-                      %li
-                        = link_to "Tシャツ/カットソー"  
-                      %li
-                        = link_to "シャツ/ブラウス"
-                  %li
-                    = link_to "ジャケット／アウター"
-                    %ul.third  
-                      %li
-                        = link_to "テーラードジャケット"  
-                      %li
-                        = link_to "ノーカラージャケット"
-              %li
-                = link_to "メンズ"
-              %li
-                = link_to "レディース"  
-              %li
-                = link_to "メンズ"
-            
+            - if @parent_category.present?
+              %ul.first
+                - @parent_category.each do |parent|
+                  %li.header-menu__p
+                    = link_to parent.name, "#", class: "header-menu__parent"   
+                    %ul.second
+                      - parent.children.each do |child|
+                        %li
+                          = link_to child.name
+                          %ul.third
+                            - child.children.each do |grandchild|
+                              %li 
+                                = link_to grandchild.name       
         .header-nav__left__category
           = link_to "ブランド"
       .header-nav__right

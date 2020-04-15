@@ -5,6 +5,9 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.where(trade_status: '0').limit(3).order(id: "DESC")
+    @parent_category = Category.where(ancestry: nil)
+    # @child_category = @product.category.root.children
+    # @grandchild_category = @product.category.parent.children
   end
 
   def show
