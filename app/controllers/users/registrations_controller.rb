@@ -38,11 +38,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def birthday_join
-    date = params[:user]
-    if date["birthday(1i)"].empty? && date["birthday(2i)"].empty? && date["birthday(3i)"].empty?
-      return
-    end
-    params[:user][:birthday] = Date.new date["birthday(1i)"].to_i,date["birthday(2i)"].to_i,date["birthday(3i)"].to_i
+    year = params[:user]["birthday(1i)"]
+    month = params[:user]["birthday(2i)"]
+    day = params[:user]["birthday(3i)"]
+    birthday = year.to_s + "-" + month.to_s + "-" + day.to_s
+    return
   end
   # PUT /resource
   # def update
