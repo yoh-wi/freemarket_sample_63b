@@ -77,6 +77,10 @@ $(function(){
     //バリデーション通過できたらsubmitする
     if (judge == 0) {
       $('#sell_form').submit();
+    } else {
+      var position = $('.error_message').parent().get(0).offsetTop
+      console.log(position);
+      $('html,body').animate({ scrollTop: position });
     }
   })
 })
