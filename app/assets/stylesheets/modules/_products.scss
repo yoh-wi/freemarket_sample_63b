@@ -382,6 +382,11 @@ body {
       font-size: 0.9rem;
       text-align: right;
     }
+    .error_message {
+      color: red;
+      font-size: 0.9rem;
+      padding-left: 5px;
+    }
     &__fee {
       margin: 0 40px;
       display: flex;
