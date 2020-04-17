@@ -6,7 +6,6 @@ $(function(){
     var descriptionErrorHtml = `<div class='error_message'>1000文字以下で入力してください</div>`;
     var imageErrorHtml = `<div class='error_message'>画像がありません</div>`;
     var priceErrorHtml = `<div class='attention'>300以上9999999以下で入力してください</div>`;
-    console.log("OK");
     //各入力内容を取得
     var image = $('.js-preview').val();
     var name = $('.form__content__name--field').val();
@@ -20,6 +19,7 @@ $(function(){
     var price = $('.form__content__price--half-field').val();
     //バリデーション判定用変数
     let judge = 0
+    //バリデーションチェック
     if (image = 'undefined') {
       $('.form__content__image > .error_message').remove();
       $('.form__content__image').append(imageErrorHtml);
@@ -69,10 +69,14 @@ $(function(){
       $('.form__content__days').append(selectErrorHtml);
       judge += 1
     }
-    console.log(price);
     if (price == '' || price < 300 || price > 9999999) {
       $('.attention').remove();
       $('.form__content__price').append(priceErrorHtml);
+      judge += 1
+    }
+    //バリデーション通過できたらsubmitする
+    if (judge == 0) {
+      $('#sell_form').submit();
     }
   })
 })
