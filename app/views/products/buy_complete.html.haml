@@ -1,4 +1,7 @@
 .wrapper
   = render "users/header"
-  %p 商品の購入が完了しました
+  .buy-complete 
+    %p 商品の購入が完了しました。
+    .buy-complete__btn
+      = link_to "トップに戻る", root_path
   = render "users/footer"

@@ -1,8 +1,8 @@
 .detail-bar
   .detail-bar__link
-    = link_to "FURIMA", "#", class: "detail-bar__link--top"
+    = link_to "FURIMA", root_path, class: "detail-bar__link--top"
     = icon('fas', 'angle-right', class: "detail-bar__link--icon")
-    = link_to @product.category.parent.parent.name, "#", class: "detail-bar__link--parent-category"
+    = link_to @product.category.root.name, "#", class: "detail-bar__link--parent-category"
     = icon('fas', 'angle-right', class: "detail-bar__link--icon")
     = link_to @product.category.parent.name, "#", class: "detail-bar__link--child-category"
     = icon('fas', 'angle-right', class: "detail-bar__link--icon")
