@@ -83,4 +83,31 @@ $(function(){
       $('html,body').animate({ scrollTop: position });
     }
   })
+  //バリデーションエラーが解消されたらエラーメッセージは消す
+  $('.form__content__image__upload--file').on('change', function(){
+    $('.form__content__image > .error_message').remove();
+  })
+  $('.form__content__name--field').on('keyup', function(){
+    if ($(this).val().length != 0) {
+      $('.form__content__name > .error_message').remove();
+    }
+  })
+  $('#size').on('change', function(){
+    $('#size_wrapper > .error_message').remove();
+  })
+  $('#parent_category, #child_category, #grandchild_category').on('change', function(){
+    $('.form__content__category > .error_message').remove();
+  })
+  $('.form__content__condition--field').on('change', function(){
+    $('.form__content__condition > .error_message').remove();
+  })
+  $('#payer, #method').on('change', function(){
+    $('.form__content__method > .error_message').remove();
+  })
+  $('.form__content__area--field').on('change', function(){
+    $('.form__content__area > .error_message').remove();
+  })
+  $('.form__content__days--field').on('change', function(){
+    $('.form__content__days > .error_message').remove();
+  })
 })

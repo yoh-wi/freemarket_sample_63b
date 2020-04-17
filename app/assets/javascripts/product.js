@@ -258,6 +258,9 @@ $(document).on('turbolinks:load', ()=> {
   var count = $(this).val().length;
   var counter = `${count}/1000` 
   $('#counter').text(counter);
+  if (count != 0 && count <= 1000) {
+    $('.form__content__description > .error_message').remove();
+  }
   });
   //price入力後、手数料と利益をだす
   $('.form__content__price--half-field').on('change keyup', function(){
