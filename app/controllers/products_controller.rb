@@ -86,6 +86,7 @@ class ProductsController < ApplicationController
     if user_signed_in?
       if @product.seller_id == current_user.id
         redirect_back(fallback_location: product_path(@product))
+      else
         set_card
       end
     else
