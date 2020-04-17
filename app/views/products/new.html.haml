@@ -1,7 +1,7 @@
 .wrapper
   = render 'users/header'
   .form#product-form
-    = form_with(model: @product, remote: true) do |f|
+    = form_with(model: @product, remote: true, id: 'sell_form') do |f|
       .form__content
         .form__content__errors
           = render 'error_message', model: f.object
@@ -61,7 +61,7 @@
             .category-select-form__added#size_wrapper
               = f.label :size_id, "サイズ", class: "form__content__size--label"
               = f.label :require, "必須", class: "form__content__size--require"
-              = f.select :size_id, @selected_category.sizes.all.map{|size| [size.name, size.id]}, {prompt: @selected_size}, {class:'form__content__size--field category-select-form__added', id: 'size_wrapper', name: "product[size_id]"}
+              = f.select :size_id, @selected_category.sizes.all.map{|size| [size.name, size.id]}, {prompt: @selected_size}, {class:'form__content__size--field category-select-form__added', id: 'size', name: "product[size_id]"}
 
         .form__content__brand
           = f.label :brand, "ブランド", class: "form__content__brand--label"
@@ -126,7 +126,7 @@
           .form__content__profit--right
             ー
         .form__content__btn
-          = f.submit "出品する", class: "form__content__btn--submit"
+          = f.button "出品する", class: "form__content__btn--submit"
           .form__content__btn--back
             = link_to "もどる", root_path
 
