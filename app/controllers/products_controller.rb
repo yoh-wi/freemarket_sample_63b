@@ -1,7 +1,6 @@
 class ProductsController < ApplicationController
 
   before_action :set_product, only:[:show, :edit, :update, :destroy, :buy_confirmation, :buy_complete]
-  # before_action :set_card, only:[:buy_confirmation]
 
   def index
     @products = Product.where(trade_status: '0').limit(3).order(id: "DESC")
