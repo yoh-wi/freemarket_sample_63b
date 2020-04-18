@@ -60,6 +60,10 @@ class ProductsController < ApplicationController
   end
   
   def destroy
+    # images = Image.where(product_id: @product.id)
+    # images.each do |image|
+    #   image.destroy
+    # end
     if @product.destroy
       flash[:notice] = '商品を削除しました'
       redirect_to user_path
