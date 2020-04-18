@@ -1,13 +1,10 @@
 class ProductsController < ApplicationController
 
   before_action :set_product, only:[:show, :edit, :update, :destroy, :buy_confirmation, :buy_complete]
-  before_action :set_card, only:[:buy_confirmation]
 
   def index
     @products = Product.where(trade_status: '0').limit(3).order(id: "DESC")
     @parent_category = Category.where(ancestry: nil)
-    # @child_category = @product.category.root.children
-    # @grandchild_category = @product.category.parent.children
   end
 
   def show
@@ -88,6 +85,8 @@ class ProductsController < ApplicationController
     if user_signed_in?
       if @product.seller_id == current_user.id
         redirect_back(fallback_location: product_path(@product))
+      else
+        set_card
       end
     else
       redirect_to new_user_session_path
@@ -115,10 +114,14 @@ class ProductsController < ApplicationController
   end
 
   def set_card
-    card = Card.find_by(user_id: current_user.id)
-    Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
-    customer = Payjp::Customer.retrieve(card.customer_id)
-    @default_card_information = customer.cards.retrieve(card.card_id)
+    if Card.exists?(user_id: current_user.id)
+      card = Card.find_by(user_id: current_user.id)
+      Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
+      customer = Payjp::Customer.retrieve(card.customer_id)
+      @default_card_information = customer.cards.retrieve(card.card_id)
+    else
+      redirect_to new_card_path
+    end
   end
 
 end
