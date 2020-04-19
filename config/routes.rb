@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
   }
   namespace :users do
-    resources :address, only: [:new, :create, :edit, :update]
+    resources :address, only: [:new, :create, :edit, :update, :destroy]
   end
   devise_scope :user do
     get 'edit_profile', to: 'users/registrations#edit_profile', as: 'edit_profile'

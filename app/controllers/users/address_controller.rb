@@ -1,5 +1,5 @@
 class Users::AddressController < ApplicationController
-  before_action :set_address, only: [:edit, :update]
+  before_action :set_address, only: [:edit, :update, :destroy]
   def new
     @address = Address.new
   end
@@ -22,6 +22,11 @@ class Users::AddressController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @address.destroy
+    redirect_to user_path(current_user)
   end
   
   private
