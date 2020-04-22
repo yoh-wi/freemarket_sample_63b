@@ -2,7 +2,7 @@
   .address-detail__head
     発送元・お届け先住所
   .address-form
-    = form_with(url: users_addresses_path, model: @address, local: true) do |f|
+    = form_with(url: users_addresses_path, model: @address, local: true, id: 'address_form') do |f|
       .address-form__contents.last_name
         = f.label :last_name_kanji, "お名前", class: "address-form__contents--label"
         = f.label :require, "必須", class: "address-form__contents--require"
