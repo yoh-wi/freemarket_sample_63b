@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load', ()=>{
   $('.form__content__btn--submit').on('click', function(e) {
     e.preventDefault();
     //挿入するエラーメッセージ

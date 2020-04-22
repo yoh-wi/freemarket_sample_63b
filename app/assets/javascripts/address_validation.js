@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load', ()=>{
   $('.address-form__contents--btn').on('click', function(e) {
     e.preventDefault();
     //挿入するエラーメッセージ
