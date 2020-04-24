@@ -1,4 +1,4 @@
-class Users::AddressController < ApplicationController
+class Users::AddressesController < ApplicationController
   before_action :set_address, only: [:edit, :update, :destroy]
   def new
     @address = Address.new
@@ -35,6 +35,6 @@ class Users::AddressController < ApplicationController
   end
 
   def set_address
-    @address = Address.find(params[:id])
+    @address = Address.find(current_user.address.id)
   end
 end
