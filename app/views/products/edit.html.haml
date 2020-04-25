@@ -1,7 +1,7 @@
 .wrapper
   = render 'users/header'
   .form
-    = form_with(model: @product, remote: true) do |f|
+    = form_with(model: @product, remote: true, id: 'sell_form') do |f|
       .form__content
         .form__content__image#image_box
           = f.label :image, "出品画像", class: "form__content__image--label"
@@ -111,7 +111,7 @@
           = f.label :require, "必須", class: "form__content__method--require"
           %br
           = f.select :shipping_payer_method_id, @payer.map {|method| [method.payer_or_method, method.id]}, { include_blank: '選択してください', selected: @product.shipping_payer_method.parent.id }, {class: "form__content__method--field", id: "payer"}
-          = f.select :shipping_payer_method_id, @payer_method.map {|method| [method.payer_or_method, method.id]}, { include_blank: '選択してください' }, {class: "form__content__method--field", id: "method_wrapper"}
+          = f.select :shipping_payer_method_id, @payer_method.map {|method| [method.payer_or_method, method.id]}, { include_blank: '選択してください' }, {class: "form__content__method--field", id: "method"}
         .form__content__area
           = f.label :prefecture_id, "発送元の地域", class: "form__content__area--label"
           = f.label :require, "必須", class: "form__content__area--require"
@@ -146,7 +146,7 @@
           .form__content__profit--right
             ¥#{@product.calculate_profit(@product.price)}
         .form__content__btn
-          = f.submit "出品情報を更新する", class: "form__content__btn--submit"
+          = f.button "出品情報を更新する", class: "form__content__btn--submit"
           .form__content__btn--back
             = link_to "もどる", root_path
 
