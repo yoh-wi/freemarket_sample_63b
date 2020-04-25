@@ -74,10 +74,10 @@
         .form__content__category
           = f.label :category_id, "カテゴリー", class: "form__content__category--label"
           = f.label :require, "必須", class: "form__content__category--require"
-          #parent_wrapper  
-            = f.collection_select :category_id, @parent_category, :id, :name, { prompt: true }, data: {val: "#{@product.category.root.id}"}, class: "form__content__category--field", id: "parent_category"
+          #parent_wrapper
+            = f.collection_select :category_id, @parent_category, :id, :name, { prompt: true, selected: "#{@product.category.root.id}" }, data: {val: "#{@product.category.root.id}"}, class: "form__content__category--field", id: "parent_category"
           .category-select-form__added#children_wrapper  
-            = f.collection_select :category_id, @child_category, :id, :name, { prompt: true }, data: {val: "#{@product.category.parent.id}"}, class: "form__content__category--field", id: "child_category"
+            = f.collection_select :category_id, @child_category, :id, :name, { prompt: true, selected: "#{@product.category.parent.id}" }, data: {val: "#{@product.category.parent.id}"}, class: "form__content__category--field", id: "child_category"
           .category-select-form__added#grandchildren_wrapper
             = f.collection_select :category_id, @grandchild_category, :id, :name, { prompt: true }, data: {val: "#{@product.category.id}"}, class: "form__content__category--field", id: "grandchild_category"
         
