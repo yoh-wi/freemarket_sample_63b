@@ -1,7 +1,7 @@
 .wrapper
   = render 'users/header'
   .form
-    = form_with(model: @product, remote: true) do |f|
+    = form_with(model: @product, remote: true, id: 'sell_form') do |f|
       .form__content
         .form__content__image#image_box
           = f.label :image, "出品画像", class: "form__content__image--label"
@@ -147,7 +147,7 @@
           .form__content__profit--right
             ¥#{@product.calculate_profit(@product.price)}
         .form__content__btn
-          = f.submit "出品情報を更新する", class: "form__content__btn--submit"
+          = f.button "出品情報を更新する", class: "form__content__btn--submit"
           .form__content__btn--back
             = link_to "もどる", root_path
 
